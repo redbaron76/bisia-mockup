@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bisia — Social Network</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --black: #0a0a0c; --gray-950: #0f0f12; --gray-900: #16161a; --gray-800: #1e1e24; --gray-700: #2a2a32; --gray-600: #3a3a44; --gray-400: #888890; --white: #fff; --accent: #ffcc00; --accent-light: rgba(255,204,0,0.1); --green: #22c55e; --pink: #ec4899; --blue: #3b82f6; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--black); color: var(--white); }
+        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,12,0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--gray-800); }
+        .logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.5rem; }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a { color: var(--gray-400); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; display: flex; align-items: center; gap: 0.3rem; }
+        .nav-links a:hover { color: var(--white); }
+        .nav-links a.active { color: var(--accent); }
+        .nav-profile { display: flex; align-items: center; gap: 0.75rem; }
+        .nav-profile .name { font-weight: 600; font-size: 0.9rem; }
+        .avatar { border-radius: 50%; object-fit: cover; border: 2px solid var(--gray-700); }
+        .avatar-sm { width: 32px; height: 32px; }
+        .avatar-md { width: 44px; height: 44px; }
+        .avatar-lg { width: 56px; height: 56px; }
+        .avatar-xl { width: 72px; height: 72px; }
+
+        /* LAYOUT */
+        .app { display: grid; grid-template-columns: 280px 1fr 300px; gap: 0; min-height: 100vh; max-width: 1280px; margin: 0 auto; }
+
+        /* LEFT NAV */
+        .left-nav { padding: 5rem 1.5rem 2rem; border-right: 1px solid var(--gray-800); }
+        .left-nav .menu { display: flex; flex-direction: column; gap: 0.25rem; margin-top: 1rem; }
+        .left-nav .menu-item { display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem; border-radius: 12px; color: var(--gray-400); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: all 0.2s; }
+        .left-nav .menu-item:hover { background: var(--gray-900); color: var(--white); }
+        .left-nav .menu-item.active { background: var(--accent-light); color: var(--accent); }
+        .left-nav .menu-item .icon { font-size: 1.3rem; width: 28px; text-align: center; }
+        .left-nav .menu-item .badge { margin-left: auto; background: var(--accent); color: var(--black); font-size: 0.75rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 100px; }
+
+        /* CENTER FEED */
+        .feed-center { padding: 5rem 0 2rem; }
+        .stories { padding: 0 2rem 1.5rem; display: flex; gap: 1rem; overflow-x: auto; }
+        .story { text-align: center; cursor: pointer; flex-shrink: 0; }
+        .story .ring { width: 68px; height: 68px; border-radius: 50%; padding: 3px; background: linear-gradient(135deg, var(--accent), var(--pink)); margin-bottom: 0.4rem; }
+        .story .ring img { width: 100%; height: 100%; border-radius: 50%; border: 3px solid var(--black); object-fit: cover; }
+        .story .name { font-size: 0.75rem; color: var(--gray-400); max-width: 68px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .create-post { padding: 1.5rem 2rem; border-bottom: 1px solid var(--gray-800); display: flex; gap: 1rem; align-items: center; }
+        .create-post input { flex: 1; background: var(--gray-900); border: 1px solid var(--gray-700); border-radius: 100px; padding: 0.8rem 1.5rem; color: var(--white); font-size: 0.95rem; outline: none; font-family: inherit; }
+        .create-post input::placeholder { color: var(--gray-500); }
+        .post-card { padding: 1.5rem 2rem; border-bottom: 1px solid var(--gray-800); }
+        .post-top { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+        .post-info { flex: 1; }
+        .post-info .name { font-weight: 600; font-size: 0.95rem; }
+        .post-info .time { color: var(--gray-500); font-size: 0.8rem; }
+        .post-content { margin-bottom: 1rem; }
+        .post-content p { color: var(--gray-300); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0.75rem; }
+        .post-content .hashtag { color: var(--accent); }
+        .post-media { background: var(--gray-900); border-radius: 12px; height: 250px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+        .post-stats { display: flex; justify-content: space-between; color: var(--gray-500); font-size: 0.8rem; margin-bottom: 0.75rem; }
+        .post-buttons { display: flex; gap: 0.25rem; }
+        .post-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.6rem; border-radius: 8px; color: var(--gray-400); font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.2s; background: none; border: none; }
+        .post-btn:hover { background: var(--gray-900); }
+        .post-btn.liked { color: var(--pink); }
+
+        /* RIGHT SIDEBAR */
+        .right-sidebar { padding: 5rem 1.5rem 2rem; border-left: 1px solid var(--gray-800); }
+        .right-sidebar .widget { background: var(--gray-900); border-radius: 16px; padding: 1.25rem; margin-bottom: 1.25rem; }
+        .widget-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 1rem; }
+        .contacts-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+        .contacts-header span { font-size: 0.8rem; color: var(--accent); cursor: pointer; }
+        .contact { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; cursor: pointer; }
+        .contact:hover { opacity: 0.8; }
+        .contact .info { flex: 1; }
+        .contact .info .name { font-size: 0.9rem; font-weight: 500; }
+        .contact .info .status { font-size: 0.75rem; color: var(--gray-500); }
+        .online-dot { width: 10px; height: 10px; background: var(--green); border-radius: 50%; border: 2px solid var(--gray-900); position: relative; top: -4px; }
+
+        footer { padding: 2rem; text-align: center; color: var(--gray-600); font-size: 0.85rem; border-top: 1px solid var(--gray-800); }
+
+        @media (max-width: 1100px) { .left-nav, .right-sidebar { display: none; } .app { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Bisia<span>✦</span></div>
+        <div class="nav-links">
+            <a href="#" class="active">🏠 Home</a>
+            <a href="#">👥 Amici</a>
+            <a href="#">💬 Messaggi</a>
+            <a href="#">🔔 Notifiche <span style="background:var(--accent);color:var(--black);padding:0.1rem 0.4rem;border-radius:100px;font-size:0.7rem;font-weight:700;">5</span></a>
+        </div>
+        <div class="nav-profile">
+            <img class="avatar avatar-sm" src="https://i.pravatar.cc/64?img=32" alt="">
+            <span class="name">Giulia</span>
+        </div>
+    </nav>
+
+    <div class="app">
+        <aside class="left-nav">
+            <div style="display:flex;align-items:center;gap:0.75rem;padding:0.5rem 1rem;margin-bottom:1rem;">
+                <img class="avatar avatar-md" src="https://i.pravatar.cc/96?img=32" alt="">
+                <div><div style="font-weight:600;font-size:0.95rem;">Giulia F.</div><div style="color:var(--gray-500);font-size:0.8rem;">@giulia.f</div></div>
+            </div>
+            <div class="menu">
+                <a href="#" class="menu-item active"><span class="icon">🏠</span> Home</a>
+                <a href="#" class="menu-item"><span class="icon">👤</span> Profilo</a>
+                <a href="#" class="menu-item"><span class="icon">👥</span> Amici <span class="badge">3</span></a>
+                <a href="#" class="menu-item"><span class="icon">💬</span> Messaggi <span class="badge">12</span></a>
+                <a href="#" class="menu-item"><span class="icon">📷</span> Foto</a>
+                <a href="#" class="menu-item"><span class="icon">🎵</span> Musica</a>
+                <a href="#" class="menu-item"><span class="icon">⚙️</span> Impostazioni</a>
+            </div>
+        </aside>
+
+        <main class="feed-center">
+            <div class="stories">
+                <div class="story"><div class="ring"><img src="https://i.pravatar.cc/128?img=12" alt=""></div><div class="name">Lara M.</div></div>
+                <div class="story"><div class="ring"><img src="https://i.pravatar.cc/128?img=44" alt=""></div><div class="name">Luca R.</div></div>
+                <div class="story"><div class="ring"><img src="https://i.pravatar.cc/128?img=26" alt=""></div><div class="name">Davide B.</div></div>
+                <div class="story"><div class="ring"><img src="https://i.pravatar.cc/128?img=15" alt=""></div><div class="name">Chiara V.</div></div>
+                <div class="story"><div class="ring"><img src="https://i.pravatar.cc/128?img=53" alt=""></div><div class="name">Matteo G.</div></div>
+                <div class="story"><div class="ring"><img src="https://i.pravatar.cc/128?img=45" alt=""></div><div class="name">Anna P.</div></div>
+                <div class="story"><div class="ring"><img src="https://i.pravatar.cc/128?img=60" alt=""></div><div class="name">Paolo S.</div></div>
+                <div class="story"><div class="ring"><img src="https://i.pravatar.cc/128?img=38" alt=""></div><div class="name">Sara L.</div></div>
+            </div>
+
+            <div class="create-post">
+                <img class="avatar avatar-md" src="https://i.pravatar.cc/96?img=32" alt="">
+                <input type="text" placeholder="Cosa stai pensando, Giulia?">
+            </div>
+
+            <div class="post-card">
+                <div class="post-top">
+                    <img class="avatar avatar-lg" src="https://i.pravatar.cc/112?img=12" alt="">
+                    <div class="post-info"><div class="name">Lara Moretti</div><div class="time">23 min fa · 🌍 Pubblico</div></div>
+                </div>
+                <div class="post-content">
+                    <p>Stasera c'è il live di <span class="hashtag">#JazzNotte</span> nel gruppo Music Lounge! 🎷 Sarebbe figgissimo sentirci tutti insieme qui dentro. Chi c'è?</p>
+                </div>
+                <div class="post-media">🎵</div>
+                <div class="post-stats"><span>♥ 189 persone</span><span>34 commenti · 12 condivisioni</span></div>
+                <div class="post-buttons">
+                    <button class="post-btn liked">♥ Mi piace</button>
+                    <button class="post-btn">💬 Commenta</button>
+                    <button class="post-btn">↗ Condividi</button>
+                </div>
+            </div>
+
+            <div class="post-card">
+                <div class="post-top">
+                    <img class="avatar avatar-lg" src="https://i.pravatar.cc/112?img=53" alt="">
+                    <div class="post-info"><div class="name">Matteo Greco</div><div class="time">1 ora fa · 🔒 Amici</div></div>
+                </div>
+                <div class="post-content">
+                    <p>Finalmente il progetto è online! 🚀 Tre mesi di lavoro con il team di <span class="hashtag">#BisiaDev</span>. Grazie a tutti per il supporto: <span class="hashtag">@valentina</span>, <span class="hashtag">@andrea</span>, <span class="hashtag">@sofia</span> — non ce l'avrei fatto senza di voi!</p>
+                    <p>Link in bio 👆</p>
+                </div>
+                <div class="post-stats"><span>♥ 412 persone</span><span>67 commenti · 34 condivisioni</span></div>
+                <div class="post-buttons">
+                    <button class="post-btn">♥ Mi piace</button>
+                    <button class="post-btn">💬 Commenta</button>
+                    <button class="post-btn">↗ Condividi</button>
+                </div>
+            </div>
+
+            <div class="post-card">
+                <div class="post-top">
+                    <img class="avatar avatar-lg" src="https://i.pravatar.cc/112?img=45" alt="">
+                    <div class="post-info"><div class="name">Anna Pellegrini</div><div class="time">3 ore fa · 🌍 Pubblico</div></div>
+                </div>
+                <div class="post-content">
+                    <p>Qualcuno ha già provato il nuovo update? Le storie ora hanno i reazioni! 😍 Ho messo un cuore a quella di Sara ed è tornato — geniale.</p>
+                </div>
+                <div class="post-media">📱</div>
+                <div class="post-stats"><span>♥ 276 persone</span><span>51 commenti · 19 condivisioni</span></div>
+                <div class="post-buttons">
+                    <button class="post-btn liked">♥ Mi piace</button>
+                    <button class="post-btn">💬 Commenta</button>
+                    <button class="post-btn">↗ Condividi</button>
+                </div>
+            </div>
+        </main>
+
+        <aside class="right-sidebar">
+            <div class="widget">
+                <div class="contacts-header"><span class="widget-title">Contatti</span><span>Vedi tutti</span></div>
+                <div class="contact"><img class="avatar avatar-sm" src="https://i.pravatar.cc/64?img=12" alt=""><span class="online-dot"></span><div class="info"><div class="name">Lara M.</div><div class="status">Online</div></div></div>
+                <div class="contact"><img class="avatar avatar-sm" src="https://i.pravatar.cc/64?img=44" alt=""><span class="online-dot"></span><div class="info"><div class="name">Luca R.</div><div class="status">Online</div></div></div>
+                <div class="contact"><img class="avatar avatar-sm" src="https://i.pravatar.cc/64?img=26" alt=""><span class="online-dot"></span><div class="info"><div class="name">Davide B.</div><div class="status">Online</div></div></div>
+                <div class="contact"><img class="avatar avatar-sm" src="https://i.pravatar.cc/64?img=15" alt=""><div class="info"><div class="name">Chiara V.</div><div class="status">2h fa</div></div></div>
+                <div class="contact"><img class="avatar avatar-sm" src="https://i.pravatar.cc/64?img=53" alt=""><div class="info"><div class="name">Matteo G.</div><div class="status">5h fa</div></div></div>
+                <div class="contact"><img class="avatar avatar-sm" src="https://i.pravatar.cc/64?img=60" alt=""><span class="online-dot"></span><div class="info"><div class="name">Paolo S.</div><div class="status">Online</div></div></div>
+            </div>
+            <div class="widget">
+                <div class="widget-title">Gruppi in cui sei</div>
+                <div class="contact"><div class="info"><div class="name">🎨 DesignItalia</div><div class="status">342 membri</div></div></div>
+                <div class="contact"><div class="info"><div class="name">🚀 StartupGR</div><div class="status">189 membri</div></div></div>
+                <div class="contact"><div class="info"><div class="name">📸 Photography</div><div class="status">5K membri</div></div></div>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p>© 2026 Bisia · Connettiti con le persone che contano ✦</p>
+    </footer>
+</body>
+</html>
