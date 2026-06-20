@@ -4,88 +4,193 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bisiacaria — Directory</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --black: #0a0a0c; --gray-950: #0f0f12; --gray-900: #16161a; --gray-800: #1e1e24; --gray-700: #2a2a32; --gray-400: #888890; --white: #fff; --accent: #ffcc00; --accent-light: rgba(255,204,0,0.1); --green: #22c55e; --blue: #3b82f6; --pink: #ec4899; --purple: #a855f7; --orange: #f97316; --teal: #14b8a6; --red: #ef4444; }
+        :root {
+            --black: #050508; --gray-950: #0c0c10; --gray-900: #111118; --gray-800: #1a1a24; --gray-700: #252532; --gray-600: #333344; --gray-500: #555568; --gray-400: #88889a; --gray-300: #b0b0c2;
+            --accent: #ffcc00; --accent-glow: rgba(255,204,0,0.15); --accent-light: rgba(255,204,0,0.08);
+            --teal: #14b8a6; --teal-glow: rgba(20,184,166,0.15);
+            --blue: #3b82f6; --blue-glow: rgba(59,130,246,0.15);
+            --violet: #8b5cf6; --violet-glow: rgba(139,92,246,0.15);
+            --pink: #ec4899; --pink-glow: rgba(236,72,153,0.15);
+            --orange: #f97316; --orange-glow: rgba(249,115,22,0.15);
+            --lime: #84cc16; --lime-glow: rgba(132,204,22,0.15);
+            --cyan: #06b6d4; --cyan-glow: rgba(6,182,212,0.15);
+            --rose: #f43f5e; --rose-glow: rgba(244,63,94,0.15);
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--black); color: var(--white); }
-        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,12,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--gray-800); }
-        .logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.4rem; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--black); color: #e4e4ef; min-height: 100vh; display: flex; flex-direction: column; }
+
+        /* NAV */
+        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; height: 64px; background: rgba(5,5,8,0.88); backdrop-filter: blur(24px) saturate(1.4); border-bottom: 1px solid var(--gray-800); }
+        .logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.35rem; display: flex; align-items: center; gap: 0.4rem; }
         .logo span { color: var(--accent); }
-        .nav-center { display: flex; gap: 1.5rem; }
-        .nav-center a { color: var(--gray-400); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+        .logo .dot { color: var(--gray-600); }
+        .nav-center { display: flex; gap: 0.25rem; background: var(--gray-900); padding: 0.25rem; border-radius: 100px; }
+        .nav-center a { color: var(--gray-400); text-decoration: none; font-size: 0.82rem; font-weight: 500; padding: 0.4rem 1rem; border-radius: 100px; transition: all 0.2s; }
         .nav-center a:hover { color: var(--white); }
-        .nav-center a.active { color: var(--accent); }
-        .nav-right { display: flex; align-items: center; gap: 0.75rem; }
-        .avatar { border-radius: 50%; object-fit: cover; border: 2px solid var(--gray-700); }
-        .avatar-md { width: 44px; height: 44px; }
-        .btn-new { background: var(--accent); color: var(--black); padding: 0.45rem 1.1rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600; border: none; cursor: pointer; font-family: inherit; }
-        .search-bar { display: flex; gap: 1rem; margin-bottom: 2rem; }
-        .search-bar input { flex: 1; background: var(--gray-900); border: 1px solid var(--gray-700); border-radius: 100px; padding: 0.8rem 1.5rem; color: var(--white); font-size: 0.95rem; outline: none; font-family: inherit; }
-        .search-bar input::placeholder { color: var(--gray-500); }
-        .search-bar input:focus { border-color: var(--accent); }
-        .app { max-width: 1200px; margin: 0 auto; padding-top: 5rem; padding-left: 1rem; padding-right: 1rem; }
+        .nav-center a.active { background: var(--accent); color: #0a0a0c; font-weight: 600; }
+        .nav-right { display: flex; align-items: center; gap: 0.5rem; }
+        .nav-icon { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border-radius: 10px; color: var(--gray-400); font-size: 1.1rem; transition: all 0.2s; cursor: pointer; }
+        .nav-icon:hover { background: var(--gray-800); color: var(--white); }
+        .avatar { border-radius: 50%; object-fit: cover; border: 2px solid var(--gray-700); cursor: pointer; transition: border-color 0.2s; }
+        .avatar:hover { border-color: var(--accent); }
+        .avatar-sm { width: 28px; height: 28px; }
+        .avatar-md { width: 36px; height: 36px; }
+        .avatar-lg { width: 48px; height: 48px; }
+        .avatar-xl { width: 80px; height: 80px; border: 3px solid var(--gray-700); }
+        .avatar-xxl { width: 120px; height: 120px; border: 3px solid var(--gray-700); }
+
+        /* LAYOUT */
+        .app { max-width: 1280px; margin: 0 auto; padding-top: 80px; padding-left: 2rem; padding-right: 2rem; flex: 1; }
+
+        /* BREADCRUMB */
+        .breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--gray-500); margin-bottom: 1.5rem; }
+        .breadcrumb a { color: var(--gray-400); text-decoration: none; }
+        .breadcrumb a:hover { color: var(--accent); }
+
+        /* HEADER */
         .page-header { margin-bottom: 2rem; }
-        .page-header h1 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .page-header h1 { font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: 0.4rem; }
+        .page-header h1 .accent { color: var(--accent); }
         .page-header p { color: var(--gray-400); font-size: 0.95rem; }
-        .featured-section { margin-bottom: 3rem; }
-        .featured-section h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
-        .featured-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-        .featured-card { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 16px; padding: 1.25rem; display: flex; gap: 1rem; }
-        .featured-card .icon { width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; flex-shrink: 0; }
-        .featured-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
-        .featured-card p { color: var(--gray-400); font-size: 0.82rem; }
-        .featured-card .badge { display: inline-block; background: var(--accent); color: var(--black); padding: 0.15rem 0.5rem; border-radius: 100px; font-size: 0.65rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .directory-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.25rem; margin-bottom: 3rem; }
+
+        /* CATEGORY PILLS */
+        .categories { display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        .cat-pill { display: flex; align-items: center; gap: 0.4rem; background: var(--gray-900); border: 1px solid var(--gray-700); color: var(--gray-400); padding: 0.5rem 1.1rem; border-radius: 100px; font-size: 0.82rem; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+        .cat-pill:hover { border-color: var(--gray-500); color: var(--white); }
+        .cat-pill.active { background: var(--accent); color: #0a0a0c; border-color: var(--accent); font-weight: 600; }
+        .cat-pill .count { background: rgba(0,0,0,0.2); padding: 0.1rem 0.45rem; border-radius: 100px; font-size: 0.72rem; }
+
+        /* SEARCH BAR */
+        .search-bar { display: flex; gap: 0.75rem; margin-bottom: 2.5rem; }
+        .search-bar input { flex: 1; background: var(--gray-900); border: 1px solid var(--gray-700); border-radius: 14px; padding: 0.85rem 1.5rem; color: var(--white); font-size: 0.95rem; outline: none; font-family: inherit; transition: all 0.2s; }
+        .search-bar input::placeholder { color: var(--gray-600); }
+        .search-bar input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+
+        /* HORIZONTAL SCROLL SPOTLIGHT */
+        .spotlight-scroll { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 1rem; margin-bottom: 2.5rem; scrollbar-width: none; }
+        .spotlight-scroll::-webkit-scrollbar { display: none; }
+        .spotlight-card { flex: 0 0 320px; background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 20px; padding: 1.5rem; transition: all 0.3s; cursor: pointer; position: relative; overflow: hidden; }
+        .spotlight-card:hover { border-color: var(--gray-600); transform: translateY(-3px); }
+        .spotlight-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+        .spotlight-card.t1::before { background: linear-gradient(90deg, var(--orange), var(--pink)); }
+        .spotlight-card.t2::before { background: linear-gradient(90deg, var(--blue), var(--cyan)); }
+        .spotlight-card.t3::before { background: linear-gradient(90deg, var(--teal), var(--lime)); }
+        .spotlight-card .sc-header { display: flex; gap: 1rem; margin-bottom: 1rem; }
+        .spotlight-card .sc-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; }
+        .spotlight-card .sc-icon.or { background: var(--orange-glow); }
+        .spotlight-card .sc-icon.bl { background: var(--blue-glow); }
+        .spotlight-card .sc-icon.te { background: var(--teal-glow); }
+        .spotlight-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.2rem; }
+        .spotlight-card .sc-type { font-size: 0.78rem; color: var(--gray-400); }
+        .spotlight-card .sc-desc { color: var(--gray-400); font-size: 0.82rem; line-height: 1.5; margin-bottom: 1rem; }
+        .spotlight-card .sc-stars { color: var(--accent); font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 0.3rem; }
+        .spotlight-card .sc-meta { font-size: 0.72rem; color: var(--gray-500); display: flex; gap: 1rem; }
+        .spotlight-card .badge { position: absolute; top: 12px; right: 12px; background: var(--accent); color: #0a0a0c; padding: 0.15rem 0.5rem; border-radius: 100px; font-size: 0.62rem; font-weight: 700; }
+
+        /* MAIN GRID + SIDEBAR */
+        .content-layout { display: grid; grid-template-columns: 1fr 300px; gap: 2rem; }
+        .directory-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
         .biz-card { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 16px; padding: 1.5rem; transition: all 0.3s; cursor: pointer; }
         .biz-card:hover { border-color: var(--gray-600); transform: translateY(-2px); }
-        .biz-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
-        .biz-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
-        .biz-icon.mercato { background: rgba(249,115,22,0.2); }
-        .biz-icon.dott { background: rgba(59,130,246,0.2); }
-        .biz-icon.giard { background: rgba(34,197,94,0.2); }
-        .biz-icon.parr { background: rgba(236,72,153,0.2); }
-        .biz-icon.farm { background: rgba(168,85,247,0.2); }
-        .biz-icon.auto { background: rgba(99,102,241,0.2); }
-        .biz-card .biz-name { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.15rem; }
-        .biz-card .biz-type { font-size: 0.8rem; color: var(--accent); font-weight: 500; }
-        .biz-card .biz-desc { color: var(--gray-400); font-size: 0.85rem; line-height: 1.5; margin-bottom: 1rem; }
+        .biz-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 0.75rem; }
+        .biz-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+        .biz-icon.mercato { background: var(--orange-glow); }
+        .biz-icon.dott { background: var(--blue-glow); }
+        .biz-icon.giard { background: var(--teal-glow); }
+        .biz-icon.parr { background: var(--pink-glow); }
+        .biz-icon.farm { background: var(--violet-glow); }
+        .biz-icon.auto { background: rgba(99,102,241,0.15); }
+        .biz-icon.rest { background: var(--lime-glow); }
+        .biz-icon.sale { background: var(--cyan-glow); }
+        .biz-icon.fitness { background: var(--rose-glow); }
+        .biz-card .biz-name { font-size: 1.02rem; font-weight: 600; margin-bottom: 0.1rem; }
+        .biz-card .biz-type { font-size: 0.78rem; color: var(--accent); font-weight: 500; }
+        .biz-card .biz-desc { color: var(--gray-400); font-size: 0.82rem; line-height: 1.5; margin-bottom: 0.75rem; }
         .biz-rating { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; }
-        .stars { color: var(--accent); font-size: 0.85rem; letter-spacing: 2px; }
-        .biz-rating .score { font-weight: 600; font-size: 0.9rem; }
-        .biz-rating .reviews { color: var(--gray-500); font-size: 0.8rem; }
+        .stars { color: var(--accent); font-size: 0.82rem; letter-spacing: 1.5px; }
+        .biz-rating .score { font-weight: 600; font-size: 0.88rem; }
+        .biz-rating .reviews { color: var(--gray-500); font-size: 0.78rem; }
         .biz-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 0.75rem; border-top: 1px solid var(--gray-800); }
-        .biz-info { font-size: 0.78rem; color: var(--gray-400); display: flex; align-items: center; gap: 0.25rem; }
-        .biz-status { font-size: 0.72rem; padding: 0.2rem 0.5rem; border-radius: 100px; font-weight: 600; }
-        .biz-status.open { background: rgba(34,197,94,0.15); color: var(--green); }
-        .biz-status.closed { background: rgba(239,68,68,0.15); color: var(--red); }
-        footer { padding: 2rem; text-align: center; color: var(--gray-600); font-size: 0.8rem; border-top: 1px solid var(--gray-800); margin-top: 2rem; }
-        @media (max-width: 850px) { .featured-cards { grid-template-columns: 1fr; } .nav-center { display: none; } }
-        @media (max-width: 600px) { .app { padding-left: 0.75rem; padding-right: 0.75rem; } .directory-grid { grid-template-columns: 1fr; } .search-bar { flex-direction: column; } }
+        .biz-info { font-size: 0.75rem; color: var(--gray-500); display: flex; align-items: center; gap: 0.25rem; }
+        .biz-status { font-size: 0.68rem; padding: 0.15rem 0.5rem; border-radius: 100px; font-weight: 600; }
+        .biz-status.open { background: var(--teal-glow); color: var(--teal); }
+        .biz-status.closed { background: var(--rose-glow); color: var(--rose); }
+        .btn-profile { background: var(--gray-800); border: 1px solid var(--gray-700); color: var(--gray-400); padding: 0.4rem 0.9rem; border-radius: 100px; font-size: 0.72rem; font-weight: 500; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+        .btn-profile:hover { background: var(--accent); color: #0a0a0c; border-color: var(--accent); }
+
+        /* SIDEBAR */
+        .sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
+        .widget { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 16px; padding: 1.25rem; }
+        .widget h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0; border-bottom: 1px solid var(--gray-800); }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-row .lbl { font-size: 0.82rem; color: var(--gray-400); }
+        .stat-row .val { font-size: 0.88rem; font-weight: 600; }
+        .mini-biz { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0; border-bottom: 1px solid var(--gray-800); }
+        .mini-biz:last-child { border-bottom: none; }
+        .mini-biz .mb-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+        .mini-biz .mb-info h4 { font-size: 0.82rem; font-weight: 500; margin-bottom: 0.1rem; }
+        .mini-biz .mb-info .mb-score { font-size: 0.72rem; color: var(--gray-500); }
+
+        /* FOOTER */
+        footer { padding: 2rem; text-align: center; color: var(--gray-600); font-size: 0.78rem; border-top: 1px solid var(--gray-800); margin-top: auto; }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) { .content-layout { grid-template-columns: 1fr; } .sidebar { order: -1; } .directory-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 850px) { .nav-center { display: none; } .app { padding-left: 1rem; padding-right: 1rem; } }
+        @media (max-width: 640px) { .directory-grid { grid-template-columns: 1fr; } .search-bar { flex-direction: column; } .spotlight-card { flex: 0 0 280px; } nav { padding: 0 1rem; } .page-header h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
     <nav>
-        <div class="logo">Bisiacaria<span>.com</span></div>
-        <div class="nav-center"><a href="#">Forum</a><a href="#">Guide</a><a href="#">News</a><a href="#" class="active">Directory</a></div>
-        <div class="nav-right"><button class="btn-new">+ Aggiungi</button><img class="avatar avatar-md" src="https://i.pravatar.cc/88?img=32" alt=""></div>
+        <div class="logo">Bisiacaria<span>.com</span><span class="dot">·</span><span style="color:var(--gray-500);font-size:0.82rem;">Directory</span></div>
+        <div class="nav-center"><a href="#">Forum</a><a href="#">News</a><a href="#">Gruppi</a><a href="#" class="active">Directory</a></div>
+        <div class="nav-right">
+            <div class="nav-icon">🔔</div>
+            <img class="avatar avatar-md" src="https://i.pravatar.cc/72?img=32" alt="" onclick="location.href='landing-profile-matteo.html'">
+        </div>
     </nav>
     <div class="app">
-        <div class="page-header"><h1>Directory del Quartiere</h1><p>Tutti i servizi, negozi e professionisti locali in un unico posto</p></div>
-        <div class="featured-section"><h2>⭐ Servizi in evidenza</h2>
-            <div class="featured-cards">
-                <div class="featured-card"><div class="icon" style="background:linear-gradient(135deg,#2d1b1b,#1b2d1b);">🥖</div><div><span class="badge">★ TOP</span><h3>Panetteria Rossi</h3><p>Miglior pane del quartiere dal 1987</p></div></div>
-                <div class="featured-card"><div class="icon" style="background:linear-gradient(135deg,#0f2027,#203a43);">🔧</div><div><span class="badge">★ TOP</span><h3>Idraulico Paolo San</h3><p>Interventi rapidi, prezzi onesti</p></div></div>
-            </div>
+        <div class="breadcrumb"><a href="#">Home</a><span>›</span><span>Directory</span></div>
+        <div class="page-header"><h1>Directory del <span class="accent">Quartiere</span></h1><p>Tutti i servizi, negozi e professionisti locali — scopri chi c'è intorno a te</p></div>
+
+        <div class="categories">
+            <div class="cat-pill active">🏪 Tutti <span class="count">127</span></div>
+            <div class="cat-pill">🍽️ Ristoranti <span class="count">23</span></div>
+            <div class="cat-pill">🛒 Negozi <span class="count">31</span></div>
+            <div class="cat-pill">🏥 Salute <span class="count">18</span></div>
+            <div class="cat-pill">🔧 Servizi <span class="count">27</span></div>
+            <div class="cat-pill">💪 Fitness <span class="count">12</span></div>
+            <div class="cat-pill">📚 Istruzione <span class="count">16</span></div>
         </div>
+
         <div class="search-bar"><input type="text" placeholder="🔍 Cerca servizi nel quartiere..."></div>
-        <div class="directory-grid">
-            <div class="biz-card"><div class="biz-header"><div class="biz-icon mercato">🛒</div><div><div class="biz-name">Alimentari Verdi</div><div class="biz-type">Alimentari</div></div></div><div class="biz-desc">Prodotti freschi, ortofrutta locale e banco carni. Consegna a domicilio.</div><div class="biz-rating"><span class="stars">★★★★★</span><span class="score">4.8</span><span class="reviews">(124)</span></div><div class="biz-footer"><span class="biz-info">📍 Via Roma 23</span><span class="biz-status open">● Aperto</span></div></div>
-            <div class="biz-card"><div class="biz-header"><div class="biz-icon dott">🏥</div><div><div class="biz-name">Dott. Francesca Mori</div><div class="biz-type">Medico di Base</div></div></div><div class="biz-desc">Medico di famiglia. Accetta nuovi pazienti. Prenotazione online o al telefono.</div><div class="biz-rating"><span class="stars">★★★★☆</span><span class="score">4.5</span><span class="reviews">(89)</span></div><div class="biz-footer"><span class="biz-info">📍 Piazza Bellezza 5</span><span class="biz-status open">● Aperto</span></div></div>
-            <div class="biz-card"><div class="biz-header"><div class="biz-icon giard">🌿</div><div><div class="biz-name">Giardino Felice</div><div class="biz-type">Giardiniere</div></div></div><div class="biz-desc">Potatura, manutenzione giardini, alberi e siepi. Preventivi gratuiti.</div><div class="biz-rating"><span class="stars">★★★★★</span><span class="score">4.9</span><span class="reviews">(67)</span></div><div class="biz-footer"><span class="biz-info">📍 Zona nord</span><span class="biz-status open">● Aperto</span></div></div>
-            <div class="biz-card"><div class="biz-header"><div class="biz-icon parr">✂️</div><div><div class="biz-name">Barbieri & C.</div><div class="biz-type">Barbiere</div></div></div><div class="biz-desc">Taglio classico e moderno. Barba, shampoo, trattamenti.</div><div class="biz-rating"><span class="stars">★★★★★</span><span class="score">4.7</span><span class="reviews">(203)</span></div><div class="biz-footer"><span class="biz-info">📍 Piazza Mercato 8</span><span class="biz-status closed">● Chiuso</span></div></div>
-            <div class="biz-card"><div class="biz-header"><div class="biz-icon farm">🌾</div><div><div class="biz-name">Fornodoro</div><div class="biz-type">Pasticceria</div></div></div><div class="biz-desc">Dolci artigianali, torte personalizzate, colazioni. Orario: 6:00-20:00.</div><div class="biz-rating"><span class="stars">★★★★★</span><span class="score">4.9</span><span class="reviews">(312)</span></div><div class="biz-footer"><span class="biz-info">📍 Via Roma 45</span><span class="biz-status open">● Aperto</span></div></div>
-            <div class="biz-card"><div class="biz-header"><div class="biz-icon auto">🔧</div><div><div class="biz-name">Meccanico Bisi</div><div class="biz-type">Officina</div></div></div><div class="biz-desc">Tagliandi, gomme, riparazioni. Sconto membri community.</div><div class="biz-rating"><span class="stars">★★★★☆</span><span class="score">4.3</span><span class="reviews">(56)</span></div><div class="biz-footer"><span class="biz-info">📍 Via Industriale 12</span><span class="biz-status open">● Aperto</span></div></div>
+
+        <div class="spotlight-scroll">
+            <div class="spotlight-card t1"><span class="badge">★ TOP</span><div class="sc-header"><div class="sc-icon or">🥖</div><div><h3>Panetteria Rossi</h3><div class="sc-type">Panificio · Via Roma 23</div></div></div><div class="sc-stars">★★★★★</div><div class="sc-desc">Miglior pane del quartiere dal 1987. Focacce, pizza in teglia, dolci classici.</div><div class="sc-meta"><span>4.9 (312)</span><span>● Aperto</span></div></div>
+            <div class="spotlight-card t2"><div class="sc-header"><div class="sc-icon bl">🔧</div><div><h3>Idraulico Paolo San</h3><div class="sc-type">Idraulico · Zona Industriale</div></div></div><div class="sc-stars">★★★★★</div><div class="sc-desc">Interventi rapidi 24/7, prezzi onesti, garanzia su tutti i lavori.</div><div class="sc-meta"><span>4.8 (187)</span><span>● Aperto</span></div></div>
+            <div class="spotlight-card t3"><div class="sc-header"><div class="sc-icon te">🌿</div><div><h3>Giardino Felice</h3><div class="sc-type">Giardiniere · Tutta la zona</div></div></div><div class="sc-stars">★★★★★</div><div class="sc-desc">Potatura, manutenzione giardini, sistemi irrigazione. Preventivi gratis.</div><div class="sc-meta"><span>4.9 (67)</span><span>● Aperto</span></div></div>
+        </div>
+
+        <div class="content-layout">
+            <div>
+                <div class="directory-grid">
+                    <div class="biz-card"><div class="biz-header"><div class="biz-icon mercato">🛒</div><div><div class="biz-name">Alimentari Verdi</div><div class="biz-type">Alimentari</div></div></div><div class="biz-desc">Prodotti freschi, ortofrutta locale, banco carni. Consegna a domicilio.</div><div class="biz-rating"><span class="stars">★★★★★</span><span class="score">4.8</span><span class="reviews">(124)</span></div><div class="biz-footer"><span class="biz-info">📍 Via Roma 23</span><span class="biz-status open">● Aperto</span></div></div>
+                    <div class="biz-card"><div class="biz-header"><div class="biz-icon dott">🏥</div><div><div class="biz-name">Dott. Francesca Mori</div><div class="biz-type">Medico di Base</div></div></div><div class="biz-desc">Medico di famiglia. Accetta nuovi pazienti. Prenotazione online.</div><div class="biz-rating"><span class="stars">★★★★☆</span><span class="score">4.5</span><span class="reviews">(89)</span></div><div class="biz-footer"><span class="biz-info">📍 Piazza Bellezza 5</span><span class="biz-status open">● Aperto</span></div></div>
+                    <div class="biz-card"><div class="biz-header"><div class="biz-icon giard">🌿</div><div><div class="biz-name">Giardino Felice</div><div class="biz-type">Giardiniere</div></div></div><div class="biz-desc">Potatura, manutenzione, sistemi irrigazione. Preventivi gratuiti.</div><div class="biz-rating"><span class="stars">★★★★★</span><span class="score">4.9</span><span class="reviews">(67)</span></div><div class="biz-footer"><span class="biz-info">📍 Zona nord</span><span class="biz-status open">● Aperto</span></div></div>
+                    <div class="biz-card"><div class="biz-header"><div class="biz-icon parr">✂️</div><div><div class="biz-name">Barbieri & C.</div><div class="biz-type">Barbiere</div></div></div><div class="biz-desc">Taglio classico e moderno. Barba, shampoo, trattamenti spa.</div><div class="biz-rating"><span class="stars">★★★★★</span><span class="score">4.7</span><span class="reviews">(203)</span></div><div class="biz-footer"><span class="biz-info">📍 Piazza Mercato 8</span><span class="biz-status closed">● Chiuso</span></div></div>
+                    <div class="biz-card"><div class="biz-header"><div class="biz-icon farm">🌾</div><div><div class="biz-name">Fornodoro</div><div class="biz-type">Pasticceria</div></div></div><div class="biz-desc">Dolci artigianali, torte personalizzate, colazioni dalla 6:00.</div><div class="biz-rating"><span class="stars">★★★★★</span><span class="score">4.9</span><span class="reviews">(312)</span></div><div class="biz-footer"><span class="biz-info">📍 Via Roma 45</span><span class="biz-status open">● Aperto</span></div></div>
+                    <div class="biz-card"><div class="biz-header"><div class="biz-icon auto">🔧</div><div><div class="biz-name">Meccanico Bisi</div><div class="biz-type">Officina</div></div></div><div class="biz-desc">Tagliandi, gomme, riparazioni. Sconto membri community.</div><div class="biz-rating"><span class="stars">★★★★☆</span><span class="score">4.3</span><span class="reviews">(56)</span></div><div class="biz-footer"><span class="biz-info">📍 Via Industriale 12</span><span class="biz-status open">● Aperto</span></div></div>
+                    <div class="biz-card"><div class="biz-header"><div class="biz-icon rest">🍝</div><div><div class="biz-name">Trattoria da Nonna</div><div class="biz-type">Ristorante</div></div></div><div class="biz-desc">Cucina tipica della zona. Menu fisso a €18, prenotazione consigliata.</div><div class="biz-rating"><span class="stars">★★★★★</span><span class="score">4.8</span><span class="reviews">(178)</span></div><div class="biz-footer"><span class="biz-info">📍 Via Bellezza 12</span><span class="biz-status open">● Aperto</span></div></div>
+                    <div class="biz-card"><div class="biz-header"><div class="biz-icon sale">🏋️</div><div><div class="biz-name">FitZone Bisiacaria</div><div class="biz-type">Palestra</div></div></div><div class="biz-desc">Attrezzi TechnoGym, classi group fitness, personal trainer.</div><div class="biz-rating"><span class="stars">★★★★☆</span><span class="score">4.4</span><span class="reviews">(92)</span></div><div class="biz-footer"><span class="biz-info">📍 Via Sport 3</span><span class="biz-status open">● Aperto</span></div></div>
+                </div>
+            </div>
+            <div class="sidebar">
+                <div class="widget"><h3>📊 Statistiche</h3><div class="stat-row"><span class="lbl">Negozi attivi</span><span class="val" style="color:var(--teal);">87</span></div><div class="stat-row"><span class="lbl">Nuove recensioni (mese)</span><span class="val" style="color:var(--blue);">+234</span></div><div class="stat-row"><span class="lbl">Utenti registrati</span><span class="val" style="color:var(--violet);">1.842</span></div><div class="stat-row"><span class="lbl">Soddisfazione media</span><span class="val" style="color:var(--accent);">4.6 ★</span></div></div>
+                <div class="widget"><h3>🔥 Più cercati</h3><div class="mini-biz"><div class="mb-icon" style="background:var(--orange-glow);">🥖</div><div class="mb-info"><h4>Panetteria Rossi</h4><div class="mb-score">3.2K ricerche</div></div></div><div class="mini-biz"><div class="mb-icon" style="background:var(--pink-glow);">✂️</div><div class="mb-info"><h4>Barbieri & C.</h4><div class="mb-score">2.1K ricerche</div></div></div><div class="mini-biz"><div class="mb-icon" style="background:var(--teal-glow);">🌿</div><div class="mb-info"><h4>Giardino Felice</h4><div class="mb-score">1.8K ricerche</div></div></div><div class="mini-biz"><div class="mb-icon" style="background:var(--blue-glow);">🏥</div><div class="mb-info"><h4>Dott.ssa Mori</h4><div class="mb-score">1.5K ricerche</div></div></div></div>
+            </div>
         </div>
     </div>
     <footer>© 2026 Bisiacaria.com · Scopri i servizi del tuo quartiere ✦</footer>
