@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bisia — Landing Page Mockups</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050505;
+            --card: #111;
+            --border: #1e1e1e;
+            --text: #fff;
+            --muted: #666;
+            --accent: #ffcc00;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg); color: var(--text);
+            padding: 4rem 2rem;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 {
+            font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem;
+        }
+        h1 .accent { color: var(--accent); }
+        .subtitle {
+            color: var(--muted); font-size: 1.1rem; margin-bottom: 3rem;
+        }
+        .cards { display: grid; gap: 1rem; }
+        .card {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 12px; padding: 1.5rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: all 0.3s; text-decoration: none; color: var(--text);
+        }
+        .card:hover { border-color: var(--accent); transform: translateX(4px); }
+        .card-info h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .card-info p { color: var(--muted); font-size: 0.9rem; }
+        .card-info .font-tag {
+            display: inline-block; margin-top: 0.5rem;
+            font-size: 0.75rem; color: var(--accent);
+            background: rgba(255,204,0,0.1); padding: 0.2rem 0.6rem;
+            border-radius: 100px;
+        }
+        .card-arrow { font-size: 1.5rem; color: var(--muted); transition: color 0.3s; }
+        .card:hover .card-arrow { color: var(--accent); }
+        .footer {
+            margin-top: 4rem; padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--muted); font-size: 0.85rem; text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bisia <span class="accent">✦</span> Mockups</h1>
+        <p class="subtitle">5 proposte di landing page — dark theme, accent #ffcc00</p>
+
+        <div class="cards">
+            <a href="landing-1-bold.html" class="card">
+                <div class="card-info">
+                    <h3>1 — Bold & Angular</h3>
+                    <p>Geometrico, contrasti forti, layout aggressivo</p>
+                    <span class="font-tag">Inter + Space Grotesk</span>
+                </div>
+                <span class="card-arrow">→</span>
+            </a>
+            <a href="landing-2-elegant.html" class="card">
+                <div class="card-info">
+                    <h3>2 — Elegant & Clean</h3>
+                    <p>Sofisticato, serif, marquee, numerazione romana</p>
+                    <span class="font-tag">Playfair Display + DM Sans</span>
+                </div>
+                <span class="card-arrow">→</span>
+            </a>
+            <a href="landing-3-tech.html" class="card">
+                <div class="card-info">
+                    <h3>3 — Tech & Grid</h3>
+                    <p>Developer-first, code blocks, monospace, split layout</p>
+                    <span class="font-tag">JetBrains Mono + Inter</span>
+                </div>
+                <span class="card-arrow">→</span>
+            </a>
+            <a href="landing-4-warm.html" class="card">
+                <div class="card-info">
+                    <h3>4 — Warm & Human</h3>
+                    <p>Amichevole, bordi arrotondati, pricing, social proof</p>
+                    <span class="font-tag">Outfit + Plus Jakarta Sans</span>
+                </div>
+                <span class="card-arrow">→</span>
+            </a>
+            <a href="landing-5-luxury.html" class="card">
+                <div class="card-info">
+                    <h3>5 — Luxury & Dark</h3>
+                    <p>Minimalista, numerazione romana, animazioni</p>
+                    <span class="font-tag">Cormorant Garamond + Montserrat</span>
+                </div>
+                <span class="card-arrow">→</span>
+            </a>
+        </div>
+
+        <div class="footer">
+            <p>🔗 https://redbaron76.github.io/bisia-mockup/</p>
+        </div>
+    </div>
+</body>
+</html>
