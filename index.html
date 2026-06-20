@@ -6,58 +6,31 @@
     <title>Bisia — Landing Page Mockups</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #050505;
-            --card: #111;
-            --border: #1e1e1e;
-            --text: #fff;
-            --muted: #666;
-            --accent: #ffcc00;
-        }
+        :root { --bg: #050505; --card: #111; --border: #1e1e1e; --text: #fff; --muted: #666; --accent: #ffcc00; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg); color: var(--text);
-            padding: 4rem 2rem;
-        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); padding: 4rem 2rem; }
         .container { max-width: 900px; margin: 0 auto; }
-        h1 {
-            font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem;
-        }
+        h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
         h1 .accent { color: var(--accent); }
-        .subtitle {
-            color: var(--muted); font-size: 1.1rem; margin-bottom: 3rem;
-        }
+        .subtitle { color: var(--muted); font-size: 1.1rem; margin-bottom: 1rem; }
+        .section-label { color: var(--accent); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; margin: 3rem 0 1.5rem; padding-top: 2rem; border-top: 1px solid var(--border); }
         .cards { display: grid; gap: 1rem; }
-        .card {
-            background: var(--card); border: 1px solid var(--border);
-            border-radius: 12px; padding: 1.5rem 2rem;
-            display: flex; justify-content: space-between; align-items: center;
-            transition: all 0.3s; text-decoration: none; color: var(--text);
-        }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s; text-decoration: none; color: var(--text); }
         .card:hover { border-color: var(--accent); transform: translateX(4px); }
         .card-info h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; }
         .card-info p { color: var(--muted); font-size: 0.9rem; }
-        .card-info .font-tag {
-            display: inline-block; margin-top: 0.5rem;
-            font-size: 0.75rem; color: var(--accent);
-            background: rgba(255,204,0,0.1); padding: 0.2rem 0.6rem;
-            border-radius: 100px;
-        }
+        .card-info .font-tag { display: inline-block; margin-top: 0.5rem; font-size: 0.75rem; color: var(--accent); background: rgba(255,204,0,0.1); padding: 0.2rem 0.6rem; border-radius: 100px; }
         .card-arrow { font-size: 1.5rem; color: var(--muted); transition: color 0.3s; }
         .card:hover .card-arrow { color: var(--accent); }
-        .footer {
-            margin-top: 4rem; padding-top: 2rem;
-            border-top: 1px solid var(--border);
-            color: var(--muted); font-size: 0.85rem; text-align: center;
-        }
+        .footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; text-align: center; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Bisia <span class="accent">✦</span> Mockups</h1>
-        <p class="subtitle">5 proposte di landing page — dark theme, accent #ffcc00</p>
+        <p class="subtitle">Design scuro con accenti #ffcc00 · 5 landing + 5 community</p>
 
+        <div class="section-label">Landing Page — Generali</div>
         <div class="cards">
             <a href="landing-1-bold.html" class="card">
                 <div class="card-info">
@@ -101,8 +74,52 @@
             </a>
         </div>
 
+        <div class="section-label">Community & Social Network</div>
+        <div class="cards">
+            <a href="landing-c1-community.html" class="card">
+                <div class="card-info">
+                    <h3>C1 — Community Hub</h3>
+                    <p>Feed, gruppi, suggerimenti utenti, trending topics</p>
+                    <span class="font-tag">Outfit + Plus Jakarta Sans</span>
+                </div>
+                <span class="card-arrow">→</span>
+            </a>
+            <a href="landing-c2-social.html" class="card">
+                <div class="card-info">
+                    <h3>C2 — Social Network</h3>
+                    <p>Storie, feed, posta, contatti, gruppi</p>
+                    <span class="font-tag">Outfit + Plus Jakarta Sans</span>
+                </div>
+                <span class="card-arrow">→</span>
+            </a>
+            <a href="landing-c3-events.html" class="card">
+                <div class="card-info">
+                    <h3>C3 — Events & Live</h3>
+                    <p>Eventi, categorie, live streaming, countdown</p>
+                    <span class="font-tag">Outfit + Plus Jakarta Sans</span>
+                </div>
+                <span class="card-arrow">→</span>
+            </a>
+            <a href="landing-c4-professional.html" class="card">
+                <div class="card-info">
+                    <h3>C4 — Professional Network</h3>
+                    <p>Profili, job board, connessioni, contenuti B2B</p>
+                    <span class="font-tag">Outfit + Plus Jakarta Sans</span>
+                </div>
+                <span class="card-arrow">→</span>
+            </a>
+            <a href="landing-c5-creative.html" class="card">
+                <div class="card-info">
+                    <h3>C5 — Creative Community</h3>
+                    <p>Galleria, challenge, gruppi creativi, creator spotlight</p>
+                    <span class="font-tag">Outfit + Plus Jakarta Sans</span>
+                </div>
+                <span class="card-arrow">→</span>
+            </a>
+        </div>
+
         <div class="footer">
-            <p>🔗 https://redbaron76.github.io/bisia-mockup/</p>
+            <p>🔗 https://redbaron76.github.io/bisia-mockup/ · 10 landing page totali</p>
         </div>
     </div>
 </body>
