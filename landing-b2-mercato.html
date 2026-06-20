@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bisiacaria — Mercatino</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --black: #0a0a0c; --gray-950: #0f0f12; --gray-900: #16161a; --gray-800: #1e1e24; --gray-700: #2a2a32; --gray-600: #3a3a44; --gray-400: #888890; --gray-300: #aaaab2; --white: #fff; --accent: #ffcc00; --accent-light: rgba(255,204,0,0.1); --green: #22c55e; --blue: #3b82f6; --pink: #ec4899; --purple: #a855f7; --orange: #f97316; --teal: #14b8a6; --red: #ef4444; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--black); color: var(--white); }
+
+        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,12,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--gray-800); }
+        .logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.4rem; }
+        .logo span { color: var(--accent); }
+        .logo .dot { color: var(--gray-400); margin-right: 0.25rem; }
+        .nav-center { display: flex; gap: 1.5rem; }
+        .nav-center a { color: var(--gray-400); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+        .nav-center a:hover { color: var(--white); }
+        .nav-center a.active { color: var(--accent); }
+        .nav-right { display: flex; gap: 1rem; align-items: center; }
+        .btn-new { background: var(--accent); color: var(--black); padding: 0.45rem 1.1rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600; border: none; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+        .btn-new:hover { background: #ffe033; }
+
+        .avatar { border-radius: 50%; object-fit: cover; border: 2px solid var(--gray-700); }
+        .avatar-sm { width: 32px; height: 32px; }
+        .avatar-md { width: 44px; height: 44px; }
+        .avatar-lg { width: 56px; height: 56px; }
+
+        /* LAYOUT */
+        .app { display: grid; grid-template-columns: 220px 1fr 280px; gap: 0; min-height: 100vh; max-width: 1280px; margin: 0 auto; padding-top: 5rem; }
+        .sidebar-left { padding: 1.5rem 1rem; border-right: 1px solid var(--gray-800); position: sticky; top: 5rem; height: calc(100vh - 5rem); overflow-y: auto; }
+        .sidebar-left .section { margin-bottom: 1.5rem; }
+        .sidebar-left .section-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-500); margin-bottom: 0.5rem; padding: 0 0.75rem; }
+        .sidebar-left .menu-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0.75rem; border-radius: 10px; color: var(--gray-400); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: all 0.2s; }
+        .sidebar-left .menu-item:hover { background: var(--gray-900); color: var(--white); }
+        .sidebar-left .menu-item.active { background: var(--accent-light); color: var(--accent); }
+        .sidebar-left .menu-item .icon { width: 22px; text-align: center; }
+
+        .center { padding: 1.5rem 2rem; }
+        .page-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem; }
+        .page-header h1 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .page-header p { color: var(--gray-400); font-size: 0.9rem; }
+        .page-header .btn-new { margin-bottom: 0.5rem; }
+
+        /* FILTERS */
+        .filters { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .filter-btn { background: var(--gray-900); border: 1px solid var(--gray-700); color: var(--gray-400); padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.8rem; font-weight: 500; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+        .filter-btn:hover { border-color: var(--gray-500); color: var(--white); }
+        .filter-btn.active { background: var(--accent); color: var(--black); border-color: var(--accent); font-weight: 600; }
+
+        /* PRODUCT GRID */
+        .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+        .product-card { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 14px; overflow: hidden; transition: all 0.3s; cursor: pointer; }
+        .product-card:hover { border-color: var(--gray-600); transform: translateY(-2px); }
+        .product-img { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; position: relative; }
+        .product-img.wood { background: linear-gradient(135deg, #2a1a0a, #1a1a0a); }
+        .product-img.elec { background: linear-gradient(135deg, #0a1a2a, #0a2a2a); }
+        .product-img.furn { background: linear-gradient(135deg, #1a1a0a, #2a2a1a); }
+        .product-img.sport { background: linear-gradient(135deg, #0a2a0a, #0a1a2a); }
+        .product-img.fash { background: linear-gradient(135deg, #2a0a1a, #1a0a2a); }
+        .product-img.kids { background: linear-gradient(135deg, #2a1a1a, #2a1a0a); }
+        .product-img.book { background: linear-gradient(135deg, #1a1a2a, #0a1a2a); }
+        .product-img.auto { background: linear-gradient(135deg, #1a1a1a, #2a2a2a); }
+        .product-badge { position: absolute; top: 8px; left: 8px; padding: 0.2rem 0.6rem; border-radius: 100px; font-size: 0.65rem; font-weight: 700; }
+        .product-badge.new { background: var(--green); color: var(--black); }
+        .product-badge.hot { background: var(--orange); color: var(--black); }
+        .product-badge.free { background: var(--accent); color: var(--black); }
+        .product-body { padding: 1rem; }
+        .product-price { font-size: 1.1rem; font-weight: 700; color: var(--accent); margin-bottom: 0.25rem; }
+        .product-title { font-size: 0.85rem; color: var(--gray-300); margin-bottom: 0.5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .product-footer { display: flex; justify-content: space-between; align-items: center; }
+        .product-seller { display: flex; align-items: center; gap: 0.4rem; }
+        .product-seller .avatar { width: 22px; height: 22px; }
+        .product-seller .name { font-size: 0.72rem; color: var(--gray-400); }
+        .product-time { font-size: 0.72rem; color: var(--gray-500); }
+
+        /* RIGHT SIDEBAR */
+        .sidebar-right { padding: 1.5rem 1rem; border-left: 1px solid var(--gray-800); position: sticky; top: 5rem; height: calc(100vh - 5rem); overflow-y: auto; }
+        .widget { background: var(--gray-900); border-radius: 14px; padding: 1.25rem; margin-bottom: 1rem; }
+        .widget h4 { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.75rem; }
+        .quick-tip { font-size: 0.78rem; color: var(--gray-400); padding: 0.4rem 0; line-height: 1.5; }
+        .quick-tip .icon { margin-right: 0.3rem; }
+
+        /* MOBILE NAV */
+        .mobile-nav { display: none; position: fixed; bottom: 0; width: 100%; z-index: 100; background: rgba(10,10,12,0.95); backdrop-filter: blur(20px); border-top: 1px solid var(--gray-800); padding: 0.5rem 0; }
+        .mobile-nav-items { display: flex; justify-content: space-around; }
+        .mobile-nav-item { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; color: var(--gray-400); text-decoration: none; font-size: 0.65rem; }
+        .mobile-nav-item .icon { font-size: 1.2rem; }
+        .mobile-nav-item.active { color: var(--accent); }
+
+        @media (max-width: 1100px) { .sidebar-right { display: none; } .app { grid-template-columns: 200px 1fr; } }
+        @media (max-width: 850px) { .sidebar-left { display: none; } .app { grid-template-columns: 1fr; padding-left: 0.75rem; padding-right: 0.75rem; } .nav-center { display: none; } .products { grid-template-columns: repeat(2, 1fr); } .mobile-nav { display: block; } .app { padding-bottom: 5rem; } }
+        @media (max-width: 480px) { .center { padding: 1rem; } .products { grid-template-columns: 1fr; } .filters { overflow-x: auto; flex-wrap: nowrap; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Bisiacaria<span>.com</span><span class="dot">·</span><span style="color:var(--gray-400);font-size:0.85rem;">🛒 Mercatino</span></div>
+        <div class="nav-center">
+            <a href="#">Forum</a>
+            <a href="#">Guide</a>
+            <a href="#">Eventi</a>
+            <a href="#" class="active">Mercatino</a>
+        </div>
+        <div class="nav-right">
+            <button class="btn-new">+ Vendi</button>
+            <img class="avatar avatar-md" src="https://i.pravatar.cc/88?img=32" alt="">
+        </div>
+    </nav>
+
+    <div class="app">
+        <aside class="sidebar-left">
+            <div class="section">
+                <div class="section-title">Sezioni</div>
+                <a href="#" class="menu-item active"><span class="icon">🏪</span> Tutti <span style="margin-left:auto;color:var(--gray-500);font-size:0.75rem;">89</span></a>
+                <a href="#" class="menu-item"><span class="icon">💻</span> Elettronica</a>
+                <a href="#" class="menu-item"><span class="icon">🛋️</span> Casa & Giardino</a>
+                <a href="#" class="menu-item"><span class="icon">🚲</span> Sport</a>
+                <a href="#" class="menu-item"><span class="icon">👗</span> Moda</a>
+                <a href="#" class="menu-item"><span class="icon">👶</span> Bambini</a>
+                <a href="#" class="menu-item"><span class="icon">📚</span> Libri</a>
+                <a href="#" class="menu-item"><span class="icon">🚗</span> Auto & Moto</a>
+            </div>
+            <div class="section">
+                <div class="section-title">Il mio mercatino</div>
+                <a href="#" class="menu-item"><span class="icon">📦</span> Le mie inserzioni</a>
+                <a href="#" class="menu-item"><span class="icon">❤️</span> Preferiti</a>
+                <a href="#" class="menu-item"><span class="icon">📨</span> Messaggi</a>
+            </div>
+        </aside>
+
+        <main class="center">
+            <div class="page-header">
+                <div>
+                    <h1>Mercatino del Quartiere</h1>
+                    <p>Cerca, compra e vendi tra vicini — senza intermediari</p>
+                </div>
+                <button class="btn-new">+ Vendi Subito</button>
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active">Tutti</button>
+                <button class="filter-btn">🆕 Nuovi</button>
+                <button class="filter-btn">🔥 Hot</button>
+                <button class="filter-btn">🎁 Gratis</button>
+                <button class="filter-btn">💰 Prezzo ↑</button>
+                <button class="filter-btn">🕐 Recenti</button>
+            </div>
+
+            <div class="products">
+                <div class="product-card">
+                    <div class="product-img wood">🪑<span class="product-badge new">NUOVO</span></div>
+                    <div class="product-body">
+                        <div class="product-price">€85</div>
+                        <div class="product-title">Tavolino rovere design anni '60 — ottimo stato</div>
+                        <div class="product-footer">
+                            <div class="product-seller"><img class="avatar" src="https://i.pravatar.cc/44?img=12" alt=""><span class="name">Lara M.</span></div>
+                            <span class="product-time">2h</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img elec">📱<span class="product-badge hot">🔥 HOT</span></div>
+                    <div class="product-body">
+                        <div class="product-price">€320</div>
+                        <div class="product-title">iPhone 13 128GB — Cyber Monday, pochissimo uso</div>
+                        <div class="product-footer">
+                            <div class="product-seller"><img class="avatar" src="https://i.pravatar.cc/44?img=53" alt=""><span class="name">Matteo G.</span></div>
+                            <span class="product-time">5h</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img furn">🛋️</div>
+                    <div class="product-body">
+                        <div class="product-price">€150</div>
+                        <div class="product-title">Divano 3 posti IKEA KIVIK — grigio, usato 1 anno</div>
+                        <div class="product-footer">
+                            <div class="product-seller"><img class="avatar" src="https://i.pravatar.cc/44?img=45" alt=""><span class="name">Anna P.</span></div>
+                            <span class="product-time">8h</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img sport">🚲</div>
+                    <div class="product-body">
+                        <div class="product-price">€450</div>
+                        <div class="product-title">Bici elettrica Diacqua — 2500km, batteria ok</div>
+                        <div class="product-footer">
+                            <div class="product-seller"><img class="avatar" src="https://i.pravatar.cc/44?img=26" alt=""><span class="name">Davide B.</span></div>
+                            <span class="product-time">1g</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img fash">👟<span class="product-badge free">GRATIS</span></div>
+                    <div class="product-body">
+                        <div class="product-price">Gratis</div>
+                        <div class="product-title">Scarpe running Nike Solo uso 2 mesi — ritiro mano a mano</div>
+                        <div class="product-footer">
+                            <div class="product-seller"><img class="avatar" src="https://i.pravatar.cc/44?img=44" alt=""><span class="name">Marco B.</span></div>
+                            <span class="product-time">1g</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img kids">🧸</div>
+                    <div class="product-body">
+                        <div class="product-price">€25</div>
+                        <div class="product-title">Culla BB + biancheria — natale 2024, ancora perfetta</div>
+                        <div class="product-footer">
+                            <div class="product-seller"><img class="avatar" src="https://i.pravatar.cc/44?img=15" alt=""><span class="name">Chiara V.</span></div>
+                            <span class="product-time">2g</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img book">📚</div>
+                    <div class="product-body">
+                        <div class="product-price">€15</div>
+                        <div class="product-title">Pack 8 libri fantascienza — Asimov, Dick, Clarke</div>
+                        <div class="product-footer">
+                            <div class="product-seller"><img class="avatar" src="https://i.pravatar.cc/44?img=60" alt=""><span class="name">Paolo S.</span></div>
+                            <span class="product-time">3g</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img auto">🛞</div>
+                    <div class="product-body">
+                        <div class="product-price">€200</div>
+                        <div class="product-title">Set 4 gomme invernali 195/65 R15 — 60% battistrada</div>
+                        <div class="product-footer">
+                            <div class="product-seller"><img class="avatar" src="https://i.pravatar.cc/44?img=68" alt=""><span class="name">Luca R.</span></div>
+                            <span class="product-time">4g</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="sidebar-right">
+            <div class="widget">
+                <h4>💡 Consigli del Mercatino</h4>
+                <div class="quick-tip"><span class="icon">📸</span> Foto chiare e multiple aumentano le vendite del 60%</div>
+                <div class="quick-tip"><span class="icon">💰</span> Specifica sempre "ritiro a mano" o spedizione</div>
+                <div class="quick-tip"><span class="icon">🤝</span> Rispondi in fretta: chi prima chiuda, prima vende</div>
+            </div>
+            <div class="widget">
+                <h4>📈 Vetrina</h4>
+                <div style="font-size:0.78rem;color:var(--gray-400);line-height:2;">
+                    <div>🏆 Più venduti: <b style="color:var(--white)">Elettronica</b></div>
+                    <div>📦 Ultime inserzioni: <b style="color:var(--white)">+23 oggi</b></div>
+                    <div>🤝 Transazioni riuscite: <b style="color:var(--green)">1,247</b></div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <div class="mobile-nav">
+        <div class="mobile-nav-items">
+            <a href="#" class="mobile-nav-item"><span class="icon">🏠</span>Forum</a>
+            <a href="#" class="mobile-nav-item active"><span class="icon">🛒</span>Mercatino</a>
+            <a href="#" class="mobile-nav-item"><span class="icon">+</span>Vendi</a>
+            <a href="#" class="mobile-nav-item"><span class="icon">🔔</span>Avvisi</a>
+            <a href="#" class="mobile-nav-item"><span class="icon">👤</span>Profilo</a>
+        </div>
+    </div>
+
+    <footer>© 2026 Bisiacaria.com · Il mercatino del tuo quartiere ✦</footer>
+</body>
+</html>
