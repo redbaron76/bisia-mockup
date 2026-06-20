@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bisia — Warm Landing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0a0c;
+            --gray-950: #0f0f12;
+            --gray-900: #16161a;
+            --gray-800: #1e1e24;
+            --gray-700: #2a2a32;
+            --gray-600: #3a3a44;
+            --gray-400: #888890;
+            --gray-300: #aaaab2;
+            --white: #ffffff;
+            --accent: #ffcc00;
+            --accent-light: rgba(255,204,0,0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--black);
+            color: var(--white);
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            padding: 1.2rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(10,10,12,0.8);
+            backdrop-filter: blur(20px);
+        }
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800; font-size: 1.6rem;
+            color: var(--white);
+        }
+        .logo span { color: var(--accent); }
+        .nav-center { display: flex; gap: 2rem; }
+        .nav-center a {
+            color: var(--gray-400); text-decoration: none;
+            font-size: 0.95rem; font-weight: 500; transition: color 0.3s;
+        }
+        .nav-center a:hover { color: var(--white); }
+        .nav-right { display: flex; gap: 1rem; align-items: center; }
+        .btn-soft {
+            background: var(--gray-800); color: var(--white);
+            padding: 0.6rem 1.5rem; border-radius: 100px;
+            font-size: 0.9rem; font-weight: 500;
+            text-decoration: none; transition: all 0.3s;
+            border: 1px solid var(--gray-700);
+        }
+        .btn-soft:hover { background: var(--gray-700); }
+        .btn-fill {
+            background: var(--accent); color: var(--black);
+            padding: 0.6rem 1.5rem; border-radius: 100px;
+            font-size: 0.9rem; font-weight: 600;
+            text-decoration: none; transition: all 0.3s;
+        }
+        .btn-fill:hover { background: #ffe033; }
+
+        /* HERO */
+        .hero {
+            padding: 10rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(255,204,0,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--accent-light); border: 1px solid rgba(255,204,0,0.2);
+            padding: 0.5rem 1.2rem; border-radius: 100px;
+            font-size: 0.85rem; color: var(--accent);
+            margin-bottom: 2rem;
+        }
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 800; line-height: 1.05;
+            margin-bottom: 1.5rem;
+        }
+        h1 .gradient {
+            background: linear-gradient(135deg, var(--accent) 0%, #ff9500 50%, #ff6b00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            font-size: 1.2rem; color: var(--gray-400);
+            max-width: 550px; margin: 0 auto 2.5rem;
+        }
+        .cta-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn-hero {
+            padding: 1rem 2.5rem; border-radius: 100px;
+            font-size: 1rem; font-weight: 600;
+            text-decoration: none; transition: all 0.3s;
+        }
+
+        /* CARDS */
+        .cards {
+            padding: 6rem 2rem;
+            max-width: 1200px; margin: 0 auto;
+        }
+        .cards-header { text-align: center; margin-bottom: 4rem; }
+        .cards-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem; font-weight: 700;
+        }
+        .cards-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .card {
+            background: var(--gray-900);
+            border: 1px solid var(--gray-800);
+            border-radius: 20px; padding: 2.5rem;
+            transition: all 0.4s;
+        }
+        .card:hover {
+            border-color: var(--gray-600);
+            transform: translateY(-6px);
+        }
+        .card-icon {
+            width: 64px; height: 64px; border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; margin-bottom: 1.5rem;
+            background: var(--accent-light); border: 1px solid rgba(255,204,0,0.15);
+        }
+        .card h3 {
+            font-size: 1.3rem; font-weight: 600; margin-bottom: 0.75rem;
+        }
+        .card p { color: var(--gray-400); font-size: 0.95rem; line-height: 1.6; }
+
+        /* SOCIAL PROOF */
+        .proof {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .proof-label {
+            font-size: 0.85rem; color: var(--gray-500);
+            text-transform: uppercase; letter-spacing: 0.15em;
+            margin-bottom: 2rem;
+        }
+        .logos {
+            display: flex; justify-content: center; align-items: center;
+            gap: 3rem; flex-wrap: wrap; opacity: 0.4;
+        }
+        .logos span {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem; font-weight: 700;
+            color: var(--white);
+        }
+
+        /* PRICING */
+        .pricing {
+            padding: 6rem 2rem;
+            max-width: 1000px; margin: 0 auto;
+        }
+        .pricing-header { text-align: center; margin-bottom: 4rem; }
+        .pricing-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem; font-weight: 700;
+        }
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        .price-card {
+            background: var(--gray-900);
+            border: 1px solid var(--gray-800);
+            border-radius: 20px; padding: 3rem;
+            position: relative;
+        }
+        .price-card.featured {
+            border-color: var(--accent);
+            box-shadow: 0 0 60px rgba(255,204,0,0.1);
+        }
+        .price-card.featured::before {
+            content: 'Most Popular';
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: var(--accent); color: var(--black);
+            padding: 0.3rem 1rem; border-radius: 100px;
+            font-size: 0.8rem; font-weight: 600;
+        }
+        .price-card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .price-card .price {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3.5rem; font-weight: 800;
+            margin: 1.5rem 0;
+        }
+        .price-card .price span {
+            font-size: 1rem; font-weight: 400; color: var(--gray-400);
+        }
+        .price-card ul {
+            list-style: none; margin: 2rem 0;
+        }
+        .price-card ul li {
+            padding: 0.5rem 0; color: var(--gray-400);
+            font-size: 0.95rem;
+        }
+        .price-card ul li::before {
+            content: '✓ '; color: var(--accent); font-weight: 700;
+        }
+        .price-btn {
+            display: block; text-align: center;
+            background: var(--gray-800); color: var(--white);
+            padding: 1rem; border-radius: 12px;
+            font-weight: 600; text-decoration: none;
+            transition: all 0.3s; border: 1px solid var(--gray-700);
+        }
+        .price-btn:hover { background: var(--gray-700); }
+        .price-card.featured .price-btn {
+            background: var(--accent); color: var(--black);
+            border-color: var(--accent);
+        }
+        .price-card.featured .price-btn:hover { background: #ffe033; }
+
+        footer {
+            padding: 3rem 2rem; text-align: center;
+            border-top: 1px solid var(--gray-800);
+            color: var(--gray-600); font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-center { display: none; }
+            .hero { padding: 7rem 1.5rem 3rem; }
+            .cards, .pricing { padding: 4rem 1.5rem; }
+            .cards-grid, .pricing-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Bisia<span>✦</span></div>
+        <div class="nav-center">
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#">Blog</a>
+        </div>
+        <div class="nav-right">
+            <a href="#" class="btn-soft">Log in</a>
+            <a href="#" class="btn-fill">Get Started</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">✦ Now available for teams of any size</div>
+        <h1>Work together,<br><span class="gradient">build better</span></h1>
+        <p class="subtitle">The all-in-one workspace for creative teams. Plan, design, and ship — all in one place.</p>
+        <div class="cta-row">
+            <a href="#" class="btn-hero btn-fill">Start Free Trial</a>
+            <a href="#" class="btn-hero btn-soft">View Demo →</a>
+        </div>
+    </section>
+
+    <section class="cards" id="features">
+        <div class="cards-header">
+            <h2>Designed for how you work</h2>
+        </div>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">🎨</div>
+                <h3>Visual Planning</h3>
+                <p>Drag-and-drop boards, Gantt charts, and timelines. See your whole project at a glance.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">💬</div>
+                <h3>Contextual Chat</h3>
+                <p>Discuss any task, design, or deadline without switching apps. Chat lives right where the work is.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📦</div>
+                <h3>Asset Management</h3>
+                <p>Share files, design systems, and brand assets. Version-controlled and always up to date.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="proof">
+        <div class="proof-label">Trusted by forward-thinking teams</div>
+        <div class="logos">
+            <span>Stripe</span>
+            <span>Notion</span>
+            <span>Vercel</span>
+            <span>Linear</span>
+            <span>Figma</span>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="pricing-header">
+            <h2>Simple pricing</h2>
+        </div>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h3>Starter</h3>
+                <p style="color: var(--gray-400); font-size: 0.95rem;">For small teams getting started</p>
+                <div class="price">$0<span>/month</span></div>
+                <ul>
+                    <li>Up to 5 team members</li>
+                    <li>10 projects</li>
+                    <li>Basic analytics</li>
+                    <li>Community support</li>
+                </ul>
+                <a href="#" class="price-btn">Get Started Free</a>
+            </div>
+            <div class="price-card featured">
+                <h3>Pro</h3>
+                <p style="color: var(--gray-400); font-size: 0.95rem;">For growing teams that need more</p>
+                <div class="price">$19<span>/user/month</span></div>
+                <ul>
+                    <li>Unlimited members</li>
+                    <li>Unlimited projects</li>
+                    <li>Advanced analytics</li>
+                    <li>Priority support</li>
+                    <li>Custom workflows</li>
+                </ul>
+                <a href="#" class="price-btn">Start Pro Trial</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Bisia Inc. All rights reserved.</p>
+    </footer>
+</body>
+</html>
