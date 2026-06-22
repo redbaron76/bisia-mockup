@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bisiacaria.com — Registrati</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0a0c; --gray-950: #0f0f12; --gray-900: #16161a;
+            --gray-800: #1e1e24; --gray-700: #2a2a32; --gray-600: #3a3a44;
+            --gray-400: #888890; --gray-300: #aaaab2; --white: #fff;
+            --accent: #ffcc00; --accent-light: rgba(255,204,0,0.1);
+            --green: #22c55e; --blue: #3b82f6; --pink: #ec4899;
+            --purple: #a855f7; --orange: #f97316;
+            --red: #ef4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--black); color: var(--white); min-height: 100vh; }
+
+        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,12,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--gray-800); }
+        .logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.4rem; text-decoration: none; }
+        .logo span.accent { color: var(--accent); }
+        .logo .dot { color: var(--gray-400); margin: 0 0.25rem; }
+        .nav-right { display: flex; gap: 0.75rem; align-items: center; }
+        .nav-right a { color: var(--gray-400); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.3s; }
+        .nav-right a:hover { color: var(--white); }
+
+        .btn { padding: 0.5rem 1.2rem; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; font-family: inherit; }
+        .btn-soft { background: var(--gray-800); color: var(--white); border: 1px solid var(--gray-700); }
+        .btn-fill { background: var(--accent); color: var(--black); }
+        .btn-fill:hover { background: var(--accent-hover, #ffe033); }
+        .avatar { border-radius: 50%; object-fit: cover; border: 2px solid var(--gray-700); }
+
+        .page { padding-top: 6rem; max-width: 480px; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; padding-bottom: 3rem; }
+
+        .signup-header { text-align: center; margin-bottom: 2.5rem; }
+        .signup-header h1 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .signup-header p { color: var(--gray-400); font-size: 0.95rem; }
+
+        /* FORM */
+        .form-group { margin-bottom: 1.25rem; }
+        .form-label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--gray-300); margin-bottom: 0.5rem; }
+        .form-input { width: 100%; background: var(--gray-900); border: 1px solid var(--gray-700); border-radius: 10px; padding: 0.7rem 1rem; color: var(--white); font-size: 0.9rem; outline: none; font-family: inherit; transition: all 0.3s; }
+        .form-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-light); }
+        .form-input::placeholder { color: var(--gray-500); }
+        textarea.form-input { resize: vertical; min-height: 80px; }
+        select.form-input { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888890' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+
+        /* PASSWORD STRENGTH */
+        .password-wrapper { position: relative; }
+        .toggle-password { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--gray-500); cursor: pointer; font-size: 0.9rem; }
+        .password-strength { display: flex; gap: 0.25rem; margin-top: 0.5rem; }
+        .strength-bar { flex: 1; height: 3px; border-radius: 3px; background: var(--gray-700); transition: background 0.3s; }
+        .strength-bar.weak { background: var(--red); }
+        .strength-bar.medium { background: var(--orange); }
+        .strength-bar.strong { background: var(--green); }
+        .strength-text { font-size: 0.72rem; color: var(--gray-500); margin-top: 0.25rem; }
+
+        /* CHECKBOX */
+        .checkbox-group { display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 1.5rem; }
+        .checkbox-group input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent); margin-top: 2px; cursor: pointer; }
+        .checkbox-group label { font-size: 0.82rem; color: var(--gray-400); line-height: 1.5; }
+        .checkbox-group label a { color: var(--accent); text-decoration: none; }
+        .checkbox-group label a:hover { text-decoration: underline; }
+
+        /* SUBMIT */
+        .submit-btn { width: 100%; padding: 0.75rem; font-size: 0.95rem; margin-bottom: 1rem; }
+
+        /* DIVIDER */
+        .divider { display: flex; align-items: center; gap: 1rem; margin: 1.5rem 0; }
+        .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: var(--gray-800); }
+        .divider span { font-size: 0.8rem; color: var(--gray-500); }
+
+        /* SOCIAL */
+        .social-btns { display: flex; flex-direction: column; gap: 0.75rem; }
+        .social-btn { width: 100%; padding: 0.7rem; border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 500; cursor: pointer; border: 1px solid var(--gray-700); background: var(--gray-900); color: var(--white); font-family: inherit; transition: all 0.3s; }
+        .social-btn:hover { border-color: var(--gray-500); background: var(--gray-800); }
+
+        .login-link { text-align: center; color: var(--gray-400); font-size: 0.85rem; margin-top: 1.5rem; }
+        .login-link a { color: var(--accent); text-decoration: none; font-weight: 600; }
+        .login-link a:hover { text-decoration: underline; }
+
+        /* INTERESTS */
+        .interest-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
+        .interest-tag { padding: 0.35rem 0.75rem; border-radius: 100px; font-size: 0.78rem; border: 1px solid var(--gray-700); color: var(--gray-400); cursor: pointer; transition: all 0.2s; background: transparent; font-family: inherit; }
+        .interest-tag:hover { border-color: var(--gray-500); color: var(--white); }
+        .interest-tag.selected { background: var(--accent); color: var(--black); border-color: var(--accent); font-weight: 600; }
+
+        /* STEPS */
+        .steps { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 2rem; }
+        .step { width: 32px; height: 4px; border-radius: 4px; background: var(--gray-700); transition: background 0.3s; }
+        .step.active { background: var(--accent); }
+        .step.done { background: var(--green); }
+
+        .form-step { display: none; }
+        .form-step.active { display: block; }
+
+        footer { padding: 2rem; text-align: center; border-top: 1px solid var(--gray-800); color: var(--gray-600); font-size: 0.85rem; margin-top: auto; }
+
+        @media (max-width: 768px) { .page { padding-left: 1rem; padding-right: 1rem; } .form-row { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">Bisiacaria<span class="accent">✦</span><span class="dot">.</span>com</a>
+        <div class="nav-right">
+            <a href="login.html">Accedi</a>
+            <a href="landing-profile-matteo.html">Profilo</a>
+        </div>
+    </nav>
+
+    <div class="page">
+        <div class="signup-header">
+            <div class="steps">
+                <div class="step active" id="step1-dot"></div>
+                <div class="step" id="step2-dot"></div>
+                <div class="step" id="step3-dot"></div>
+            </div>
+            <h1>Unisciti a Bisiacaria</h1>
+            <p>Il tuo quartiere, connesso. 1 minuto.</p>
+        </div>
+
+        <form id="signup-form">
+            <!-- STEP 1: Basic info -->
+            <div class="form-step active" id="form-step-1">
+                <div class="form-group">
+                    <label class="form-label">Nome completo</label>
+                    <input class="form-input" type="text" placeholder="Es. Matteo Greco" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input class="form-input" type="email" placeholder="nome@esempio.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Username</label>
+                    <input class="form-input" type="text" placeholder="nome_cognome" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <div class="password-wrapper">
+                        <input class="form-input" type="password" id="password-input" placeholder="Minimo 8 caratteri" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword()">👁</button>
+                    </div>
+                    <div class="password-strength" id="strength-bars">
+                        <div class="strength-bar"></div>
+                        <div class="strength-bar"></div>
+                        <div class="strength-bar"></div>
+                        <div class="strength-bar"></div>
+                    </div>
+                    <div class="strength-text" id="strength-text"></div>
+                </div>
+                <button type="button" class="btn btn-fill submit-btn" onclick="nextStep(2)">Avanti →</button>
+            </div>
+
+            <!-- STEP 2: Profile -->
+            <div class="form-step" id="form-step-2">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Zona del quartiere</label>
+                        <select class="form-input" required>
+                            <option value="">Seleziona...</option>
+                            <option>Villa Verde Nord</option>
+                            <option>Villa Verde Sud</option>
+                            <option>Centro</option>
+                            <option>Zona Ovest</option>
+                            <option>Zona Est</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Professione</label>
+                        <select class="form-input">
+                            <option value="">Seleziona...</option>
+                            <option>Impiegato</option>
+                            <option>Professionista</option>
+                            <option>Artigiano</option>
+                            <option>Insegnante</option>
+                            <option>Studente</option>
+                            <option>Altro</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Bio (max 120 caratteri)</label>
+                    <textarea class="form-input" placeholder="Parla un po' di te..." maxlength="120"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Interessi (seleziona almeno uno)</label>
+                    <div class="interest-tags" id="interests">
+                        <button type="button" class="interest-tag" data-value="sport">🏃 Sport</button>
+                        <button type="button" class="interest-tag" data-value="cucina">🍕 Cucina</button>
+                        <button type="button" class="interest-tag" data-value="tecnologia">💻 Tecnologia</button>
+                        <button type="button" class="interest-tag" data-value="giardinaggio">🌱 Giardinaggio</button>
+                        <button type="button" class="interest-tag" data-value="musica">🎸 Musica</button>
+                        <button type="button" class="interest-tag" data-value="letture">📚 Letture</button>
+                        <button type="button" class="interest-tag" data-value="bambini">👶 Bambini</button>
+                        <button type="button" class="interest-tag" data-value="forum">💬 Forum</button>
+                        <button type="button" class="interest-tag" data-value="eventi">🎉 Eventi</button>
+                        <button type="button" class="interest-tag" data-value="mercato">🛒 Mercato</button>
+                    </div>
+                </div>
+                <div style="display:flex; gap:0.75rem;">
+                    <button type="button" class="btn btn-soft submit-btn" onclick="nextStep(1)" style="flex:1;">← Indietro</button>
+                    <button type="button" class="btn btn-fill submit-btn" onclick="nextStep(3)" style="flex:2;">Avanti →</button>
+                </div>
+            </div>
+
+            <!-- STEP 3: Complete -->
+            <div class="form-step" id="form-step-3">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">Accetto i <a href="#">Termini di Servizio</a> e la <a href="#">Privacy Policy</a> di Bisiacaria.com</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="newsletter">
+                    <label for="newsletter">Voglio ricevere le novità del quartiere via email</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="sms">
+                    <label for="sms">Vuoi ricevere aggiornamenti urgenti via SMS?</label>
+                </div>
+                <button type="submit" class="btn btn-fill submit-btn">Crea il mio account ✦</button>
+            </div>
+        </form>
+
+        <div class="divider"><span>o continua con</span></div>
+
+        <div class="social-btns">
+            <button class="social-btn">🔵 Continua con Google</button>
+            <button class="social-btn">⚫ Continua con Apple</button>
+            <button class="social-btn">🔷 Continua con Facebook</button>
+        </div>
+
+        <div class="login-link">
+            Hai già un account? <a href="login.html">Accedi</a>
+        </div>
+    </div>
+
+    <footer>© 2026 Bisiacaria.com · Registrati per unirti alla community ✦</footer>
+
+    <script>
+        let currentStep = 1;
+
+        function nextStep(step) {
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.getElementById('form-step-' + step).classList.add('active');
+
+            document.querySelectorAll('.step').forEach((s, i) => {
+                s.classList.remove('active', 'done');
+                if (i + 1 < step) s.classList.add('done');
+                if (i + 1 === step) s.classList.add('active');
+            });
+
+            currentStep = step;
+        }
+
+        function togglePassword() {
+            const input = document.getElementById('password-input');
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+
+        // Password strength
+        document.getElementById('password-input').addEventListener('input', function() {
+            const val = this.value;
+            const bars = document.querySelectorAll('.strength-bar');
+            const text = document.getElementById('strength-text');
+            let score = 0;
+
+            if (val.length >= 8) score++;
+            if (/[A-Z]/.test(val)) score++;
+            if (/[0-9]/.test(val)) score++;
+            if (/[^A-Za-z0-9]/.test(val)) score++;
+
+            const levels = ['', 'Debole', 'Discreta', 'Buona', 'Ottima'];
+            const classes = ['', 'weak', 'medium', 'medium', 'strong'];
+            const colors = ['', '#ef4444', '#f97316', '#22c55e', '#22c55e'];
+
+            bars.forEach((bar, i) => {
+                bar.className = 'strength-bar';
+                if (i < score) bar.classList.add(classes[score]);
+            });
+
+            text.textContent = levels[score] || '';
+            text.style.color = colors[score] || 'var(--gray-500)';
+        });
+
+        // Interest tags toggle
+        document.querySelectorAll('.interest-tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                this.classList.toggle('selected');
+            });
+        });
+
+        // Form submit
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Registrazione completata! Benvenuto su Bisiacaria.com ✦');
+        });
+    </script>
+</body>
+</html>
