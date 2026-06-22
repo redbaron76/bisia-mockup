@@ -3,419 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bisiacaria — Directory</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style type="text/tailwindcss">
-        @theme {
-            --color-black: #050508;
-            --color-gray-950: #0c0c10;
-            --color-gray-900: #111118;
-            --color-gray-800: #1a1a24;
-            --color-gray-700: #252532;
-            --color-gray-600: #333344;
-            --color-gray-500: #555568;
-            --color-gray-400: #88889a;
-            --color-gray-300: #b0b0c2;
-            --color-accent: #ffcc00;
-            --color-teal: #14b8a6;
-            --color-blue: #3b82f6;
-            --color-violet: #8b5cf6;
-            --color-pink: #ec4899;
-            --color-orange: #f97316;
-            --color-lime: #84cc16;
-            --color-cyan: #06b6d4;
-            --color-rose: #f43f5e;
-            --font-outfit: 'Outfit', sans-serif;
-            --font-jakarta: 'Plus Jakarta Sans', sans-serif;
+    <title>Bisiacaria.com — Directory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0a0c; --gray-950: #0f0f12; --gray-900: #16161a;
+            --gray-800: #1e1e24; --gray-700: #2a2a32; --gray-600: #3a3a44;
+            --gray-400: #888890; --gray-300: #aaaab2; --white: #fff;
+            --accent: #ffcc00; --accent-light: rgba(255,204,0,0.1);
+            --green: #22c55e; --blue: #3b82f6; --pink: #ec4899;
+            --purple: #a855f7; --orange: #f97316; --teal: #14b8a6;
         }
-        body { font-family: var(--font-jakarta); }
-        h1, .logo { font-family: var(--font-outfit); }
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-        [v-cloak] { display: none; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--black); color: var(--white); }
+
+        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,12,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--gray-800); }
+        .logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.4rem; text-decoration: none; }
+        .logo span.accent { color: var(--accent); }
+        .logo .dot { color: var(--gray-400); margin: 0 0.25rem; }
+        .nav-center { display: flex; gap: 1.5rem; }
+        .nav-center a { color: var(--gray-400); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+        .nav-center a:hover { color: var(--white); }
+        .nav-center a.active { color: var(--accent); }
+        .nav-right { display: flex; gap: 0.75rem; align-items: center; }
+
+        .btn { padding: 0.5rem 1.2rem; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; font-family: inherit; }
+        .btn-soft { background: var(--gray-800); color: var(--white); border: 1px solid var(--gray-700); }
+        .btn-fill { background: var(--accent); color: var(--black); }
+        .avatar { border-radius: 50%; object-fit: cover; border: 2px solid var(--gray-700); }
+
+        .page { padding-top: 5rem; max-width: 1100px; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; padding-bottom: 3rem; }
+
+        .page-header { margin-bottom: 2rem; }
+        .page-header h1 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 700; }
+        .page-header h1 small { font-size: 0.9rem; color: var(--gray-400); font-weight: 400; display: block; }
+
+        /* SEARCH */
+        .search-bar { display: flex; gap: 0.75rem; margin-bottom: 2rem; }
+        .search-input { flex: 1; background: var(--gray-900); border: 1px solid var(--gray-700); border-radius: 100px; padding: 0.7rem 1.5rem 0.7rem 2.5rem; color: var(--white); font-size: 0.9rem; outline: none; font-family: inherit; transition: all 0.3s; }
+        .search-input:focus { border-color: var(--accent); }
+        .search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); font-size: 0.9rem; }
+        .search-wrapper { position: relative; flex: 1; }
+
+        /* FILTERS */
+        .filters-row { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .filter-tag { background: var(--gray-900); border: 1px solid var(--gray-700); color: var(--gray-400); padding: 0.35rem 0.9rem; border-radius: 100px; font-size: 0.78rem; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+        .filter-tag:hover { border-color: var(--gray-500); color: var(--white); }
+        .filter-tag.active { background: var(--accent); color: var(--black); border-color: var(--accent); font-weight: 600; }
+
+        /* DIRECTORY GRID */
+        .directory-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+        .member-card { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 14px; padding: 1.5rem; text-align: center; transition: all 0.3s; cursor: pointer; }
+        .member-card:hover { border-color: var(--gray-600); transform: translateY(-2px); }
+        .member-avatar { width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 0.75rem; border: 2px solid var(--gray-700); }
+        .member-name { font-size: 1rem; font-weight: 600; margin-bottom: 0.2rem; }
+        .member-role { font-size: 0.8rem; color: var(--gray-400); margin-bottom: 0.75rem; }
+        .member-tags { display: flex; justify-content: center; gap: 0.3rem; flex-wrap: wrap; }
+        .member-tag { font-size: 0.65rem; padding: 0.15rem 0.5rem; border-radius: 100px; background: var(--accent-light); color: var(--accent); }
+        .member-stats { display: flex; justify-content: center; gap: 1rem; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--gray-800); }
+        .member-stats span { font-size: 0.72rem; color: var(--gray-500); }
+        .member-stats span b { color: var(--gray-300); font-weight: 600; }
+
+        footer { padding: 2.5rem 2rem; text-align: center; border-top: 1px solid var(--gray-800); color: var(--gray-600); font-size: 0.85rem; }
+        .mobile-nav { display: none; position: fixed; bottom: 0; width: 100%; z-index: 100; background: rgba(10,10,12,0.95); backdrop-filter: blur(20px); border-top: 1px solid var(--gray-800); padding: 0.5rem 0; }
+        .mobile-nav-items { display: flex; justify-content: space-around; }
+        .mobile-nav-item { display: flex; flex-direction: column; align-items: center; gap: 0.15rem; color: var(--gray-400); text-decoration: none; font-size: 0.6rem; }
+        .mobile-nav-item .icon { font-size: 1.1rem; }
+        .mobile-nav-item.active { color: var(--accent); }
+        @media (max-width: 768px) { .nav-center { display: none; } .page { padding-left: 1rem; padding-right: 1rem; padding-bottom: 5rem; } }
+        @media (max-width: 600px) { .mobile-nav { display: block; } }
     </style>
 </head>
-<body class="bg-black text-gray-300 min-h-screen flex flex-col overflow-x-hidden">
-
-    <!-- OVERLAY -->
-    <div id="overlay" class="fixed inset-0 bg-black/60 z-[199] backdrop-blur-sm transition-opacity duration-300" :class="drawerOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'" @click="closeDrawers"></div>
-
-    <!-- DRAWER SINISTRO — Menu -->
-    <aside class="fixed top-0 bottom-0 left-0 w-[280px] bg-gray-950 border-r border-gray-800 z-[200] transition-transform duration-350 ease-in-out overflow-y-auto scrollbar-hide" :class="drawerLeft ? 'translate-x-0' : '-translate-x-full'">
-        <div class="p-5 flex flex-col gap-4">
-            <div class="flex items-center justify-between mb-2">
-                <div class="logo text-xl font-extrabold">Bisiacaria<span class="text-accent">.com</span></div>
-                <button class="w-10 h-10 flex items-center justify-center rounded-xl text-gray-400 hover:bg-gray-800 hover:text-white text-xl transition" @click="closeDrawers">✕</button>
-            </div>
-            <div class="h-px bg-gray-800"></div>
-            <ul class="flex flex-col gap-1">
-                <li><a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-400 no-underline text-[15px] font-medium hover:bg-gray-800 hover:text-white transition"><span class="text-xl w-6 text-center">🏠</span> Home</a></li>
-                <li><a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-400 no-underline text-[15px] font-medium hover:bg-gray-800 hover:text-white transition"><span class="text-xl w-6 text-center">💬</span> Forum</a></li>
-                <li><a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-400 no-underline text-[15px] font-medium hover:bg-gray-800 hover:text-white transition"><span class="text-xl w-6 text-center">📰</span> News</a></li>
-                <li><a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-400 no-underline text-[15px] font-medium hover:bg-gray-800 hover:text-white transition"><span class="text-xl w-6 text-center">👥</span> Gruppi</a></li>
-                <li><a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-accent/15 text-accent font-medium"><span class="text-xl w-6 text-center">📂</span> Directory</a></li>
-                <li><a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-400 no-underline text-[15px] font-medium hover:bg-gray-800 hover:text-white transition"><span class="text-xl w-6 text-center">⭐</span> Top Recenti</a></li>
-            </ul>
-            <div class="h-px bg-gray-800"></div>
-            <ul class="flex flex-col gap-1">
-                <li><a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-400 no-underline text-[15px] font-medium hover:bg-gray-800 hover:text-white transition"><span class="text-xl w-6 text-center">🔔</span> Notifiche</a></li>
-                <li><a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-400 no-underline text-[15px] font-medium hover:bg-gray-800 hover:text-white transition"><span class="text-xl w-6 text-center">⚙️</span> Impostazioni</a></li>
-                <li><a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-400 no-underline text-[15px] font-medium hover:bg-gray-800 hover:text-white transition"><span class="text-xl w-6 text-center">❓</span> Aiuto</a></li>
-            </ul>
-            <div class="h-px bg-gray-800"></div>
-            <ul class="flex flex-col gap-1">
-                <li><a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-400 no-underline text-[15px] font-medium hover:bg-gray-800 hover:text-white transition"><span class="text-xl w-6 text-center">📊</span> Statistiche</a></li>
-                <li><a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-400 no-underline text-[15px] font-medium hover:bg-gray-800 hover:text-white transition"><span class="text-xl w-6 text-center">📋</span> Termini &amp; Privacy</a></li>
-            </ul>
-            <div class="mt-auto pt-4 border-t border-gray-800">
-                <p class="text-[11px] text-gray-600 leading-relaxed">© 2026 Bisiacaria.com<br>Scopri i servizi del tuo quartiere ✦</p>
-            </div>
+<body>
+    <nav>
+        <a href="index.html" class="logo">Bisiacaria<span class="accent">✦</span><span class="dot">.</span>com</a>
+        <div class="nav-center">
+            <a href="landing-4-warm.html">Home</a>
+            <a href="landing-b1-forum.html">Forum</a>
+            <a href="landing-b2-mercato.html">Mercatino</a>
+            <a href="#" class="active">Directory</a>
+            <a href="landing-b6-drawer.html">Layout</a>
         </div>
-    </aside>
-
-    <!-- DRAWER DESTRO — Online -->
-    <aside class="fixed top-0 bottom-0 right-0 left-auto w-[320px] bg-gray-950 border-l border-gray-800 z-[200] transition-transform duration-350 ease-in-out overflow-y-auto scrollbar-hide" :class="drawerRight ? 'translate-x-0' : 'translate-x-full'">
-        <div class="p-5 flex flex-col gap-3">
-            <div class="flex items-center justify-between mb-1">
-                <h3 class="text-[15px] font-semibold m-0">Online</h3>
-                <button class="w-[34px] h-[34px] flex items-center justify-center text-gray-400 hover:bg-gray-800 text-lg transition" @click="closeDrawers">✕</button>
-            </div>
-            <div>
-                <div class="text-[11px] text-gray-500 mb-3 pb-3 border-b border-gray-800">12 utenti attivi ora</div>
-                <div class="flex items-center gap-3 py-2 border-b border-gray-800">
-                    <img src="https://i.pravatar.cc/48?img=12" class="w-9 h-9 rounded-full object-cover border-2 border-gray-700 relative flex-shrink-0">
-                    <span class="absolute w-2.5 h-2.5 rounded-full bottom-0 right-0 border-2 border-gray-950 bg-teal"></span>
-                    <div class="flex-1 min-w-0"><div class="text-[13px] font-medium truncate">Chiara Bellini</div><div class="text-[11px] text-gray-500 truncate">Stà forumattiva</div></div>
-                </div>
-                <div class="flex items-center gap-3 py-2 border-b border-gray-800">
-                    <img src="https://i.pravatar.cc/48?img=15" class="w-9 h-9 rounded-full object-cover border-2 border-gray-700 relative flex-shrink-0">
-                    <span class="absolute w-2.5 h-2.5 rounded-full bottom-0 right-0 border-2 border-gray-950 bg-teal"></span>
-                    <div class="flex-1 min-w-0"><div class="text-[13px] font-medium truncate">Luca Ferretti</div><div class="text-[11px] text-gray-500 truncate">Stà sfogliando la Directory</div></div>
-                </div>
-                <div class="flex items-center gap-3 py-2 border-b border-gray-800">
-                    <img src="https://i.pravatar.cc/48?img=22" class="w-9 h-9 rounded-full object-cover border-2 border-gray-700 relative flex-shrink-0">
-                    <span class="absolute w-2.5 h-2.5 rounded-full bottom-0 right-0 border-2 border-gray-950 bg-teal"></span>
-                    <div class="flex-1 min-w-0"><div class="text-[13px] font-medium truncate">Sara Marchetti</div><div class="text-[11px] text-gray-500 truncate">Ha lasciato una recensione</div></div>
-                </div>
-                <div class="flex items-center gap-3 py-2 border-b border-gray-800">
-                    <img src="https://i.pravatar.cc/48?img=33" class="w-9 h-9 rounded-full object-cover border-2 border-gray-700 relative flex-shrink-0">
-                    <span class="absolute w-2.5 h-2.5 rounded-full bottom-0 right-0 border-2 border-gray-950 bg-teal"></span>
-                    <div class="flex-1 min-w-0"><div class="text-[13px] font-medium truncate">Marco Russo</div><div class="text-[11px] text-gray-500 truncate">Stà leggendo il Forum</div></div>
-                </div>
-                <div class="flex items-center gap-3 py-2 border-b border-gray-800">
-                    <img src="https://i.pravatar.cc/48?img=36" class="w-9 h-9 rounded-full object-cover border-2 border-gray-700 relative flex-shrink-0">
-                    <span class="absolute w-2.5 h-2.5 rounded-full bottom-0 right-0 border-2 border-gray-950 bg-teal"></span>
-                    <div class="flex-1 min-w-0"><div class="text-[13px] font-medium truncate">Giulia Conti</div><div class="text-[11px] text-gray-500 truncate">Online</div></div>
-                </div>
-                <div class="flex items-center gap-3 py-2 border-b border-gray-800">
-                    <img src="https://i.pravatar.cc/48?img=41" class="w-9 h-9 rounded-full object-cover border-2 border-gray-700 relative flex-shrink-0">
-                    <span class="absolute w-2.5 h-2.5 rounded-full bottom-0 right-0 border-2 border-gray-950 bg-accent"></span>
-                    <div class="flex-1 min-w-0"><div class="text-[13px] font-medium truncate">Andrea Costa</div><div class="text-[11px] text-gray-500 truncate">Assente da 3 min</div></div>
-                </div>
-                <div class="flex items-center gap-3 py-2 border-b border-gray-800">
-                    <img src="https://i.pravatar.cc/48?img=5" class="w-9 h-9 rounded-full object-cover border-2 border-gray-700 relative flex-shrink-0">
-                    <span class="absolute w-2.5 h-2.5 rounded-full bottom-0 right-0 border-2 border-gray-950 bg-teal"></span>
-                    <div class="flex-1 min-w-0"><div class="text-[13px] font-medium truncate">Elena Greco</div><div class="text-[11px] text-gray-500 truncate">Stà cercando servizi</div></div>
-                </div>
-            </div>
-            <div class="mt-1 pt-3 border-t border-gray-800">
-                <div class="text-[11px] text-gray-500 mb-3">5 nella community Bisiacaria</div>
-                <div class="flex items-center gap-3 py-2 border-b border-gray-800">
-                    <img src="https://i.pravatar.cc/48?img=8" class="w-9 h-9 rounded-full object-cover border-2 border-gray-700 relative flex-shrink-0">
-                    <span class="absolute w-2.5 h-2.5 rounded-full bottom-0 right-0 border-2 border-gray-950 bg-teal"></span>
-                    <div class="flex-1 min-w-0"><div class="text-[13px] font-medium truncate">Paolo Santoro</div><div class="text-[11px] text-gray-500 truncate">Moderatore</div></div>
-                    <span class="text-[10px] bg-accent/15 text-accent px-2 py-0.5 rounded-full font-bold flex-shrink-0">MOD</span>
-                </div>
-                <div class="flex items-center gap-3 py-2 border-b border-gray-800">
-                    <img src="https://i.pravatar.cc/48?img=18" class="w-9 h-9 rounded-full object-cover border-2 border-gray-700 relative flex-shrink-0">
-                    <span class="absolute w-2.5 h-2.5 rounded-full bottom-0 right-0 border-2 border-gray-950 bg-teal"></span>
-                    <div class="flex-1 min-w-0"><div class="text-[13px] font-medium truncate">Valentina Romano</div><div class="text-[11px] text-gray-500 truncate">Admin</div></div>
-                    <span class="text-[10px] bg-accent/15 text-accent px-2 py-0.5 rounded-full font-bold flex-shrink-0">ADMIN</span>
-                </div>
-                <div class="flex items-center gap-3 py-2 border-b border-gray-800">
-                    <img src="https://i.pravatar.cc/48?img=25" class="w-9 h-9 rounded-full object-cover border-2 border-gray-700 relative flex-shrink-0">
-                    <span class="absolute w-2.5 h-2.5 rounded-full bottom-0 right-0 border-2 border-gray-950 bg-accent"></span>
-                    <div class="flex-1 min-w-0"><div class="text-[13px] font-medium truncate">Matteo Ferrari</div><div class="text-[11px] text-gray-500 truncate">Membro fondatore</div></div>
-                    <span class="text-[10px] bg-accent/15 text-accent px-2 py-0.5 rounded-full font-bold flex-shrink-0">TOP</span>
-                </div>
-                <div class="flex items-center gap-3 py-2 border-b border-gray-800">
-                    <img src="https://i.pravatar.cc/48?img=30" class="w-9 h-9 rounded-full object-cover border-2 border-gray-700 relative flex-shrink-0">
-                    <span class="absolute w-2.5 h-2.5 rounded-full bottom-0 right-0 border-2 border-gray-950 bg-teal"></span>
-                    <div class="flex-1 min-w-0"><div class="text-[13px] font-medium truncate">Francesca Leone</div><div class="text-[11px] text-gray-500 truncate">Content creator</div></div>
-                </div>
-                <div class="flex items-center gap-3 py-2">
-                    <img src="https://i.pravatar.cc/48?img=44" class="w-9 h-9 rounded-full object-cover border-2 border-gray-700 relative flex-shrink-0">
-                    <span class="absolute w-2.5 h-2.5 rounded-full bottom-0 right-0 border-2 border-gray-950 bg-teal"></span>
-                    <div class="flex-1 min-w-0"><div class="text-[13px] font-medium truncate">Davide Ricci</div><div class="text-[11px] text-gray-500 truncate">Ecommerce expert</div></div>
-                </div>
-            </div>
-        </div>
-    </aside>
-
-    <!-- NAVBAR -->
-    <nav class="fixed top-0 w-full z-[100] h-16 flex items-center justify-between px-5 bg-black/88 backdrop-blur-xl backdrop-saturate-[1.4] border-b border-gray-800">
-        <div class="flex items-center gap-3">
-            <button class="w-10 h-10 flex items-center justify-center rounded-xl text-gray-400 hover:bg-gray-800 hover:text-white text-xl transition cursor-pointer border-none bg-transparent" @click="openDrawer('left')" aria-label="Menu">☰</button>
-            <div class="logo text-lg font-extrabold flex items-center gap-1.5 whitespace-nowrap">
-                <span class="lg:inline hidden">Bisiacaria<span class="text-accent">.com</span></span><span class="text-gray-600">·</span><span class="text-gray-500 text-xs hidden lg:inline">Directory</span>
-            </div>
-        </div>
-        <div class="hidden md:flex gap-0.5 bg-gray-900 p-0.5 rounded-full">
-            <a href="#" class="text-gray-400 no-underline text-[13px] font-medium px-3.5 py-2 rounded-full hover:text-white transition whitespace-nowrap">Forum</a>
-            <a href="#" class="text-gray-400 no-underline text-[13px] font-medium px-3.5 py-2 rounded-full hover:text-white transition whitespace-nowrap">News</a>
-            <a href="#" class="text-gray-400 no-underline text-[13px] font-medium px-3.5 py-2 rounded-full hover:text-white transition whitespace-nowrap">Gruppi</a>
-            <a href="#" class="text-accent bg-accent text-black font-bold px-3.5 py-2 rounded-full text-[13px]">Directory</a>
-        </div>
-        <div class="flex items-center gap-1">
-            <button class="w-[38px] h-[38px] flex items-center justify-center rounded-xl text-gray-400 hover:bg-gray-800 hover:text-white transition cursor-pointer text-lg" @click="openDrawer('right')" aria-label="Online" title="Utenti online">👥</button>
-            <div class="w-[38px] h-[38px] flex items-center justify-center rounded-xl text-gray-400 hover:bg-gray-800 hover:text-white transition cursor-pointer text-lg">🔔</div>
-            <img src="https://i.pravatar.cc/72?img=32" class="w-9 h-9 rounded-full object-cover border-2 border-gray-700 cursor-pointer hover:border-accent transition" @click="location.href='landing-profile-matteo.html'" alt="">
+        <div class="nav-right">
+            <a href="landing-profile-matteo.html" class="avatar" style="width:32px;height:32px;"></a>
         </div>
     </nav>
 
-    <!-- MAIN APP -->
-    <div class="max-w-[1400px] mx-auto w-full pt-[80px] px-4 md:px-6 pb-8 flex-1">
-        <div class="flex items-center gap-1.5 text-xs text-gray-500 mb-5 flex-wrap">
-            <a href="#" class="text-gray-400 no-underline hover:text-accent transition">Home</a>
-            <span>›</span><span>Directory</span>
-        </div>
-        <div class="mb-6">
-            <h1 class="text-2xl lg:text-[32px] font-extrabold leading-tight mb-1">Directory del <span class="text-accent">Quartiere</span></h1>
-            <p class="text-gray-400 text-[13px] lg:text-base">Tutti i servizi, negozi e professionisti locali — scopri chi c'è intorno a te</p>
+    <div class="page">
+        <div class="page-header">
+            <h1>Directory<small>Trova i membri della tua community</small></h1>
         </div>
 
-        <div class="flex gap-2 mb-6 overflow-x-auto pb-2 scrollbar-hide touch-pan-x">
-            <div class="flex items-center gap-1.5 bg-accent text-black border border-accent px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap flex-shrink-0">🏪 Tutti <span class="bg-black/20 px-1.5 py-0.5 rounded-full text-xs">127</span></div>
-            <div class="flex items-center gap-1.5 bg-gray-900 border border-gray-700 text-gray-400 px-4 py-2 rounded-full text-sm font-medium hover:border-gray-500 hover:text-white transition whitespace-nowrap flex-shrink-0">🍽️ Ristoranti <span class="bg-gray-800 px-1.5 py-0.5 rounded-full text-xs">23</span></div>
-            <div class="flex items-center gap-1.5 bg-gray-900 border border-gray-700 text-gray-400 px-4 py-2 rounded-full text-sm font-medium hover:border-gray-500 hover:text-white transition whitespace-nowrap flex-shrink-0">🛒 Negozi <span class="bg-gray-800 px-1.5 py-0.5 rounded-full text-xs">31</span></div>
-            <div class="flex items-center gap-1.5 bg-gray-900 border border-gray-700 text-gray-400 px-4 py-2 rounded-full text-sm font-medium hover:border-gray-500 hover:text-white transition whitespace-nowrap flex-shrink-0">🏥 Salute <span class="bg-gray-800 px-1.5 py-0.5 rounded-full text-xs">18</span></div>
-            <div class="flex items-center gap-1.5 bg-gray-900 border border-gray-700 text-gray-400 px-4 py-2 rounded-full text-sm font-medium hover:border-gray-500 hover:text-white transition whitespace-nowrap flex-shrink-0">🔧 Servizi <span class="bg-gray-800 px-1.5 py-0.5 rounded-full text-xs">27</span></div>
-            <div class="flex items-center gap-1.5 bg-gray-900 border border-gray-700 text-gray-400 px-4 py-2 rounded-full text-sm font-medium hover:border-gray-500 hover:text-white transition whitespace-nowrap flex-shrink-0">💪 Fitness <span class="bg-gray-800 px-1.5 py-0.5 rounded-full text-xs">12</span></div>
-            <div class="flex items-center gap-1.5 bg-gray-900 border border-gray-700 text-gray-400 px-4 py-2 rounded-full text-sm font-medium hover:border-gray-500 hover:text-white transition whitespace-nowrap flex-shrink-0">📚 Istruzione <span class="bg-gray-800 px-1.5 py-0.5 rounded-full text-xs">16</span></div>
+        <div class="search-bar">
+            <div class="search-wrapper">
+                <span class="search-icon">🔍</span>
+                <input class="search-input" type="text" placeholder="Cerca per nome, ruolo o interesse...">
+            </div>
+            <a href="#" class="btn btn-fill">+ Aggiungi</a>
         </div>
 
-        <div class="flex gap-3 mb-8">
-            <input type="text" placeholder="🔍 Cerca servizi nel quartiere..." class="flex-1 bg-gray-900 border border-gray-700 rounded-2xl px-5 py-3.5 text-white text-base lg:text-[15px] outline-none font-inherit transition placeholder-gray-600 min-w-0 focus:border-accent focus:ring-3 focus:ring-accent/15">
+        <div class="filters-row">
+            <button class="filter-tag active">Tutti</button>
+            <button class="filter-tag">🔧 Professionisti</button>
+            <button class="filter-tag">🎨 Creativi</button>
+            <button class="filter-tag">📚 Insegnanti</button>
+            <button class="filter-tag">🏥 Sanità</button>
+            <button class="filter-tag">🛠️ Artigiani</button>
         </div>
 
-        <div class="flex gap-4 overflow-x-auto pb-4 mb-8 scrollbar-hide touch-pan-x">
-            <div class="flex-none w-[300px] sm:w-[300px] bg-gray-900 border border-gray-800 rounded-[20px] p-5 transition hover:border-gray-600 hover:-translate-y-[3px] cursor-pointer relative overflow-hidden">
-                <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-orange to-pink"></div>
-                <span class="absolute top-2.5 right-2.5 bg-accent text-black px-1.5 py-0.5 rounded-full text-[10px] font-bold">★ TOP</span>
-                <div class="flex gap-3 mb-4">
-                    <div class="w-[48px] h-[48px] rounded-xl flex items-center justify-center text-2xl flex-shrink-0 bg-orange/15">🥖</div>
-                    <div><h3 class="text-base font-bold mb-0.5">Panetteria Rossi</h3><div class="text-[12px] text-gray-400">Panificio · Via Roma 23</div></div>
-                </div>
-                <div class="text-accent text-sm tracking-wider mb-1">★★★★★</div>
-                <div class="text-gray-400 text-sm leading-relaxed mb-4">Miglior pane del quartiere dal 1987. Focacce, pizza in teglia, dolci classici.</div>
-                <div class="text-xs text-gray-500 flex gap-3">4.9 (312)<span class="text-gray-300">● Aperto</span></div>
+        <div class="directory-grid">
+            <div class="member-card">
+                <img class="member-avatar" src="https://i.pravatar.cc/128?img=53" alt="">
+                <div class="member-name">Matteo Greco</div>
+                <div class="member-role">⭐ Admin & fondatore</div>
+                <div class="member-tags"><span class="member-tag">Dev</span><span class="member-tag">Eventi</span></div>
+                <div class="member-stats"><span>📝 <b>1,247</b> post</span><span>❤️ <b>324</b></span></div>
             </div>
-            <div class="flex-none w-[300px] sm:w-[300px] bg-gray-900 border border-gray-800 rounded-[20px] p-5 transition hover:border-gray-600 hover:-translate-y-[3px] cursor-pointer relative overflow-hidden">
-                <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-blue to-cyan"></div>
-                <div class="flex gap-3 mb-4">
-                    <div class="w-[48px] h-[48px] rounded-xl flex items-center justify-center text-2xl flex-shrink-0 bg-blue/15">🔧</div>
-                    <div><h3 class="text-base font-bold mb-0.5">Idraulico Paolo San</h3><div class="text-[12px] text-gray-400">Idraulico · Zona Industriale</div></div>
-                </div>
-                <div class="text-accent text-sm tracking-wider mb-1">★★★★★</div>
-                <div class="text-gray-400 text-sm leading-relaxed mb-4">Interventi rapidi 24/7, prezzi onesti, garanzia su tutti i lavori.</div>
-                <div class="text-xs text-gray-500 flex gap-3">4.8 (187)<span class="text-gray-300">● Aperto</span></div>
+            <div class="member-card">
+                <img class="member-avatar" src="https://i.pravatar.cc/128?img=44" alt="">
+                <div class="member-name">Marco Bisiacaro</div>
+                <div class="member-role">Moderatore</div>
+                <div class="member-tags"><span class="member-tag">Giornalista</span><span class="member-tag">Forum</span></div>
+                <div class="member-stats"><span>📝 <b>983</b> post</span><span>❤️ <b>210</b></span></div>
             </div>
-            <div class="flex-none w-[300px] sm:w-[300px] bg-gray-900 border border-gray-800 rounded-[20px] p-5 transition hover:border-gray-600 hover:-translate-y-[3px] cursor-pointer relative overflow-hidden">
-                <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal to-lime"></div>
-                <div class="flex gap-3 mb-4">
-                    <div class="w-[48px] h-[48px] rounded-xl flex items-center justify-center text-2xl flex-shrink-0 bg-teal/15">🌿</div>
-                    <div><h3 class="text-base font-bold mb-0.5">Giardino Felice</h3><div class="text-[12px] text-gray-400">Giardiniere · Tutta la zona</div></div>
-                </div>
-                <div class="text-accent text-sm tracking-wider mb-1">★★★★★</div>
-                <div class="text-gray-400 text-sm leading-relaxed mb-4">Potatura, manutenzione giardini, sistemi irrigazione. Preventivi gratis.</div>
-                <div class="text-xs text-gray-500 flex gap-3">4.9 (67)<span class="text-gray-300">● Aperto</span></div>
+            <div class="member-card">
+                <img class="member-avatar" src="https://i.pravatar.cc/128?img=12" alt="">
+                <div class="member-name">Lara Moretti</div>
+                <div class="member-role">Chef & food blogger</div>
+                <div class="member-tags"><span class="member-tag">Chef</span><span class="member-tag">Ricette</span></div>
+                <div class="member-stats"><span>📝 <b>876</b> post</span><span>❤️ <b>198</b></span></div>
             </div>
-        </div>
-
-        <div class="grid grid-cols-1 xl:grid-cols-[1fr_300px] gap-6">
-            <div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-gray-900 border border-gray-800 rounded-2xl p-5 transition hover:border-gray-600 hover:-translate-y-[2px] cursor-pointer">
-                        <div class="flex items-start gap-3 mb-3">
-                            <div class="w-[44px] h-[44px] rounded-xl flex items-center justify-center text-[22px] flex-shrink-0 bg-orange/15">🛒</div>
-                            <div><div class="text-[15px] font-semibold mb-0.5">Alimentari Verdi</div><div class="text-[12px] text-accent font-medium">Alimentari</div></div>
-                        </div>
-                        <div class="text-gray-400 text-sm leading-relaxed mb-3">Prodotti freschi, ortofrutta locale, banco carni. Consegna a domicilio.</div>
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="text-accent text-sm tracking-[3px]">★★★★★</span>
-                            <span class="font-semibold text-sm">4.8</span>
-                            <span class="text-gray-500 text-sm">(124)</span>
-                        </div>
-                        <div class="flex justify-between items-center pt-3 border-t border-gray-800">
-                            <span class="text-xs text-gray-500 flex items-center gap-1">📍 Via Roma 23</span>
-                            <span class="text-[10px] bg-teal/15 text-teal px-1.5 py-0.5 rounded-full font-bold">● Aperto</span>
-                        </div>
-                    </div>
-                    <div class="bg-gray-900 border border-gray-800 rounded-2xl p-5 transition hover:border-gray-600 hover:-translate-y-[2px] cursor-pointer">
-                        <div class="flex items-start gap-3 mb-3">
-                            <div class="w-[44px] h-[44px] rounded-xl flex items-center justify-center text-[22px] flex-shrink-0 bg-blue/15">🏥</div>
-                            <div><div class="text-[15px] font-semibold mb-0.5">Dott. Francesca Mori</div><div class="text-[12px] text-accent font-medium">Medico di Base</div></div>
-                        </div>
-                        <div class="text-gray-400 text-sm leading-relaxed mb-3">Medico di famiglia. Accetta nuovi pazienti. Prenotazione online.</div>
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="text-accent text-sm tracking-[3px]">★★★★☆</span>
-                            <span class="font-semibold text-sm">4.5</span>
-                            <span class="text-gray-500 text-sm">(89)</span>
-                        </div>
-                        <div class="flex justify-between items-center pt-3 border-t border-gray-800">
-                            <span class="text-xs text-gray-500 flex items-center gap-1">📍 Piazza Bellezza 5</span>
-                            <span class="text-[10px] bg-teal/15 text-teal px-1.5 py-0.5 rounded-full font-bold">● Aperto</span>
-                        </div>
-                    </div>
-                    <div class="bg-gray-900 border border-gray-800 rounded-2xl p-5 transition hover:border-gray-600 hover:-translate-y-[2px] cursor-pointer">
-                        <div class="flex items-start gap-3 mb-3">
-                            <div class="w-[44px] h-[44px] rounded-xl flex items-center justify-center text-[22px] flex-shrink-0 bg-teal/15">🌿</div>
-                            <div><div class="text-[15px] font-semibold mb-0.5">Giardino Felice</div><div class="text-[12px] text-accent font-medium">Giardiniere</div></div>
-                        </div>
-                        <div class="text-gray-400 text-sm leading-relaxed mb-3">Potatura, manutenzione, sistemi irrigazione. Preventivi gratuiti.</div>
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="text-accent text-sm tracking-[3px]">★★★★★</span>
-                            <span class="font-semibold text-sm">4.9</span>
-                            <span class="text-gray-500 text-sm">(67)</span>
-                        </div>
-                        <div class="flex justify-between items-center pt-3 border-t border-gray-800">
-                            <span class="text-xs text-gray-500 flex items-center gap-1">📍 Zona nord</span>
-                            <span class="text-[10px] bg-teal/15 text-teal px-1.5 py-0.5 rounded-full font-bold">● Aperto</span>
-                        </div>
-                    </div>
-                    <div class="bg-gray-900 border border-gray-800 rounded-2xl p-5 transition hover:border-gray-600 hover:-translate-y-[2px] cursor-pointer">
-                        <div class="flex items-start gap-3 mb-3">
-                            <div class="w-[44px] h-[44px] rounded-xl flex items-center justify-center text-[22px] flex-shrink-0 bg-pink/15">✂️</div>
-                            <div><div class="text-[15px] font-semibold mb-0.5">Barbieri &amp; C.</div><div class="text-[12px] text-accent font-medium">Barbiere</div></div>
-                        </div>
-                        <div class="text-gray-400 text-sm leading-relaxed mb-3">Taglio classico e moderno. Barba, shampoo, trattamenti spa.</div>
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="text-accent text-sm tracking-[3px]">★★★★★</span>
-                            <span class="font-semibold text-sm">4.7</span>
-                            <span class="text-gray-500 text-sm">(203)</span>
-                        </div>
-                        <div class="flex justify-between items-center pt-3 border-t border-gray-800">
-                            <span class="text-xs text-gray-500 flex items-center gap-1">📍 Piazza Mercato 8</span>
-                            <span class="text-[10px] bg-rose/15 text-rose px-1.5 py-0.5 rounded-full font-bold">● Chiuso</span>
-                        </div>
-                    </div>
-                    <div class="bg-gray-900 border border-gray-800 rounded-2xl p-5 transition hover:border-gray-600 hover:-translate-y-[2px] cursor-pointer">
-                        <div class="flex items-start gap-3 mb-3">
-                            <div class="w-[44px] h-[44px] rounded-xl flex items-center justify-center text-[22px] flex-shrink-0 bg-violet/15">🌾</div>
-                            <div><div class="text-[15px] font-semibold mb-0.5">Fornodoro</div><div class="text-[12px] text-accent font-medium">Pasticceria</div></div>
-                        </div>
-                        <div class="text-gray-400 text-sm leading-relaxed mb-3">Dolci artigianali, torte personalizzate, colazioni dalla 6:00.</div>
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="text-accent text-sm tracking-[3px]">★★★★★</span>
-                            <span class="font-semibold text-sm">4.9</span>
-                            <span class="text-gray-500 text-sm">(312)</span>
-                        </div>
-                        <div class="flex justify-between items-center pt-3 border-t border-gray-800">
-                            <span class="text-xs text-gray-500 flex items-center gap-1">📍 Via Roma 45</span>
-                            <span class="text-[10px] bg-teal/15 text-teal px-1.5 py-0.5 rounded-full font-bold">● Aperto</span>
-                        </div>
-                    </div>
-                    <div class="bg-gray-900 border border-gray-800 rounded-2xl p-5 transition hover:border-gray-600 hover:-translate-y-[2px] cursor-pointer">
-                        <div class="flex items-start gap-3 mb-3">
-                            <div class="w-[44px] h-[44px] rounded-xl flex items-center justify-center text-[22px] flex-shrink-0" style="background:rgba(99,102,241,0.15)">🔧</div>
-                            <div><div class="text-[15px] font-semibold mb-0.5">Meccanico Bisi</div><div class="text-[12px] text-accent font-medium">Officina</div></div>
-                        </div>
-                        <div class="text-gray-400 text-sm leading-relaxed mb-3">Tagliandi, gomme, riparazioni. Sconto membri community.</div>
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="text-accent text-sm tracking-[3px]">★★★★☆</span>
-                            <span class="font-semibold text-sm">4.3</span>
-                            <span class="text-gray-500 text-sm">(56)</span>
-                        </div>
-                        <div class="flex justify-between items-center pt-3 border-t border-gray-800">
-                            <span class="text-xs text-gray-500 flex items-center gap-1">📍 Via Industriale 12</span>
-                            <span class="text-[10px] bg-teal/15 text-teal px-1.5 py-0.5 rounded-full font-bold">● Aperto</span>
-                        </div>
-                    </div>
-                    <div class="bg-gray-900 border border-gray-800 rounded-2xl p-5 transition hover:border-gray-600 hover:-translate-y-[2px] cursor-pointer">
-                        <div class="flex items-start gap-3 mb-3">
-                            <div class="w-[44px] h-[44px] rounded-xl flex items-center justify-center text-[22px] flex-shrink-0 bg-lime/15">🍝</div>
-                            <div><div class="text-[15px] font-semibold mb-0.5">Trattoria da Nonna</div><div class="text-[12px] text-accent font-medium">Ristorante</div></div>
-                        </div>
-                        <div class="text-gray-400 text-sm leading-relaxed mb-3">Cucina tipica della zona. Menu fisso a €18, prenotazione consigliata.</div>
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="text-accent text-sm tracking-[3px]">★★★★★</span>
-                            <span class="font-semibold text-sm">4.8</span>
-                            <span class="text-gray-500 text-sm">(178)</span>
-                        </div>
-                        <div class="flex justify-between items-center pt-3 border-t border-gray-800">
-                            <span class="text-xs text-gray-500 flex items-center gap-1">📍 Via Bellezza 12</span>
-                            <span class="text-[10px] bg-teal/15 text-teal px-1.5 py-0.5 rounded-full font-bold">● Aperto</span>
-                        </div>
-                    </div>
-                    <div class="bg-gray-900 border border-gray-800 rounded-2xl p-5 transition hover:border-gray-600 hover:-translate-y-[2px] cursor-pointer">
-                        <div class="flex items-start gap-3 mb-3">
-                            <div class="w-[44px] h-[44px] rounded-xl flex items-center justify-center text-[22px] flex-shrink-0 bg-cyan/15">🏋️</div>
-                            <div><div class="text-[15px] font-semibold mb-0.5">FitZone Bisiacaria</div><div class="text-[12px] text-accent font-medium">Palestra</div></div>
-                        </div>
-                        <div class="text-gray-400 text-sm leading-relaxed mb-3">Attrezzi TechnoGym, classi group fitness, personal trainer.</div>
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="text-accent text-sm tracking-[3px]">★★★★☆</span>
-                            <span class="font-semibold text-sm">4.4</span>
-                            <span class="text-gray-500 text-sm">(92)</span>
-                        </div>
-                        <div class="flex justify-between items-center pt-3 border-t border-gray-800">
-                            <span class="text-xs text-gray-500 flex items-center gap-1">📍 Via Sport 3</span>
-                            <span class="text-[10px] bg-teal/15 text-teal px-1.5 py-0.5 rounded-full font-bold">● Aperto</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="member-card">
+                <img class="member-avatar" src="https://i.pravatar.cc/128?img=45" alt="">
+                <div class="member-name">Anna Pellegrini</div>
+                <div class="member-role">Insegnante di scuola primaria</div>
+                <div class="member-tags"><span class="member-tag">Insegnante</span><span class="member-tag">Bambini</span></div>
+                <div class="member-stats"><span>📝 <b>654</b> post</span><span>❤️ <b>145</b></span></div>
             </div>
-            <div class="flex flex-col gap-4">
-                <div class="bg-gray-900 border border-gray-800 rounded-2xl p-5">
-                    <h3 class="text-sm font-semibold mb-4 flex items-center gap-1.5">📊 Statistiche</h3>
-                    <div class="flex justify-between items-center py-2 border-b border-gray-800"><span class="text-sm text-gray-400">Negozi attivi</span><span class="text-sm font-semibold text-teal">87</span></div>
-                    <div class="flex justify-between items-center py-2 border-b border-gray-800"><span class="text-sm text-gray-400">Nuove recensioni (mese)</span><span class="text-sm font-semibold text-blue">+234</span></div>
-                    <div class="flex justify-between items-center py-2 border-b border-gray-800"><span class="text-sm text-gray-400">Utenti registrati</span><span class="text-sm font-semibold text-violet">1.842</span></div>
-                    <div class="flex justify-between items-center py-2"><span class="text-sm text-gray-400">Soddisfazione media</span><span class="text-sm font-semibold text-accent">4.6 ★</span></div>
-                </div>
-                <div class="bg-gray-900 border border-gray-800 rounded-2xl p-5">
-                    <h3 class="text-sm font-semibold mb-4 flex items-center gap-1.5">🔥 Più cercati</h3>
-                    <div class="flex items-center gap-2.5 py-2 border-b border-gray-800">
-                        <div class="w-[38px] h-[38px] rounded-xl flex items-center justify-center text-xl flex-shrink-0 bg-orange/15">🥖</div>
-                        <div><h4 class="text-sm font-medium mb-0.5">Panetteria Rossi</h4><div class="text-xs text-gray-500">3.2K ricerche</div></div>
-                    </div>
-                    <div class="flex items-center gap-2.5 py-2 border-b border-gray-800">
-                        <div class="w-[38px] h-[38px] rounded-xl flex items-center justify-center text-xl flex-shrink-0 bg-pink/15">✂️</div>
-                        <div><h4 class="text-sm font-medium mb-0.5">Barbieri &amp; C.</h4><div class="text-xs text-gray-500">2.1K ricerche</div></div>
-                    </div>
-                    <div class="flex items-center gap-2.5 py-2 border-b border-gray-800">
-                        <div class="w-[38px] h-[38px] rounded-xl flex items-center justify-center text-xl flex-shrink-0 bg-teal/15">🌿</div>
-                        <div><h4 class="text-sm font-medium mb-0.5">Giardino Felice</h4><div class="text-xs text-gray-500">1.8K ricerche</div></div>
-                    </div>
-                    <div class="flex items-center gap-2.5 py-2">
-                        <div class="w-[38px] h-[38px] rounded-xl flex items-center justify-center text-xl flex-shrink-0 bg-blue/15">🏥</div>
-                        <div><h4 class="text-sm font-medium mb-0.5">Dott.ssa Mori</h4><div class="text-xs text-gray-500">1.5K ricerche</div></div>
-                    </div>
-                </div>
+            <div class="member-card">
+                <img class="member-avatar" src="https://i.pravatar.cc/128?img=26" alt="">
+                <div class="member-name">Davide Boscolo</div>
+                <div class="member-role">Idraulico</div>
+                <div class="member-tags"><span class="member-tag">Artigiano</span><span class="member-tag">Fidato</span></div>
+                <div class="member-stats"><span>📝 <b>523</b> post</span><span>❤️ <b>167</b></span></div>
+            </div>
+            <div class="member-card">
+                <img class="member-avatar" src="https://i.pravatar.cc/128?img=15" alt="">
+                <div class="member-name">Chiara Valenti</div>
+                <div class="member-role">Pediatra</div>
+                <div class="member-tags"><span class="member-tag">Sanità</span><span class="member-tag">Bambini</span></div>
+                <div class="member-stats"><span>📝 <b>489</b> post</span><span>❤️ <b>231</b></span></div>
+            </div>
+            <div class="member-card">
+                <img class="member-avatar" src="https://i.pravatar.cc/128?img=60" alt="">
+                <div class="member-name">Paolo Santoro</div>
+                <div class="member-role">Libraio & lettore appassionato</div>
+                <div class="member-tags"><span class="member-tag">Libri</span><span class="member-tag">Eventi</span></div>
+                <div class="member-stats"><span>📝 <b>412</b> post</span><span>❤️ <b>98</b></span></div>
+            </div>
+            <div class="member-card">
+                <img class="member-avatar" src="https://i.pravatar.cc/128?img=68" alt="">
+                <div class="member-name">Luca Rossi</div>
+                <div class="member-role">Idraulico & falegname</div>
+                <div class="member-tags"><span class="member-tag">Artigiano</span><span class="member-tag">Fidato</span></div>
+                <div class="member-stats"><span>📝 <b>387</b> post</span><span>❤️ <b>112</b></span></div>
             </div>
         </div>
     </div>
 
-    <footer class="py-6 text-center text-gray-600 text-xs border-t border-gray-800 mt-auto">© 2026 Bisiacaria.com · Scopri i servizi del tuo quartiere ✦</footer>
+    <div class="mobile-nav">
+        <div class="mobile-nav-items">
+            <a href="landing-4-warm.html" class="mobile-nav-item"><span class="icon">🏠</span>Home</a>
+            <a href="#" class="mobile-nav-item active"><span class="icon">📋</span>Directory</a>
+            <a href="landing-b6-drawer.html" class="mobile-nav-item"><span class="icon">📐</span>Layout</a>
+            <a href="#" class="mobile-nav-item"><span class="icon">🔍</span>Cerca</a>
+            <a href="landing-profile-matteo.html" class="mobile-nav-item"><span class="icon">👤</span>Profilo</a>
+        </div>
+    </div>
 
-    <script>
-        const app = Vue.createApp({
-            data() {
-                return { drawerLeft: false, drawerRight: false };
-            },
-            methods: {
-                openDrawer(side) {
-                    if (side === 'left') this.drawerLeft = true;
-                    else this.drawerRight = true;
-                },
-                closeDrawers() {
-                    this.drawerLeft = false;
-                    this.drawerRight = false;
-                }
-            }
-        });
-        app.mount('body');
-    </script>
+    <footer>© 2026 Bisiacaria.com · La directory dei tuoi vicini ✦</footer>
 </body>
 </html>

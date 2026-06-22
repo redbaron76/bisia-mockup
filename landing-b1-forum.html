@@ -3,310 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bisiacaria — Forum</title>
+    <title>Bisiacaria.com — Forum</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --black: #0a0a0c; --gray-950: #0f0f12; --gray-900: #16161a; --gray-800: #1e1e24; --gray-700: #2a2a32; --gray-600: #3a3a44; --gray-400: #888890; --gray-300: #aaaab2; --white: #fff; --accent: #ffcc00; --accent-light: rgba(255,204,0,0.1); --green: #22c55e; --blue: #3b82f6; --pink: #ec4899; --purple: #a855f7; --orange: #f97316; }
+        :root {
+            --black: #0a0a0c; --gray-950: #0f0f12; --gray-900: #16161a;
+            --gray-800: #1e1e24; --gray-700: #2a2a32; --gray-600: #3a3a44;
+            --gray-400: #888890; --gray-300: #aaaab2; --white: #fff;
+            --accent: #ffcc00; --accent-light: rgba(255,204,0,0.1);
+            --green: #22c55e; --blue: #3b82f6; --pink: #ec4899;
+            --purple: #a855f7; --orange: #f97316; --teal: #14b8a6;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--black); color: var(--white); }
 
         /* NAV */
         nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,12,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--gray-800); }
-        .logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.4rem; }
-        .logo span { color: var(--accent); }
-        .logo .dot { color: var(--gray-400); margin-right: 0.25rem; }
+        .logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.4rem; text-decoration: none; }
+        .logo span.accent { color: var(--accent); }
+        .logo .dot { color: var(--gray-400); margin: 0 0.25rem; }
         .nav-center { display: flex; gap: 1.5rem; }
         .nav-center a { color: var(--gray-400); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
         .nav-center a:hover { color: var(--white); }
         .nav-center a.active { color: var(--accent); }
-        .nav-search { position: relative; }
-        .nav-search input { background: var(--gray-900); border: 1px solid var(--gray-700); border-radius: 100px; padding: 0.5rem 1rem 0.5rem 2.2rem; color: var(--white); font-size: 0.85rem; width: 200px; outline: none; font-family: inherit; transition: all 0.3s; }
-        .nav-search input:focus { border-color: var(--accent); width: 260px; }
-        .nav-search::before { content: '🔍'; position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); font-size: 0.8rem; }
-        .nav-right { display: flex; align-items: center; gap: 0.75rem; }
-        .nav-notification { position: relative; font-size: 1.2rem; cursor: pointer; }
-        .nav-notification .badge { position: absolute; top: -4px; right: -6px; background: var(--pink); color: var(--white); font-size: 0.6rem; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; }
-        .nav-avatar { width: 32px; height: 32px; border-radius: 50%; cursor: pointer; border: 2px solid var(--gray-700); }
-        .btn-new { background: var(--accent); color: var(--black); padding: 0.45rem 1.1rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600; border: none; cursor: pointer; font-family: inherit; transition: all 0.2s; }
-        .btn-new:hover { background: #ffe033; }
+        .nav-right { display: flex; gap: 0.75rem; align-items: center; }
 
-        /* LAYOUT */
-        .app { display: grid; grid-template-columns: 220px 1fr 280px; gap: 0; min-height: 100vh; max-width: 1280px; margin: 0 auto; padding-top: 5rem; }
+        .btn { padding: 0.5rem 1.2rem; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; font-family: inherit; }
+        .btn-soft { background: var(--gray-800); color: var(--white); border: 1px solid var(--gray-700); }
+        .btn-fill { background: var(--accent); color: var(--black); }
 
-        /* LEFT SIDEBAR */
-        .sidebar-left { padding: 1.5rem 1rem; border-right: 1px solid var(--gray-800); position: sticky; top: 5rem; height: calc(100vh - 5rem); overflow-y: auto; }
-        .sidebar-left .section { margin-bottom: 1.5rem; }
-        .sidebar-left .section-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-500); margin-bottom: 0.5rem; padding: 0 0.75rem; }
-        .sidebar-left .menu-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0.75rem; border-radius: 10px; color: var(--gray-400); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: all 0.2s; }
-        .sidebar-left .menu-item:hover { background: var(--gray-900); color: var(--white); }
-        .sidebar-left .menu-item.active { background: var(--accent-light); color: var(--accent); }
-        .sidebar-left .menu-item .icon { width: 22px; text-align: center; }
-        .sidebar-left .menu-item .count { margin-left: auto; background: var(--gray-800); padding: 0.1rem 0.5rem; border-radius: 100px; font-size: 0.7rem; font-weight: 600; }
-        .sidebar-left .menu-item.active .count { background: rgba(255,204,0,0.2); color: var(--accent); }
+        .avatar { border-radius: 50%; object-fit: cover; border: 2px solid var(--gray-700); }
 
-        /* CENTER */
-        .center { padding: 1.5rem 2rem; }
-        .page-header { margin-bottom: 1.5rem; }
-        .page-header h1 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .page-header p { color: var(--gray-400); font-size: 0.9rem; }
+        /* LAYOUT — 2 columns: categories + topics */
+        .page { padding-top: 5rem; max-width: 1100px; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; }
 
-        /* CATEGORY CARDS */
-        .categories { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
-        .category-card { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 14px; padding: 1.25rem; transition: all 0.3s; cursor: pointer; }
-        .category-card:hover { border-color: var(--gray-600); }
-        .category-card .cat-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
-        .category-card .cat-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
-        .category-card .cat-icon.blue { background: rgba(59,130,246,0.15); }
-        .category-card .cat-icon.green { background: rgba(34,197,94,0.15); }
-        .category-card .cat-icon.purple { background: rgba(168,85,247,0.15); }
-        .category-card .cat-icon.orange { background: rgba(249,115,22,0.15); }
-        .category-card .cat-icon.pink { background: rgba(236,72,153,0.15); }
-        .category-card .cat-icon.teal { background: rgba(20,184,166,0.15); }
-        .category-card .cat-name { font-weight: 600; font-size: 0.95rem; }
-        .category-card .cat-desc { color: var(--gray-400); font-size: 0.8rem; line-height: 1.4; }
-        .category-card .cat-stats { display: flex; gap: 1rem; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--gray-800); }
-        .category-card .cat-stats span { font-size: 0.75rem; color: var(--gray-500); }
-        .category-card .cat-stats span b { color: var(--gray-300); font-weight: 600; }
+        /* TOP BAR */
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+        .top-bar h1 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 700; }
+        .top-bar h1 small { font-size: 0.9rem; color: var(--gray-400); font-weight: 400; display: block; }
+        .online-badge { background: rgba(34,197,94,0.15); color: var(--green); padding: 0.3rem 0.8rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600; }
+
+        /* CATEGORIES */
+        .categories { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
+        .cat-card { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 14px; padding: 1.25rem; transition: all 0.3s; cursor: pointer; }
+        .cat-card:hover { border-color: var(--gray-600); }
+        .cat-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem; }
+        .cat-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        .cat-icon.blue { background: rgba(59,130,246,0.15); }
+        .cat-icon.green { background: rgba(34,197,94,0.15); }
+        .cat-icon.purple { background: rgba(168,85,247,0.15); }
+        .cat-icon.orange { background: rgba(249,115,22,0.15); }
+        .cat-icon.pink { background: rgba(236,72,153,0.15); }
+        .cat-icon.teal { background: rgba(20,184,166,0.15); }
+        .cat-name { font-weight: 600; font-size: 0.95rem; }
+        .cat-desc { color: var(--gray-400); font-size: 0.8rem; line-height: 1.4; margin-bottom: 0.75rem; }
+        .cat-stats { display: flex; gap: 1rem; padding-top: 0.6rem; border-top: 1px solid var(--gray-800); }
+        .cat-stats span { font-size: 0.72rem; color: var(--gray-500); }
+        .cat-stats span b { color: var(--gray-300); font-weight: 600; }
 
         /* TOPIC LIST */
         .topics-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
         .topics-header h2 { font-size: 1.1rem; font-weight: 600; }
-        .topics-header .tabs { display: flex; gap: 0.5rem; }
-        .tab-btn { background: none; border: none; color: var(--gray-400); font-size: 0.8rem; font-weight: 500; padding: 0.3rem 0.75rem; border-radius: 100px; cursor: pointer; font-family: inherit; transition: all 0.2s; }
-        .tab-btn:hover { color: var(--white); }
-        .tab-btn.active { background: var(--accent-light); color: var(--accent); font-weight: 600; }
-        .topic-item { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.75rem; transition: all 0.2s; cursor: pointer; }
-        .topic-item:hover { border-color: var(--gray-600); }
-        .topic-item.pinned { border-color: var(--accent); background: rgba(255,204,0,0.03); }
+        .tabs { display: flex; gap: 0.4rem; }
+        .tab { background: none; border: none; color: var(--gray-400); font-size: 0.8rem; padding: 0.3rem 0.7rem; border-radius: 100px; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+        .tab:hover { color: var(--white); }
+        .tab.active { background: var(--accent-light); color: var(--accent); font-weight: 600; }
+
+        .topic { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.75rem; transition: all 0.2s; cursor: pointer; }
+        .topic:hover { border-color: var(--gray-600); }
+        .topic.pinned { border-color: var(--accent); background: rgba(255,204,0,0.03); }
         .topic-top { display: flex; gap: 0.75rem; align-items: flex-start; }
         .topic-avatar { width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0; }
         .topic-content { flex: 1; min-width: 0; }
         .topic-title-row { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
         .topic-title { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .topic-badge { font-size: 0.65rem; padding: 0.15rem 0.45rem; border-radius: 100px; font-weight: 600; }
-        .topic-badge.pin { background: var(--accent); color: var(--black); }
-        .topic-badge.hot { background: var(--pink); color: var(--white); }
-        .topic-badge.solved { background: var(--green); color: var(--black); }
-        .topic-meta { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.3rem; }
-        .topic-author { color: var(--gray-400); font-size: 0.78rem; }
-        .topic-time { color: var(--gray-500); font-size: 0.75rem; }
-        .topic-excerpt { color: var(--gray-400); font-size: 0.82rem; margin-top: 0.4rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .topic-bottom { display: flex; align-items: center; gap: 1.25rem; margin-top: 0.6rem; padding-top: 0.5rem; }
-        .topic-stat { font-size: 0.75rem; color: var(--gray-500); display: flex; align-items: center; gap: 0.3rem; }
-        .topic-stat .count { color: var(--gray-300); font-weight: 600; }
+        .badge { font-size: 0.6rem; padding: 0.15rem 0.4rem; border-radius: 100px; font-weight: 700; }
+        .badge-pin { background: var(--accent); color: var(--black); }
+        .badge-hot { background: var(--pink); color: var(--white); }
+        .badge-solved { background: var(--green); color: var(--black); }
+        .topic-author { color: var(--gray-400); font-size: 0.75rem; margin-top: 0.25rem; }
+        .topic-excerpt { color: var(--gray-400); font-size: 0.8rem; margin-top: 0.4rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .topic-meta { display: flex; gap: 1rem; margin-top: 0.5rem; }
+        .topic-stat { font-size: 0.72rem; color: var(--gray-500); }
+        .topic-stat b { color: var(--gray-300); font-weight: 600; }
 
-        /* RIGHT SIDEBAR */
-        .sidebar-right { padding: 1.5rem 1rem; border-left: 1px solid var(--gray-800); position: sticky; top: 5rem; height: calc(100vh - 5rem); overflow-y: auto; }
-        .widget { background: var(--gray-900); border-radius: 14px; padding: 1.25rem; margin-bottom: 1rem; }
-        .widget h4 { font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.4rem; }
-        .top-user { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; }
-        .top-user .rank { font-size: 0.8rem; font-weight: 700; width: 20px; color: var(--accent); }
-        .top-user .avatar { width: 32px; height: 32px; border-radius: 50%; }
-        .top-user .info { flex: 1; }
-        .top-user .name { font-size: 0.82rem; font-weight: 500; }
-        .top-user .posts { font-size: 0.7rem; color: var(--gray-500); }
-        .top-user .badge-icon { font-size: 0.8rem; }
+        /* FOOTER */
+        footer { padding: 2.5rem 2rem; text-align: center; border-top: 1px solid var(--gray-800); color: var(--gray-600); font-size: 0.85rem; }
 
-        .recent-activity { margin-bottom: 0.5rem; }
-        .recent-activity .time { font-size: 0.7rem; color: var(--gray-500); margin-bottom: 0.2rem; }
-        .recent-activity .text { font-size: 0.78rem; color: var(--gray-400); line-height: 1.4; }
-        .recent-activity .text b { color: var(--gray-300); font-weight: 500; }
-
-        footer { padding: 2rem; text-align: center; color: var(--gray-600); font-size: 0.8rem; border-top: 1px solid var(--gray-800); }
-
-        /* MOBILE NAV */
+        /* MOBILE */
         .mobile-nav { display: none; position: fixed; bottom: 0; width: 100%; z-index: 100; background: rgba(10,10,12,0.95); backdrop-filter: blur(20px); border-top: 1px solid var(--gray-800); padding: 0.5rem 0; }
         .mobile-nav-items { display: flex; justify-content: space-around; }
-        .mobile-nav-item { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; color: var(--gray-400); text-decoration: none; font-size: 0.65rem; }
-        .mobile-nav-item .icon { font-size: 1.2rem; }
+        .mobile-nav-item { display: flex; flex-direction: column; align-items: center; gap: 0.15rem; color: var(--gray-400); text-decoration: none; font-size: 0.6rem; }
+        .mobile-nav-item .icon { font-size: 1.1rem; }
         .mobile-nav-item.active { color: var(--accent); }
-
-        /* RESPONSIVE */
-        @media (max-width: 1100px) { .sidebar-right { display: none; } .app { grid-template-columns: 200px 1fr; } }
-        @media (max-width: 850px) { .sidebar-left { display: none; } .app { grid-template-columns: 1fr; padding-left: 0.75rem; padding-right: 0.75rem; } .nav-center, .nav-search { display: none; } .categories { grid-template-columns: 1fr; } .mobile-nav { display: block; } .app { padding-bottom: 5rem; } nav { padding: 1rem 1rem; } }
-        @media (max-width: 480px) { .center { padding: 1rem; } .topic-item { padding: 0.85rem; } .categories { gap: 0.75rem; } }
+        @media (max-width: 768px) {
+            .nav-center { display: none; }
+            .page { padding-left: 1rem; padding-right: 1rem; padding-bottom: 5rem; }
+            .categories { grid-template-columns: 1fr; }
+            .top-bar h1 { font-size: 1.3rem; }
+        }
+        @media (max-width: 600px) { .mobile-nav { display: block; } }
     </style>
 </head>
 <body>
     <nav>
-        <div class="logo">Bisiacaria<span>.com</span><span class="dot">·</span><span style="color:var(--green);font-size:0.65rem;">🟢 247 online</span></div>
+        <a href="index.html" class="logo">Bisiacaria<span class="accent">✦</span><span class="dot">.</span>com</a>
         <div class="nav-center">
+            <a href="landing-4-warm.html">Home</a>
             <a href="#" class="active">Forum</a>
-            <a href="#">Guide</a>
-            <a href="#">Eventi</a>
-            <a href="#">Mercatino</a>
+            <a href="landing-b2-mercato.html">Mercatino</a>
+            <a href="landing-b3-news.html">News</a>
+            <a href="landing-b4-groups.html">Gruppi</a>
+            <a href="landing-c1-community.html">Community</a>
         </div>
-        <div class="nav-search"><input type="text" placeholder="Cerca nel forum..."></div>
         <div class="nav-right">
-            <button class="btn-new">+ Nuovo Topic</button>
-            <div class="nav-notification"><span class="badge">3</span></div>
-            <img class="nav-avatar" src="https://i.pravatar.cc/64?img=32" alt="">
+            <span class="online-badge">🟢 247 online</span>
+            <a href="landing-profile-matteo.html" class="avatar" style="width:32px;height:32px;" title="Profilo"></a>
         </div>
     </nav>
 
-    <div class="app">
-        <aside class="sidebar-left">
-            <div class="section">
-                <div class="section-title">Navigazione</div>
-                <a href="#" class="menu-item active"><span class="icon">🏠</span> Home <span class="count">24</span></a>
-                <a href="#" class="menu-item"><span class="icon">🔥</span> Popolari</a>
-                <a href="#" class="menu-item"><span class="icon">🕐</span> Recenti</a>
-                <a href="#" class="menu-item"><span class="icon">✅</span> Risolti</a>
-            </div>
-            <div class="section">
-                <div class="section-title">Categorie</div>
-                <a href="#" class="menu-item"><span class="icon">💬</span> Chiacchiere <span class="count">142</span></a>
-                <a href="#" class="menu-item"><span class="icon">❓</span> Domande <span class="count">89</span></a>
-                <a href="#" class="menu-item"><span class="icon">📢</span> Annunci</a>
-                <a href="#" class="menu-item"><span class="icon">🎉</span> Eventi</a>
-                <a href="#" class="menu-item"><span class="icon">💡</span> Idee</a>
-                <a href="#" class="menu-item"><span class="icon">📸</span> Foto</a>
-            </div>
-            <div class="section">
-                <div class="section-title">Il tuo forum</div>
-                <a href="#" class="menu-item"><span class="icon">👤</span> Il Mio Profilo</a>
-                <a href="#" class="menu-item"><span class="icon">⚙️</span> Impostazioni</a>
-            </div>
-        </aside>
+    <div class="page">
+        <div class="top-bar">
+            <h1>Forum<small>Discussioni, categorie, opinioni del quartiere</small></h1>
+            <a href="#" class="btn btn-fill">+ Nuovo Topic</a>
+        </div>
 
-        <main class="center">
-            <div class="page-header">
-                <h1>Benvenuto su Bisiacaria.com</h1>
-                <p>La community locale dove ci si scambia idee, informazioni e avvenimenti del quartiere</p>
+        <div class="categories">
+            <div class="cat-card">
+                <div class="cat-header"><div class="cat-icon blue">💬</div><div class="cat-name">Chiacchiere</div></div>
+                <div class="cat-desc">Parla di tutto con la community. Ricette, consigli, storie del quartiere.</div>
+                <div class="cat-stats"><span><b>2,341</b> topic</span><span><b>847</b> membri</span></div>
             </div>
-
-            <div class="categories">
-                <div class="category-card">
-                    <div class="cat-header"><div class="cat-icon blue">💬</div><div class="cat-name">Chiacchiere Generali</div></div>
-                    <div class="cat-desc">Parla di tutto e di nulla con la community. Ricette, consigli, storie del quartiere.</div>
-                    <div class="cat-stats"><span><b>2,341</b> topic</span><span><b>18,920</b> reply</span><span><b>847</b> membri</span></div>
-                </div>
-                <div class="category-card">
-                    <div class="cat-header"><div class="cat-icon green">❓</div><div class="cat-name">Domande & Risposte</div></div>
-                    <div class="cat-desc">Hai bisogno di un consiglio? Chiedi qui. Medici, avvocati, idraulici… tutti rispondono.</div>
-                    <div class="cat-stats"><span><b>1,102</b> topic</span><span><b>4,560</b> reply</span><span><b>1.2K</b> membri</span></div>
-                </div>
-                <div class="category-card">
-                    <div class="cat-header"><div class="cat-icon purple">📢</div><div class="cat-name">Annunci del Quartiere</div></div>
-                    <div class="cat-desc">Cerchi? Offri? Vendite, svuota cantine, traslochi. Tutto qui.</div>
-                    <div class="cat-stats"><span><b>487</b> topic</span><span><b>2,100</b> reply</span><span><b>623</b> membri</span></div>
-                </div>
-                <div class="category-card">
-                    <div class="cat-header"><div class="cat-icon orange">🎉</div><div class="cat-name">Eventi & Incontri</div></div>
-                    <div class="cat-desc">Feste di quartiere, barbecue, tornei, cene. Organizza e partecipa.</div>
-                    <div class="cat-stats"><span><b>312</b> topic</span><span><b>1,890</b> reply</span><span><b>534</b> membri</span></div>
-                </div>
-                <div class="category-card">
-                    <div class="cat-header"><div class="cat-icon pink">💡</div><div class="cat-name">Idee & Progetto</div></div>
-                    <div class="cat-desc">Hai un'idea per migliorare il quartiere? Raccontala qui. Collaborazione massima.</div>
-                    <div class="cat-stats"><span><b>198</b> topic</span><span><b>1,230</b> reply</span><span><b>412</b> membri</span></div>
-                </div>
-                <div class="category-card">
-                    <div class="cat-header"><div class="cat-icon teal">📸</div><div class="cat-name">Foto & Video</div></div>
-                    <div class="cat-desc">Mostra i tuoi scatti del quartiere, i lavori faits, gli angoli nascosti.</div>
-                    <div class="cat-stats"><span><b>567</b> topic</span><span><b>3,440</b> reply</span><span><b>723</b> membri</span></div>
-                </div>
+            <div class="cat-card">
+                <div class="cat-header"><div class="cat-icon green">❓</div><div class="cat-name">Domande & Risposte</div></div>
+                <div class="cat-desc">Hai bisogno di un consiglio? Medici, avvocati, idraulici… tutti rispondono.</div>
+                <div class="cat-stats"><span><b>1,102</b> topic</span><span><b>1.2K</b> membri</span></div>
             </div>
-
-            <div class="topics-header">
-                <h2>🔥 Topic più attivi</h2>
-                <div class="tabs">
-                    <button class="tab-btn active">Popolari</button>
-                    <button class="tab-btn">Recenti</button>
-                    <button class="tab-btn">Risolti</button>
-                </div>
+            <div class="cat-card">
+                <div class="cat-header"><div class="cat-icon purple">📢</div><div class="cat-name">Annunci</div></div>
+                <div class="cat-desc">Cerchi? Offri? Vendite, svuota cantine, traslochi.</div>
+                <div class="cat-stats"><span><b>487</b> topic</span><span><b>623</b> membri</span></div>
             </div>
+            <div class="cat-card">
+                <div class="cat-header"><div class="cat-icon orange">🎉</div><div class="cat-name">Eventi</div></div>
+                <div class="cat-desc">Feste di quartiere, barbecue, tornei, cene.</div>
+                <div class="cat-stats"><span><b>312</b> topic</span><span><b>534</b> membri</span></div>
+            </div>
+            <div class="cat-card">
+                <div class="cat-header"><div class="cat-icon pink">💡</div><div class="cat-name">Idee</div></div>
+                <div class="cat-desc">Hai un'idea per migliorare il quartiere? Raccontala.</div>
+                <div class="cat-stats"><span><b>198</b> topic</span><span><b>412</b> membri</span></div>
+            </div>
+            <div class="cat-card">
+                <div class="cat-header"><div class="cat-icon teal">📸</div><div class="cat-name">Foto & Video</div></div>
+                <div class="cat-desc">Mostra i tuoi scatti del quartiere, i lavori fatti.</div>
+                <div class="cat-stats"><span><b>567</b> topic</span><span><b>723</b> membri</span></div>
+            </div>
+        </div>
 
-            <div class="topic-list">
-                <div class="topic-item pinned">
-                    <div class="topic-top">
-                        <img class="topic-avatar" src="https://i.pravatar.cc/72?img=44" alt="">
-                        <div class="topic-content">
-                            <div class="topic-title-row"><span class="topic-title">📌 Regolamento del Forum — da leggere!</span><span class="topic-badge pin">📌 Pin</span></div>
-                            <div class="topic-meta"><span class="topic-author">Marco Bisiacaro</span><span class="topic-time">2 sett fa</span></div>
-                        </div>
+        <div class="topics-header">
+            <h2>🔥 Topic più attivi</h2>
+            <div class="tabs">
+                <button class="tab active">Popolari</button>
+                <button class="tab">Recenti</button>
+                <button class="tab">Risolti</button>
+            </div>
+        </div>
+
+        <div class="topic-list">
+            <div class="topic pinned">
+                <div class="topic-top">
+                    <img class="topic-avatar" src="https://i.pravatar.cc/72?img=44" alt="">
+                    <div class="topic-content">
+                        <div class="topic-title-row"><span class="topic-title">📌 Regolamento del Forum</span><span class="badge badge-pin">Pin</span></div>
+                        <div class="topic-author">Marco Bisiacaro · 2 sett fa</div>
                     </div>
-                    <div class="topic-bottom"><span class="topic-stat">💬 <span class="count">156</span></span><span class="topic-stat">👁 <span class="count">4.2K</span></span></div>
                 </div>
-
-                <div class="topic-item">
-                    <div class="topic-top">
-                        <img class="topic-avatar" src="https://i.pravatar.cc/72?img=12" alt="">
-                        <div class="topic-content">
-                            <div class="topic-title-row"><span class="topic-title">C'è qualcuno che ha provato il nuovo paninoteca in via Roma?</span><span class="topic-badge hot">🔥 Hot</span></div>
-                            <div class="topic-meta"><span class="topic-author">Lara Moretti</span><span class="topic-time">45 min fa</span></div>
-                            <div class="topic-excerpt">Ho provato la nuova paninoteca aperta due settimane fa in via Roma. Onestamente il pane è buonissimo ma il servizio...</div>
-                        </div>
-                    </div>
-                    <div class="topic-bottom"><span class="topic-stat">💬 <span class="count">87</span></span><span class="topic-stat">👁 <span class="count">1.2K</span></span></div>
-                </div>
-
-                <div class="topic-item">
-                    <div class="topic-top">
-                        <img class="topic-avatar" src="https://i.pravatar.cc/72?img=26" alt="">
-                        <div class="topic-content">
-                            <div class="topic-title-row"><span class="topic-title">Cerco idraulico di fiducia per riparazione perdita</span><span class="topic-badge solved">✅ Risolto</span></div>
-                            <div class="topic-meta"><span class="topic-author">Davide Boscolo</span><span class="topic-time">2 ore fa</span></div>
-                            <div class="topic-excerpt">Buongiorno a tutti, avrei bisogno di un idraulico per una perdita sotto il lavandino. Sono a Villa Verde, zona nord...</div>
-                        </div>
-                    </div>
-                    <div class="topic-bottom"><span class="topic-stat">💬 <span class="count">23</span></span><span class="topic-stat">👁 <span class="count">567</span></span></div>
-                </div>
-
-                <div class="topic-item">
-                    <div class="topic-top">
-                        <img class="topic-avatar" src="https://i.pravatar.cc/72?img=45" alt="">
-                        <div class="topic-content">
-                            <div class="topic-title-row"><span class="topic-title">Barbecue del 20 luglio — chi partecipa? 🍖</span></div>
-                            <div class="topic-meta"><span class="topic-author">Anna Pellegrini</span><span class="topic-time">5 ore fa</span></div>
-                            <div class="topic-excerpt">Ok ragazzi, l'edizione estiva del barbecue è fissata per sabato 20 luglio alle 18:00. Portate carne, bevande e soprattutto appetito!</div>
-                        </div>
-                    </div>
-                    <div class="topic-bottom"><span class="topic-stat">💬 <span class="count">134</span></span><span class="topic-stat">👁 <span class="count">2.8K</span></span></div>
-                </div>
-
-                <div class="topic-item">
-                    <div class="topic-top">
-                        <img class="topic-avatar" src="https://i.pravatar.cc/72?img=53" alt="">
-                        <div class="topic-content">
-                            <div class="topic-title-row"><span class="topic-title">Vendo bici elettrica usata — ottima stato</span></div>
-                            <div class="topic-meta"><span class="topic-author">Matteo Greco</span><span class="topic-time">8 ore fa</span></div>
-                            <div class="topic-excerpt">Ciao a tutti! Vendo la mia bici elettrica Diacqua che uso da un anno. 2500km, batteria stilla, cambio Shimano. Prezzo trattabile...</div>
-                        </div>
-                    </div>
-                    <div class="topic-bottom"><span class="topic-stat">💬 <span class="count">19</span></span><span class="topic-stat">👁 <span class="count">890</span></span></div>
-                </div>
+                <div class="topic-meta"><span class="topic-stat">💬 <b>156</b></span><span class="topic-stat">👁 <b>4.2K</b></span></div>
             </div>
-        </main>
 
-        <aside class="sidebar-right">
-            <div class="widget">
-                <h4>👑 Top Membri</h4>
-                <div class="top-user"><span class="rank">1</span><img class="avatar" src="https://i.pravatar.cc/64?img=53" alt=""><div class="info"><div class="name">Matteo G.</div><div class="posts">1,247 post</div></div><span class="badge-icon">🛡️</span></div>
-                <div class="top-user"><span class="rank">2</span><img class="avatar" src="https://i.pravatar.cc/64?img=44" alt=""><div class="info"><div class="name">Marco B.</div><div class="posts">983 post</div></div><span class="badge-icon">⭐</span></div>
-                <div class="top-user"><span class="rank">3</span><img class="avatar" src="https://i.pravatar.cc/64?img=12" alt=""><div class="info"><div class="name">Lara M.</div><div class="posts">876 post</div></div></div>
+            <div class="topic">
+                <div class="topic-top">
+                    <img class="topic-avatar" src="https://i.pravatar.cc/72?img=12" alt="">
+                    <div class="topic-content">
+                        <div class="topic-title-row"><span class="topic-title">Nuova paninoteca in via Roma — vi piace?</span><span class="badge badge-hot">🔥 Hot</span></div>
+                        <div class="topic-author">Lara Moretti · 45 min fa</div>
+                        <div class="topic-excerpt">Ho provato la nuova paninoteca aperta due settimane fa. Onestamente il pane è buonissimo ma il servizio…</div>
+                    </div>
+                </div>
+                <div class="topic-meta"><span class="topic-stat">💬 <b>87</b></span><span class="topic-stat">👁 <b>1.2K</b></span></div>
             </div>
-            <div class="widget">
-                <h4>🕐 Attività recente</h4>
-                <div class="recent-activity"><div class="time">12:34</div><div class="text"><b>Lara M.</b> ha reply sul topic "Nuova paninoteca"</div></div>
-                <div class="recent-activity"><div class="time">12:21</div><div class="text"><b>Davide B.</b> ha creato "Cerco idraulico"</div></div>
-                <div class="recent-activity"><div class="time">12:05</div><div class="text"><b>Anna P.</b> ha aggiorna "Barbecue 20 luglio"</div></div>
-                <div class="recent-activity"><div class="time">11:48</div><div class="text"><b>Matteo G.</b> ha upload 3 foto</div></div>
+
+            <div class="topic">
+                <div class="topic-top">
+                    <img class="topic-avatar" src="https://i.pravatar.cc/72?img=26" alt="">
+                    <div class="topic-content">
+                        <div class="topic-title-row"><span class="topic-title">Cerco idraulico di fiducia</span><span class="badge badge-solved">✅ Risolto</span></div>
+                        <div class="topic-author">Davide Boscolo · 2 ore fa</div>
+                        <div class="topic-excerpt">Buongiorno, avrei bisogno di un idraulico per una perdita sotto il lavandino. Sono a Villa Verde, zona nord…</div>
+                    </div>
+                </div>
+                <div class="topic-meta"><span class="topic-stat">💬 <b>23</b></span><span class="topic-stat">👁 <b>567</b></span></div>
             </div>
-            <div class="widget">
-                <h4>📊 Statistiche</h4>
-                <div style="font-size:0.8rem;color:var(--gray-400);line-height:2;"><div>Topic totali: <b style="color:var(--white)">4,567</b></div><div>Reply totali: <b style="color:var(--white)">32,140</b></div><div>Membri: <b style="color:var(--white)">2,847</b></div><div>Nuovi oggi: <b style="color:var(--accent)">+12</b></div></div>
+
+            <div class="topic">
+                <div class="topic-top">
+                    <img class="topic-avatar" src="https://i.pravatar.cc/72?img=45" alt="">
+                    <div class="topic-content">
+                        <div class="topic-title-row"><span class="topic-title">Barbecue del 20 luglio — chi partecipa?</span></div>
+                        <div class="topic-author">Anna Pellegrini · 5 ore fa</div>
+                        <div class="topic-excerpt">L'edizione estiva del barbecue è fissata per sabato 20 luglio alle 18:00. Portate carne, bevande e appetito!</div>
+                    </div>
+                </div>
+                <div class="topic-meta"><span class="topic-stat">💬 <b>134</b></span><span class="topic-stat">👁 <b>2.8K</b></span></div>
             </div>
-        </aside>
+
+            <div class="topic">
+                <div class="topic-top">
+                    <img class="topic-avatar" src="https://i.pravatar.cc/72?img=53" alt="">
+                    <div class="topic-content">
+                        <div class="topic-title-row"><span class="topic-title">Vendo bici elettrica — ottimo stato</span></div>
+                        <div class="topic-author">Matteo Greco · 8 ore fa</div>
+                        <div class="topic-excerpt">Vendo la mia bici elettrica Diacqua che uso da un anno. 2500km, batteria stilla, cambio Shimano.</div>
+                    </div>
+                </div>
+                <div class="topic-meta"><span class="topic-stat">💬 <b>19</b></span><span class="topic-stat">👁 <b>890</b></span></div>
+            </div>
+        </div>
     </div>
 
     <div class="mobile-nav">
         <div class="mobile-nav-items">
-            <a href="#" class="mobile-nav-item active"><span class="icon">🏠</span>Home</a>
-            <a href="#" class="mobile-nav-item"><span class="icon">🔍</span>Cerca</a>
-            <a href="#" class="mobile-nav-item"><span class="icon">+</span>Nuovo</a>
-            <a href="#" class="mobile-nav-item"><span class="icon">🔔</span>Avvisi<span style="background:var(--pink);color:#fff;font-size:0.55rem;padding:0.1rem 0.35rem;border-radius:100px;">3</span></a>
-            <a href="#" class="mobile-nav-item"><span class="icon">👤</span>Profilo</a>
+            <a href="landing-4-warm.html" class="mobile-nav-item"><span class="icon">🏠</span>Home</a>
+            <a href="#" class="mobile-nav-item active"><span class="icon">💬</span>Forum</a>
+            <a href="#" class="mobile-nav-item"><span class="icon">🛒</span>Mercatino</a>
+            <a href="#" class="mobile-nav-item"><span class="icon">📰</span>News</a>
+            <a href="landing-profile-matteo.html" class="mobile-nav-item"><span class="icon">👤</span>Profilo</a>
         </div>
     </div>
 

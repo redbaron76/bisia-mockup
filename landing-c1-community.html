@@ -3,250 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bisia — Community</title>
+    <title>Bisiacaria.com — Community</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --black: #0a0a0c; --gray-950: #0f0f12; --gray-900: #16161a; --gray-800: #1e1e24;
-            --gray-700: #2a2a32; --gray-600: #3a3a44; --gray-400: #888890;
-            --gray-300: #aaaab2; --white: #fff; --accent: #ffcc00;
-            --accent-light: rgba(255,204,0,0.1); --green: #22c55e; --blue: #3b82f6;
-            --pink: #ec4899; --purple: #a855f7; --orange: #f97316;
+            --black: #0a0a0c; --gray-950: #0f0f12; --gray-900: #16161a;
+            --gray-800: #1e1e24; --gray-700: #2a2a32; --gray-600: #3a3a44;
+            --gray-400: #888890; --gray-300: #aaaab2; --white: #fff;
+            --accent: #ffcc00; --accent-light: rgba(255,204,0,0.1);
+            --green: #22c55e; --blue: #3b82f6; --pink: #ec4899;
+            --purple: #a855f7; --orange: #f97316; --teal: #14b8a6; --red: #ef4444;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--black); color: var(--white); }
 
-        /* NAV */
-        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1.2rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,12,0.85); backdrop-filter: blur(20px); }
-        .logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.6rem; }
-        .logo span { color: var(--accent); }
-        .nav-center { display: flex; gap: 2rem; }
-        .nav-center a { color: var(--gray-400); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.3s; }
+        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,12,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--gray-800); }
+        .logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.4rem; text-decoration: none; }
+        .logo span.accent { color: var(--accent); }
+        .logo .dot { color: var(--gray-400); margin: 0 0.25rem; }
+        .nav-center { display: flex; gap: 1.5rem; }
+        .nav-center a { color: var(--gray-400); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
         .nav-center a:hover { color: var(--white); }
-        .nav-right { display: flex; gap: 1rem; align-items: center; }
-        .btn-soft { background: var(--gray-800); color: var(--white); padding: 0.6rem 1.5rem; border-radius: 100px; font-size: 0.9rem; font-weight: 500; text-decoration: none; border: 1px solid var(--gray-700); transition: all 0.3s; }
-        .btn-soft:hover { background: var(--gray-700); }
-        .btn-fill { background: var(--accent); color: var(--black); padding: 0.6rem 1.5rem; border-radius: 100px; font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: all 0.3s; }
-        .btn-fill:hover { background: #ffe033; }
+        .nav-center a.active { color: var(--accent); }
+        .nav-right { display: flex; gap: 0.75rem; align-items: center; }
 
-        /* AVATAR */
-        .avatar { border-radius: 50%; border: 2px solid var(--gray-700); object-fit: cover; }
-        .avatar-sm { width: 36px; height: 36px; }
-        .avatar-md { width: 48px; height: 48px; }
-        .avatar-lg { width: 64px; height: 64px; }
-        .avatar-xl { width: 80px; height: 80px; }
-        .online-dot { width: 12px; height: 12px; background: var(--green); border-radius: 50%; border: 2px solid var(--black); position: absolute; bottom: 0; right: 0; }
-        .avatar-wrap { position: relative; display: inline-block; }
+        .btn { padding: 0.5rem 1.2rem; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; font-family: inherit; }
+        .btn-soft { background: var(--gray-800); color: var(--white); border: 1px solid var(--gray-700); }
+        .btn-fill { background: var(--accent); color: var(--black); }
+        .avatar { border-radius: 50%; object-fit: cover; border: 2px solid var(--gray-700); }
 
-        /* HERO */
-        .hero { padding: 10rem 2rem 4rem; text-align: center; position: relative; }
-        .hero::before { content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(255,204,0,0.06) 0%, transparent 60%); pointer-events: none; }
-        .hero-avatars { display: flex; justify-content: center; margin-bottom: 2rem; }
-        .hero-avatars .avatar-wrap { margin-left: -8px; }
-        .hero-avatars .avatar-wrap:first-child { margin-left: 0; }
-        .hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.05; margin-bottom: 1.5rem; }
-        .hero h1 .gradient { background: linear-gradient(135deg, var(--accent), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .subtitle { font-size: 1.15rem; color: var(--gray-400); max-width: 500px; margin: 0 auto 2.5rem; }
+        .page { padding-top: 5rem; max-width: 900px; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; padding-bottom: 3rem; }
 
-        /* FEED */
-        .feed { max-width: 680px; margin: 0 auto; padding: 0 2rem 4rem; }
-        .post { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 20px; padding: 1.5rem; margin-bottom: 1.5rem; transition: all 0.3s; }
+        .page-header { margin-bottom: 2rem; }
+        .page-header h1 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 700; }
+        .page-header h1 small { font-size: 0.9rem; color: var(--gray-400); font-weight: 400; display: block; }
+
+        /* COMMUNITY FEED */
+        .feed { display: flex; flex-direction: column; gap: 1rem; }
+        .post { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 14px; padding: 1.5rem; transition: all 0.3s; }
         .post:hover { border-color: var(--gray-600); }
-        .post-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
-        .post-user { flex: 1; }
-        .post-user .name { font-weight: 600; font-size: 0.95rem; }
-        .post-user .handle { color: var(--gray-500); font-size: 0.85rem; }
-        .post-text { color: var(--gray-300); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; }
-        .post-image { border-radius: 12px; overflow: hidden; margin-bottom: 1rem; background: var(--gray-800); height: 200px; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
-        .post-actions { display: flex; gap: 2rem; }
-        .post-action { color: var(--gray-500); font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem; cursor: pointer; transition: color 0.2s; }
+        .post-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+        .post-avatar { width: 40px; height: 40px; border-radius: 50%; }
+        .post-author { font-weight: 600; font-size: 0.9rem; }
+        .post-handle { font-size: 0.8rem; color: var(--gray-400); margin-left: 0.25rem; }
+        .post-time { font-size: 0.75rem; color: var(--gray-500); margin-left: auto; }
+        .post h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .post p { color: var(--gray-400); font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.75rem; }
+        .post-media { height: 200px; background: var(--gray-800); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin-bottom: 0.75rem; }
+        .post-actions { display: flex; gap: 1.5rem; padding-top: 0.75rem; border-top: 1px solid var(--gray-800); }
+        .post-action { font-size: 0.78rem; color: var(--gray-500); cursor: pointer; transition: color 0.2s; display: flex; align-items: center; gap: 0.3rem; }
         .post-action:hover { color: var(--accent); }
-        .post-action.liked { color: var(--pink); }
 
-        /* SIDEBAR */
-        .main-layout { display: grid; grid-template-columns: 1fr 340px; gap: 2rem; max-width: 1100px; margin: 0 auto; padding: 0 2rem 4rem; }
+        /* SUGGESTIONS */
+        .suggestions { margin-top: 2.5rem; }
+        .suggestions h2 { font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 600; margin-bottom: 1rem; }
+        .suggestion-card { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 12px; padding: 1rem 1.25rem; display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+        .suggestion-card .avatar { width: 40px; height: 40px; flex-shrink: 0; }
+        .suggestion-card .info { flex: 1; }
+        .suggestion-card .name { font-size: 0.9rem; font-weight: 600; }
+        .suggestion-card .bio { font-size: 0.78rem; color: var(--gray-400); }
+        .suggestion-card .follow-btn { padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.78rem; font-weight: 600; cursor: pointer; border: 1px solid var(--accent); background: transparent; color: var(--accent); font-family: inherit; transition: all 0.2s; }
+        .suggestion-card .follow-btn:hover { background: var(--accent); color: var(--black); }
 
-        /* SIDEBAR WIDGETS */
-        .sidebar { position: sticky; top: 6rem; align-self: start; }
-        .widget { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 20px; padding: 1.5rem; margin-bottom: 1.5rem; }
-        .widget h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; }
-        .suggestion { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0; }
-        .suggestion-info { flex: 1; }
-        .suggestion-info .name { font-weight: 600; font-size: 0.9rem; }
-        .suggestion-info .mutual { color: var(--gray-500); font-size: 0.8rem; }
-        .btn-follow { background: var(--accent); color: var(--black); border: none; padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-        .btn-follow:hover { background: #ffe033; }
-
-        .trending-item { padding: 0.6rem 0; border-bottom: 1px solid var(--gray-800); }
-        .trending-item:last-child { border-bottom: none; }
-        .trending-item .tag { color: var(--accent); font-weight: 600; font-size: 0.9rem; }
-        .trending-item .count { color: var(--gray-500); font-size: 0.8rem; }
-
-        /* ONLINE USERS */
-        .online-grid { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-        .online-user { text-align: center; cursor: pointer; }
-        .online-user .name { font-size: 0.75rem; color: var(--gray-400); margin-top: 0.3rem; }
-
-        footer { padding: 3rem 2rem; text-align: center; border-top: 1px solid var(--gray-800); color: var(--gray-600); font-size: 0.9rem; }
-
-        @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } .sidebar { display: none; } }
-        @media (max-width: 600px) { nav { padding: 1rem 1.5rem; } .nav-center { display: none; } .hero { padding: 7rem 1.5rem 3rem; } }
+        footer { padding: 2.5rem 2rem; text-align: center; border-top: 1px solid var(--gray-800); color: var(--gray-600); font-size: 0.85rem; }
+        .mobile-nav { display: none; position: fixed; bottom: 0; width: 100%; z-index: 100; background: rgba(10,10,12,0.95); backdrop-filter: blur(20px); border-top: 1px solid var(--gray-800); padding: 0.5rem 0; }
+        .mobile-nav-items { display: flex; justify-content: space-around; }
+        .mobile-nav-item { display: flex; flex-direction: column; align-items: center; gap: 0.15rem; color: var(--gray-400); text-decoration: none; font-size: 0.6rem; }
+        .mobile-nav-item .icon { font-size: 1.1rem; }
+        .mobile-nav-item.active { color: var(--accent); }
+        @media (max-width: 768px) { .nav-center { display: none; } .page { padding-left: 1rem; padding-right: 1rem; padding-bottom: 5rem; } }
+        @media (max-width: 600px) { .mobile-nav { display: block; } }
     </style>
 </head>
 <body>
     <nav>
-        <div class="logo">Bisia<span>✦</span></div>
+        <a href="index.html" class="logo">Bisiacaria<span class="accent">✦</span><span class="dot">.</span>com</a>
         <div class="nav-center">
-            <a href="#">Feed</a>
-            <a href="#">Gruppi</a>
-            <a href="#">Eventi</a>
-            <a href="#">Messaggi</a>
+            <a href="landing-4-warm.html">Home</a>
+            <a href="landing-b1-forum.html">Forum</a>
+            <a href="landing-b4-groups.html">Gruppi</a>
+            <a href="#" class="active">Community</a>
+            <a href="landing-c3-events.html">Eventi</a>
         </div>
         <div class="nav-right">
-            <a href="#" class="btn-soft">Accedi</a>
-            <a href="#" class="btn-fill">Unisciti</a>
+            <a href="landing-profile-matteo.html" class="avatar" style="width:32px;height:32px;"></a>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="hero-avatars">
-            <div class="avatar-wrap"><img class="avatar avatar-lg" src="https://i.pravatar.cc/128?img=12" alt=""></div>
-            <div class="avatar-wrap"><img class="avatar avatar-lg" src="https://i.pravatar.cc/128?img=44" alt=""></div>
-            <div class="avatar-wrap"><img class="avatar avatar-lg" src="https://i.pravatar.cc/128?img=32" alt=""></div>
-            <div class="avatar-wrap"><img class="avatar avatar-lg" src="https://i.pravatar.cc/128?img=26" alt=""></div>
-            <div class="avatar-wrap"><img class="avatar avatar-lg" src="https://i.pravatar.cc/128?img=15" alt=""></div>
-            <div class="avatar-wrap"><img class="avatar avatar-lg" src="https://i.pravatar.cc/128?img=53" alt=""></div>
+    <div class="page">
+        <div class="page-header">
+            <h1>Community Hub<small>Feed, gruppi, suggerimenti e trending topics</small></h1>
         </div>
-        <h1>Trova la tua <span class="gradient">community</span></h1>
-        <p class="subtitle">Connettiti con persone che condividono le tue passioni. Gruppi, eventi, conversazioni — tutto in un unico posto.</p>
-    </section>
 
-    <div class="main-layout">
         <div class="feed">
             <div class="post">
-                <div class="post-header">
-                    <div class="avatar-wrap"><img class="avatar avatar-md" src="https://i.pravatar.cc/96?img=44" alt=""><span class="online-dot"></span></div>
-                    <div class="post-user">
-                        <div class="name">Sofia Marchetti</div>
-                        <div class="handle">@sofi.marchetti · 12m</div>
-                    </div>
+                <div class="post-head">
+                    <img class="post-avatar" src="https://i.pravatar.cc/80?img=12" alt="">
+                    <div><span class="post-author">Lara Moretti</span><span class="post-handle">@lara</span></div>
+                    <span class="post-time">2h fa</span>
                 </div>
-                <div class="post-text">Qualcuno è stato alla mostra di Toronto? Ho sentito che le opere di Chamberlain sono incredibili dal vivo 🎨</div>
-                <div class="post-image">🖼️</div>
+                <h3>Consegna a domicilio nel quartiere</h3>
+                <p>Ciao a tutti! Sto partendo con un servizio di consegna a domicilio per chi non può uscire. Frutta, verdura, pharmacy — solo per il quartiere. Chi è interessato scrivetemi!</p>
                 <div class="post-actions">
-                    <span class="post-action liked">♥ 247</span>
-                    <span class="post-action">💬 38</span>
-                    <span class="post-action">↗ 12</span>
+                    <span class="post-action">💬 42</span>
+                    <span class="post-action">❤️ 128</span>
+                    <span class="post-action">🔔 Segui</span>
                 </div>
             </div>
 
             <div class="post">
-                <div class="post-header">
-                    <div class="avatar-wrap"><img class="avatar avatar-md" src="https://i.pravatar.cc/96?img=53" alt=""><span class="online-dot"></span></div>
-                    <div class="post-user">
-                        <div class="name">Marco Bianchi</div>
-                        <div class="handle">@marcobianchi · 34m</div>
-                    </div>
+                <div class="post-head">
+                    <img class="post-avatar" src="https://i.pravatar.cc/80?img=53" alt="">
+                    <div><span class="post-author">Matteo Greco</span><span class="post-handle">@matteo</span></div>
+                    <span class="post-time">4h fa</span>
                 </div>
-                <div class="post-text">Pronto per il meetup di sabato? 🚀 Siamo a 150 partecipanti. Si sta vendendo tutto velocemente!</div>
+                <h3>Progetto biblioteca condivisa</h3>
+                <p>Ho pensato a una biblioteca condivisa nel quartiere. Ogni persona porta 3 libri e ne prende 3. Iniziamo dal bancone dell'ascensore? Chi si unisce?</p>
+                <div class="post-media">📚</div>
                 <div class="post-actions">
-                    <span class="post-action">♥ 183</span>
-                    <span class="post-action">💬 52</span>
-                    <span class="post-action">↗ 89</span>
+                    <span class="post-action">💬 89</span>
+                    <span class="post-action">❤️ 234</span>
+                    <span class="post-action">🔔 Segui</span>
                 </div>
             </div>
 
             <div class="post">
-                <div class="post-header">
-                    <div class="avatar-wrap"><img class="avatar avatar-md" src="https://i.pravatar.cc/96?img=32" alt=""></div>
-                    <div class="post-user">
-                        <div class="name">Giulia Ferretti</div>
-                        <div class="handle">@giulia.f · 1h</div>
-                    </div>
+                <div class="post-head">
+                    <img class="post-avatar" src="https://i.pravatar.cc/80?img=45" alt="">
+                    <div><span class="post-author">Anna Pellegrini</span><span class="post-handle">@anna</span></div>
+                    <span class="post-time">6h fa</span>
                 </div>
-                <div class="post-text">Il nuovo gruppo "Photography Enthusiasts" ha raggiunto 5K membri! 📸 Grazie a tutti per essere parte di questa community fantastica.</div>
+                <h3>Scambio hemeroteca bambini</h3>
+                <p>I miei figli hanno ormai vestiti che non li stesse. Chi ha bambini della stessa età può fare uno scambio? Tutto in ottimo stato!</p>
                 <div class="post-actions">
-                    <span class="post-action liked">♥ 521</span>
-                    <span class="post-action">💬 67</span>
-                    <span class="post-action">↗ 145</span>
-                </div>
-            </div>
-
-            <div class="post">
-                <div class="post-header">
-                    <div class="avatar-wrap"><img class="avatar avatar-md" src="https://i.pravatar.cc/96?img=26" alt=""><span class="online-dot"></span></div>
-                    <div class="post-user">
-                        <div class="name">Alessandro Rossi</div>
-                        <div class="handle">@ale.rossi · 2h</div>
-                    </div>
-                </div>
-                <div class="post-text">Ho appena lanciato il mio podcast su Bisia! 🎙️ Episodio 1: "Il futuro delle community digitali". Link nei commenti.</div>
-                <div class="post-actions">
-                    <span class="post-action">♥ 312</span>
-                    <span class="post-action">💬 45</span>
-                    <span class="post-action">↗ 98</span>
+                    <span class="post-action">💬 23</span>
+                    <span class="post-action">❤️ 67</span>
+                    <span class="post-action">🔔 Segui</span>
                 </div>
             </div>
         </div>
 
-        <aside class="sidebar">
-            <div class="widget">
-                <h3>🟢 Online ora (12)</h3>
-                <div class="online-grid">
-                    <div class="online-user"><img class="avatar avatar-sm" src="https://i.pravatar.cc/64?img=12" alt=""><div class="name">Lara</div></div>
-                    <div class="online-user"><img class="avatar avatar-sm" src="https://i.pravatar.cc/64?img=44" alt=""><div class="name">Luca</div></div>
-                    <div class="online-user"><img class="avatar avatar-sm" src="https://i.pravatar.cc/64?img=32" alt=""><div class="name">Elena</div></div>
-                    <div class="online-user"><img class="avatar avatar-sm" src="https://i.pravatar.cc/64?img=26" alt=""><div class="name">Davide</div></div>
-                    <div class="online-user"><img class="avatar avatar-sm" src="https://i.pravatar.cc/64?img=15" alt=""><div class="name">Chiara</div></div>
-                    <div class="online-user"><img class="avatar avatar-sm" src="https://i.pravatar.cc/64?img=53" alt=""><div class="name">Matteo</div></div>
-                    <div class="online-user"><img class="avatar avatar-sm" src="https://i.pravatar.cc/64?img=45" alt=""><div class="name">Anna</div></div>
-                    <div class="online-user"><img class="avatar avatar-sm" src="https://i.pravatar.cc/64?img=60" alt=""><div class="name">Paolo</div></div>
-                </div>
+        <div class="suggestions">
+            <h2>👥 Persone da conoscere</h2>
+            <div class="suggestion-card">
+                <img class="avatar" src="https://i.pravatar.cc/80?img=26" alt="">
+                <div class="info"><div class="name">Davide Boscolo</div><div class="bio">Idraulico · 523 post</div></div>
+                <button class="follow-btn">Segui</button>
             </div>
-
-            <div class="widget">
-                <h3>Suggeriti per te</h3>
-                <div class="suggestion">
-                    <img class="avatar avatar-md" src="https://i.pravatar.cc/96?img=41" alt="">
-                    <div class="suggestion-info">
-                        <div class="name">Valentina Costa</div>
-                        <div class="handle">@val.costa</div>
-                        <div class="mutual">12 amici in comune</div>
-                    </div>
-                    <button class="btn-follow">Segui</button>
-                </div>
-                <div class="suggestion">
-                    <img class="avatar avatar-md" src="https://i.pravatar.cc/96?img=68" alt="">
-                    <div class="suggestion-info">
-                        <div class="name">Francesco De Luca</div>
-                        <div class="handle">@fede.luca</div>
-                        <div class="mutual">8 amici in comune</div>
-                    </div>
-                    <button class="btn-follow">Segui</button>
-                </div>
-                <div class="suggestion">
-                    <img class="avatar avatar-md" src="https://i.pravatar.cc/96?img=23" alt="">
-                    <div class="suggestion-info">
-                        <div class="name">Martina Esposito</div>
-                        <div class="handle">@martina.e</div>
-                        <div class="mutual">5 amici in comune</div>
-                    </div>
-                    <button class="btn-follow">Segui</button>
-                </div>
+            <div class="suggestion-card">
+                <img class="avatar" src="https://i.pravatar.cc/80?img=15" alt="">
+                <div class="info"><div class="name">Chiara Valenti</div><div class="bio">Pediatra · 489 post</div></div>
+                <button class="follow-btn">Segui</button>
             </div>
-
-            <div class="widget">
-                <h3>🔥 Trending</h3>
-                <div class="trending-item"><div class="tag">#DesignItalia</div><div class="count">2.4K post</div></div>
-                <div class="trending-item"><div class="tag">#TechMeetup</div><div class="count">1.8K post</div></div>
-                <div class="trending-item"><div class="tag">#Photography</div><div class="count">1.2K post</div></div>
-                <div class="trending-item"><div class="tag">#StartupGR</div><div class="count">980 post</div></div>
+            <div class="suggestion-card">
+                <img class="avatar" src="https://i.pravatar.cc/80?img=60" alt="">
+                <div class="info"><div class="name">Paolo Santoro</div><div class="bio">Libraio · 412 post</div></div>
+                <button class="follow-btn">Segui</button>
             </div>
-        </aside>
+        </div>
     </div>
 
-    <footer>
-        <p>© 2026 Bisia Community · Connettiti, condividi, cresci insieme ✦</p>
-    </footer>
+    <div class="mobile-nav">
+        <div class="mobile-nav-items">
+            <a href="landing-4-warm.html" class="mobile-nav-item"><span class="icon">🏠</span>Home</a>
+            <a href="#" class="mobile-nav-item active"><span class="icon">🌐</span>Community</a>
+            <a href="landing-c3-events.html" class="mobile-nav-item"><span class="icon">🎉</span>Eventi</a>
+            <a href="#" class="mobile-nav-item"><span class="icon">👥</span>Gruppi</a>
+            <a href="landing-profile-matteo.html" class="mobile-nav-item"><span class="icon">👤</span>Profilo</a>
+        </div>
+    </div>
+
+    <footer>© 2026 Bisiacaria.com · La community del tuo quartiere ✦</footer>
 </body>
 </html>
