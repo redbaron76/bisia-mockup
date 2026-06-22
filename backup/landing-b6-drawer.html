@@ -23,7 +23,9 @@
         .nav-logo .brand { color: var(--white); }
         .nav-logo .dot { color: var(--accent); }
         .nav-logo .prefix { color: var(--gray-400); font-weight: 400; font-size: 1rem; margin: 0 0.15rem; }
-        
+        .logo span.accent { color: var(--accent); }
+        .logo .dot { color: var(--gray-400); margin: 0 0.25rem; }
+        .nav-center { display: flex; gap: 1.5rem; }
         .nav-center a { color: var(--gray-400); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
         .nav-center a:hover { color: var(--white); }
         .nav-center a.active { color: var(--accent); }
@@ -98,26 +100,12 @@
         footer { padding: 2rem; text-align: center; border-top: 1px solid var(--gray-800); color: var(--gray-600); font-size: 0.8rem; grid-column: 1 / -1; }
 
         /* RESPONSIVE */
-        .hamburger { display: none; width: 36px; height: 36px; border: none; background: transparent; cursor: pointer; flex-direction: column; justify-content: center; align-items: center; gap: 5px; }
-        .hamburger span { display: block; width: 20px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
-        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        .hamburger.open span:nth-child(2) { opacity: 0; }
-        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-        .nav-overlay { position: fixed; top: 60px; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
-        .nav-overlay.open { opacity: 1; pointer-events: auto; }
-
-        @media (min-width: 1025px) {
-            .hamburger { display: none; }
-            .nav-center { position: static; flex-direction: row; background: transparent; border-bottom: none; padding: 0; transform: none; pointer-events: auto; display: flex; gap: 1.5rem; align-items: center; }
-            .nav-center a { padding: 0; border-bottom: none; font-size: 0.9rem; }
-            .nav-overlay { display: none; }
-
         @media (max-width: 1024px) {
             .app-layout { grid-template-columns: 1fr; }
             .sidebar-left, .sidebar-right { width: 280px; }
             .center { padding: 1.25rem; }
         }
-        @media (max-width: 768px) { .hamburger { display: flex; } .nav-overlay { display: block; }
+        @media (max-width: 768px) {
             .nav-center { display: none; }
             .center { padding: 1rem; }
         }
@@ -125,28 +113,19 @@
 </head>
 <body>
     <nav>
-        <a href="index.html" class="nav-logo">
-            <span class="prefix">/</span><span class="brand">Bisiacaria</span><span class="dot">.com</span>
-        </a>
-        <div class="nav-center" id="nav-center">
+        <a href="index.html" class="logo">Bisiacaria<span class="accent">✦</span><span class="dot">.</span>com</a>
+        <div class="nav-center">
             <a href="landing-4-warm.html">Home</a>
             <a href="landing-b1-forum.html">Forum</a>
             <a href="landing-b2-mercato.html">Mercatino</a>
             <a href="landing-b3-news.html">News</a>
             <a href="landing-b4-groups.html">Gruppi</a>
-            <a href="landing-b5-directory.html">Directory</a>
-            <a href="landing-b6-drawer.html">Layout</a>
-            <a href="landing-c1-community.html">Community</a>
-            <a href="landing-c3-events.html">Eventi</a>
-            <a href="landing-profile-matteo.html">Profilo</a>
-            <a href="settings.html">Impostazioni</a>
-            <a href="signup.html">Esci</a>
+            <a href="#" class="active">Layout</a>
         </div>
         <div class="nav-right">
-            <a class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></a>
+            <a href="landing-profile-matteo.html" class="avatar" style="width:32px;height:32px;"></a>
         </div>
     </nav>
-    <div class="nav-overlay" id="nav-overlay"></div>
 
     <div class="app-layout" id="app">
         <!-- LEFT DRAWER TOGGLE -->
@@ -287,18 +266,6 @@
         if (window.innerWidth > 1024) {
             document.getElementById('app').classList.add('sidebar-left-open', 'sidebar-right-open');
         }
-    
-        document.getElementById('hamburger').addEventListener('click', function(e) {
-            e.preventDefault();
-            this.classList.toggle('open');
-            document.getElementById('nav-center').classList.toggle('open');
-            document.getElementById('nav-overlay').classList.toggle('open');
-        });
-        document.getElementById('nav-overlay').addEventListener('click', function() {
-            document.getElementById('hamburger').classList.remove('open');
-            document.getElementById('nav-center').classList.remove('open');
-            document.getElementById('nav-overlay').classList.remove('open');
-        });
     </script>
 </body>
 </html>

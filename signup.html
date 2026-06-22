@@ -19,9 +19,10 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--black); color: var(--white); min-height: 100vh; }
 
         nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,12,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--gray-800); }
-        .logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.4rem; text-decoration: none; }
-        .logo span.accent { color: var(--accent); }
-        .logo .dot { color: var(--gray-400); margin: 0 0.25rem; }
+        .nav-logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.2rem; text-decoration: none; display: flex; align-items: center; }
+        .nav-logo .brand { color: var(--white); }
+        .nav-logo .dot { color: var(--accent); }
+        .nav-logo .prefix { color: var(--gray-400); font-weight: 400; font-size: 1rem; margin: 0 0.15rem; }
         .nav-right { display: flex; gap: 0.75rem; align-items: center; }
         .nav-right a { color: var(--gray-400); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.3s; }
         .nav-right a:hover { color: var(--white); }
@@ -99,18 +100,48 @@
         .form-step.active { display: block; }
 
         footer { padding: 2rem; text-align: center; border-top: 1px solid var(--gray-800); color: var(--gray-600); font-size: 0.85rem; margin-top: auto; }
+        .hamburger { display: none; width: 36px; height: 36px; border: none; background: transparent; cursor: pointer; flex-direction: column; justify-content: center; align-items: center; gap: 5px; }
+        .hamburger span { display: block; width: 20px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .nav-overlay { position: fixed; top: 60px; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+        .nav-overlay.open { opacity: 1; pointer-events: auto; }
 
-        @media (max-width: 768px) { .page { padding-left: 1rem; padding-right: 1rem; } .form-row { grid-template-columns: 1fr; } }
+        @media (min-width: 1025px) {
+            .hamburger { display: none; }
+            .nav-center { position: static; flex-direction: row; background: transparent; border-bottom: none; padding: 0; transform: none; pointer-events: auto; display: flex; gap: 1.5rem; align-items: center; }
+            .nav-center a { padding: 0; border-bottom: none; font-size: 0.9rem; }
+            .nav-overlay { display: none; }
+        }
+
+        @media (max-width: 768px) {.hamburger { display: flex; } .nav-overlay { display: block; } .page { padding-left: 1rem; padding-right: 1rem; } .form-row { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
     <nav>
-        <a href="index.html" class="logo">Bisiacaria<span class="accent">✦</span><span class="dot">.</span>com</a>
-        <div class="nav-right">
-            <a href="login.html">Accedi</a>
+        <a href="index.html" class="nav-logo">
+            <span class="prefix">/</span><span class="brand">Bisiacaria</span><span class="dot">.com</span>
+        </a>
+        <div class="nav-center" id="nav-center">
+            <a href="landing-4-warm.html">Home</a>
+            <a href="landing-b1-forum.html">Forum</a>
+            <a href="landing-b2-mercato.html">Mercatino</a>
+            <a href="landing-b3-news.html">News</a>
+            <a href="landing-b4-groups.html">Gruppi</a>
+            <a href="landing-b5-directory.html">Directory</a>
+            <a href="landing-b6-drawer.html">Layout</a>
+            <a href="landing-c1-community.html">Community</a>
+            <a href="landing-c3-events.html">Eventi</a>
             <a href="landing-profile-matteo.html">Profilo</a>
+            <a href="settings.html">Impostazioni</a>
+            <a href="signup.html">Esci</a>
+        </div>
+        <div class="nav-right">
+            <a class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></a>
         </div>
     </nav>
+    <div class="nav-overlay" id="nav-overlay"></div>
 
     <div class="page">
         <div class="signup-header">
@@ -297,6 +328,18 @@
         document.getElementById('signup-form').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Registrazione completata! Benvenuto su Bisiacaria.com ✦');
+        });
+    
+        document.getElementById('hamburger').addEventListener('click', function(e) {
+            e.preventDefault();
+            this.classList.toggle('open');
+            document.getElementById('nav-center').classList.toggle('open');
+            document.getElementById('nav-overlay').classList.toggle('open');
+        });
+        document.getElementById('nav-overlay').addEventListener('click', function() {
+            document.getElementById('hamburger').classList.remove('open');
+            document.getElementById('nav-center').classList.remove('open');
+            document.getElementById('nav-overlay').classList.remove('open');
         });
     </script>
 </body>
