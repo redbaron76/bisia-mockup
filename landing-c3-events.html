@@ -3,241 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bisiacaria.com — Eventi & Live</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --black: #0a0a0c; --gray-950: #0f0f12; --gray-900: #16161a;
-            --gray-800: #1e1e24; --gray-700: #2a2a32; --gray-600: #3a3a44;
-            --gray-400: #888890; --gray-300: #aaaab2; --white: #fff;
-            --accent: #ffcc00; --accent-light: rgba(255,204,0,0.1);
-            --green: #22c55e; --blue: #3b82f6; --pink: #ec4899;
-            --purple: #a855f7; --orange: #f97316;
+    <title>Eventi — Bisiacaria.com</title>
+    <meta name="description" content="Eventi del quartiere Bisiacaria: feste, tornei, cene tra vicini.">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                },
+            },
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--black); color: var(--white); }
-
-        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,12,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--gray-800); }
-        .nav-logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.2rem; text-decoration: none; display: flex; align-items: center; }
-        .nav-logo .brand { color: var(--white); }
-        .nav-logo .dot { color: var(--accent); }
-        
-        .nav-center a { color: var(--gray-400); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
-        .nav-center a:hover { color: var(--white); }
-        .nav-center a.active { color: var(--accent); }
-        .nav-right { display: flex; gap: 0.75rem; align-items: center; }
-
-        .btn { padding: 0.5rem 1.2rem; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; font-family: inherit; }
-        .btn-soft { background: var(--gray-800); color: var(--white); border: 1px solid var(--gray-700); }
-        .btn-fill { background: var(--accent); color: var(--black); }
-        .avatar { border-radius: 50%; object-fit: cover; border: 2px solid var(--gray-700); }
-
-        .page { padding-top: 5rem; max-width: 900px; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; padding-bottom: 3rem; }
-
-        .page-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
-        .page-header h1 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 700; }
-        .page-header h1 small { font-size: 0.9rem; color: var(--gray-400); font-weight: 400; display: block; }
-
-        /* CATEGORIES */
-        .cat-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-        .cat-tab { background: var(--gray-900); border: 1px solid var(--gray-700); color: var(--gray-400); padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.8rem; cursor: pointer; font-family: inherit; transition: all 0.2s; }
-        .cat-tab:hover { border-color: var(--gray-500); color: var(--white); }
-        .cat-tab.active { background: var(--accent); color: var(--black); border-color: var(--accent); font-weight: 600; }
-
-        /* EVENT CARDS */
-        .events { display: flex; flex-direction: column; gap: 1rem; }
-        .event { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 14px; overflow: hidden; transition: all 0.3s; cursor: pointer; }
-        .event:hover { border-color: var(--gray-600); }
-        .event-banner { height: 120px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; position: relative; }
-        .event-banner.barbecue { background: linear-gradient(135deg, #2a1a0a, #3a1a0a); }
-        .event-banner.padel { background: linear-gradient(135deg, #0a2a0a, #0a2a1a); }
-        .event-banner.festa { background: linear-gradient(135deg, #2a0a1a, #1a0a2a); }
-        .event-banner.concerto { background: linear-gradient(135deg, #0a1a2a, #1a1a2a); }
-        .event-status { position: absolute; top: 8px; right: 8px; padding: 0.2rem 0.6rem; border-radius: 100px; font-size: 0.65rem; font-weight: 700; }
-        .event-status.live { background: var(--red); color: var(--white); animation: pulse 2s infinite; }
-        .event-status.upcoming { background: var(--accent); color: var(--black); }
-        .event-status.ended { background: var(--gray-700); color: var(--gray-400); }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-        .event-body { padding: 1.25rem; }
-        .event-date { font-size: 0.75rem; color: var(--accent); font-weight: 600; margin-bottom: 0.4rem; }
-        .event h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.4rem; }
-        .event p { font-size: 0.85rem; color: var(--gray-400); line-height: 1.5; margin-bottom: 0.75rem; }
-        .event-meta { display: flex; gap: 1.25rem; align-items: center; }
-        .event-meta span { font-size: 0.78rem; color: var(--gray-500); display: flex; align-items: center; gap: 0.3rem; }
-        .event-meta b { color: var(--gray-300); font-weight: 600; }
-        .event-btn { margin-left: auto; padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.78rem; font-weight: 600; border: none; cursor: pointer; font-family: inherit; }
-        .event-btn.join { background: var(--accent); color: var(--black); }
-        .event-btn.waiting { background: var(--gray-800); color: var(--gray-400); }
-
-        /* COUNTDOWN */
-        .countdown-bar { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 14px; padding: 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1.5rem; }
-        .countdown-bar .emoji { font-size: 2rem; }
-        .countdown-bar .info { flex: 1; }
-        .countdown-bar h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
-        .countdown-bar p { font-size: 0.8rem; color: var(--gray-400); }
-        .countdown-bar .timer { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--accent); white-space: nowrap; }
-
-        footer { padding: 2.5rem 2rem; text-align: center; border-top: 1px solid var(--gray-800); color: var(--gray-600); font-size: 0.85rem; }
-        .mobile-nav { display: none; position: fixed; bottom: 0; width: 100%; z-index: 100; background: rgba(10,10,12,0.95); backdrop-filter: blur(20px); border-top: 1px solid var(--gray-800); padding: 0.5rem 0; }
-        .mobile-nav-items { display: flex; justify-content: space-around; }
-        .mobile-nav-item { display: flex; flex-direction: column; align-items: center; gap: 0.15rem; color: var(--gray-400); text-decoration: none; font-size: 0.6rem; }
-        .mobile-nav-item .icon { font-size: 1.1rem; }
-        .mobile-nav-item.active { color: var(--accent); }
-        .hamburger { display: none; width: 36px; height: 36px; border: none; background: transparent; cursor: pointer; flex-direction: column; justify-content: center; align-items: center; gap: 5px; transition: opacity 0.2s;}
-        .hamburger span { display: block; width: 20px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s ease; transform-origin: center; }
-        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0);}
-        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-        .nav-overlay { position: fixed; top: 60px; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
-        .nav-overlay.open { opacity: 1; pointer-events: auto; }
-
-        @media (min-width: 1025px) {
-            .hamburger { display: none; }
-            .nav-center { position: static; flex-direction: row; background: transparent; border-bottom: none; padding: 0; transform: none; pointer-events: auto; display: flex; gap: 1.5rem; align-items: center; }
-            .nav-center a { padding: 0; border-bottom: none; font-size: 0.9rem; }
-            .nav-overlay { display: none; }
-        }        @media (max-width: 1024px) {
-            .nav-center { position: fixed; top: 60px; left: 0; right: 0; bottom: 0; height: calc(100vh - 60px); -webkit-overflow-scrolling: touch; background: rgba(10,10,12,0.98); backdrop-filter: blur(20px); display: flex; flex-direction: column; gap: 0.5rem; padding: 1.25rem 1.5rem; overflow-y: auto; transform: translateY(-110%); transition: transform 0.3s ease; pointer-events: none; opacity: 0; }
-            .nav-center.open { transform: translateY(0); pointer-events: auto; opacity: 1; }
-            .nav-center a { color: var(--gray-300); text-decoration: none; font-size: 1rem; font-weight: 500; padding: 0.6rem 0; border-bottom: 1px solid var(--gray-800); transition: color 0.2s; }
-            .nav-center a:hover { color: var(--white); }
-            .nav-center a.active { color: var(--accent); }
-        }
-
-        @media (max-width: 768px) {.hamburger { display: flex; } .nav-overlay { display: block; }  .hamburger { display: flex; } .nav-overlay { display: block; } .hamburger { display: flex; } .nav-overlay { display: block; } .page { padding-left: 1rem; padding-right: 1rem; padding-bottom: 5rem; } .countdown-bar { flex-wrap: wrap; } }
-        @media (max-width: 600px) { .mobile-nav { display: block; } }
-    </style>
-</head>
-<body>
-    <nav>
-        <a href="index.html" class="nav-logo"><span class="brand">Bisiacaria</span><span class="dot">.com</span>
-        </a>
-        <div class="nav-center" id="nav-center">
-            <a href="landing-4-warm.html">Home</a>
-            <a href="landing-b1-forum.html">Forum</a>
-            <a href="landing-b2-mercato.html">Mercatino</a>
-            <a href="landing-b3-news.html">News</a>
-            <a href="landing-b4-groups.html">Gruppi</a>
-            <a href="landing-b5-directory.html">Directory</a>
-            <a href="landing-b6-drawer.html">Layout</a>
-            <a href="landing-c1-community.html">Community</a>
-            <a href="landing-c3-events.html">Eventi</a>
-            <a href="landing-profile-matteo.html">Profilo</a>
-            <a href="settings.html">Impostazioni</a>
-            <a href="signup.html">Esci</a>
-        </div>
-        <div class="nav-right">
-            <a class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></a>
-        </div>
-    </nav>
-    <div class="nav-overlay" id="nav-overlay"></div>
-
-    <div class="page">
-        <div class="page-header">
-            <h1>Eventi & Live<small>Feste, tornei, live streaming e incontro di quartiere</small></h1>
-            <a href="#" class="btn btn-fill">+ Crea Evento</a>
-        </div>
-
-        <!-- LIVE COUNTDOWN -->
-        <div class="countdown-bar">
-            <div class="emoji">🎉</div>
-            <div class="info">
-                <h3>Barbecue di quartiere — SABATO 20 LUGLIO</h3>
-                <p>Porta carne, bevande e appetito! Ore 18:00 al campo comunale.</p>
-            </div>
-            <div class="timer">2 gg 14h</div>
-        </div>
-
-        <div class="cat-tabs">
-            <button class="cat-tab active">Tutti</button>
-            <button class="cat-tab">🟢 Live</button>
-            <button class="cat-tab">⬜ Prossimi</button>
-            <button class="cat-tab">📅 Passati</button>
-        </div>
-
-        <div class="events">
-            <div class="event">
-                <div class="event-banner padel">🎾<span class="event-status live">🔴 LIVE</span></div>
-                <div class="event-body">
-                    <div class="event-date">Ora · Campo Padel Comunale</div>
-                    <h3>Torneo di padel — Semifinali</h3>
-                    <p>Segui in diretta le semifinali del torneo di padel. Matteo G. vs Davide B. alle 21:00.</p>
-                    <div class="event-meta">
-                        <span>👥 <b>48</b> partecipa</span>
-                        <span>👁 <b>156</b> guardano</span>
-                        <button class="event-btn join">Guarda Live</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="event">
-                <div class="event-banner barbecue">🍖<span class="event-status upcoming">PROSSIMO</span></div>
-                <div class="event-body">
-                    <div class="event-date">Sab 20 Luglio · Ore 18:00</div>
-                    <h3>Grande barbecue estivo</h3>
-                    <p>Edizione estiva del barbecue di quartiere. Portate da mangiare da condividere!</p>
-                    <div class="event-meta">
-                        <span>👥 <b>124</b> confermati</span>
-                        <span>📍 Campo comunale</span>
-                        <button class="event-btn join">Partecipa</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="event">
-                <div class="event-banner festa">🎆<span class="event-status upcoming">PROSSIMO</span></div>
-                <div class="event-body">
-                    <div class="event-date">Ven 25 Luglio · Ore 21:00</div>
-                    <h3>Festa di San Giovanni — Concerto live</h3>
-                    <p>La banda del quartiere suona dal vivo. Rinfreschi e giochi per bambini.</p>
-                    <div class="event-meta">
-                        <span>👥 <b>210</b> confermati</span>
-                        <span>📍 Piazza Verdi</span>
-                        <button class="event-btn join">Partecipa</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="event">
-                <div class="event-banner concerto">📸<span class="event-status ended">PASSATO</span></div>
-                <div class="event-body">
-                    <div class="event-date">15 Luglio · Ore 10:00</div>
-                    <h3>Photo walk — "Il mio quartiere in 100 scatti"</h3>
-                    <p>Scattiamo insieme! Ritrovo in piazza Verdi, premi per i migliori scatti.</p>
-                    <div class="event-meta">
-                        <span>👥 <b>67</b> partecipanti</span>
-                        <button class="event-btn waiting">Rivedi</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="mobile-nav">
-        <div class="mobile-nav-items">
-            <a href="landing-4-warm.html" class="mobile-nav-item"><span class="icon">🏠</span>Home</a>
-            <a href="landing-c1-community.html" class="mobile-nav-item"><span class="icon">🌐</span>Community</a>
-            <a href="#" class="mobile-nav-item active"><span class="icon">🎉</span>Eventi</a>
-            <a href="landing-c3-events.html" class="mobile-nav-item"><span class="icon">🔴</span>Live</a>
-            <a href="landing-profile-matteo.html" class="mobile-nav-item"><span class="icon">👤</span>Profilo</a>
-        </div>
-    </div>
-
-    <footer>© 2026 Bisiacaria.com · Eventi e live del tuo quartiere ✦</footer><script>
-
-
-        document.getElementById('hamburger').addEventListener('click', function(e) {
-            e.preventDefault();
-            this.classList.toggle('open');
-            document.getElementById('nav-center').classList.toggle('open');
-            document.getElementById('nav-overlay').classList.toggle('open');
-        });
-        document.getElementById('nav-overlay').addEventListener('click', function() {
-            document.getElementById('hamburger').classList.remove('open');
-            document.getElementById('nav-center').classList.remove('open');
-            document.getElementById('nav-overlay').classList.remove('open');
-        });
-
     </script>
+</head>
+<body class="bg-zinc-950 text-zinc-200 font-sans antialiased">
+<div class="min-h-screen">
+        <header class="fixed top-0 left-0 right-0 z-[200] flex items-center justify-between px-4 py-3 md:px-6 lg:px-8 bg-zinc-950 border-b border-zinc-800">
+            <a href="index.html" class="flex items-center gap-1 text-[1.05rem] font-bold tracking-tight">
+                <span class="text-white">Bisiacaria</span><span class="text-yellow-400">.com</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-6 lg:gap-8">
+                <a href="landing-4-warm.html" data-page="home" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Home</a>
+                <a href="landing-b1-forum.html" data-page="forum" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Forum</a>
+                <a href="landing-b2-mercato.html" data-page="mercato" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Mercatino</a>
+                <a href="landing-b3-news.html" data-page="news" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">News</a>
+                <a href="landing-b4-groups.html" data-page="gruppi" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Gruppi</a>
+                <a href="landing-b5-directory.html" data-page="directory" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Directory</a>
+                <a href="landing-b6-drawer.html" data-page="layout" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Layout</a>
+                <a href="landing-c1-community.html" data-page="community" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Community</a>
+                <a href="landing-c3-events.html" data-page="events" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Eventi</a>
+                <a href="signup.html" class="inline-flex items-center justify-center bg-yellow-400 text-black font-semibold text-sm px-6 py-2 rounded-full transition-all hover:bg-zinc-900 hover:text-yellow-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 min-h-[2.75rem]">Esci</a>
+            </nav>
+            <button class="md:hidden hamburger w-9 h-9 flex flex-col items-center justify-center gap-[5px] bg-transparent" id="hamburger" aria-label="Menu">
+                <span class="hamburger-line block w-5 h-[2px] bg-zinc-900 rounded-full transition-transform duration-200 ease-out"></span>
+                <span class="hamburger-line block w-5 h-[2px] bg-zinc-900 rounded-full transition-opacity duration-200 ease-out"></span>
+                <span class="hamburger-line block w-5 h-[2px] bg-zinc-900 rounded-full transition-transform duration-200 ease-out"></span>
+            </button>
+        </header>
+        <div class="hidden md:flex mobile-menu absolute top-16 left-0 right-0 bottom-0 overflow-y-auto bg-zinc-950/98 backdrop-blur-lg z-[199]" id="mobile-menu">
+            <div class="flex flex-col p-4 gap-2">
+                <a href="landing-4-warm.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="home">Home</a>
+                <a href="landing-b1-forum.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="forum">Forum</a>
+                <a href="landing-b2-mercato.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="mercato">Mercatino</a>
+                <a href="landing-b3-news.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="news">News</a>
+                <a href="landing-b4-groups.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="gruppi">Gruppi</a>
+                <a href="landing-b5-directory.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="directory">Directory</a>
+                <a href="landing-b6-drawer.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="layout">Layout</a>
+                <a href="landing-c1-community.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="community">Community</a>
+                <a href="landing-c3-events.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="events">Eventi</a>
+                <a href="settings.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="settings">Impostazioni</a>
+                <a href="signup.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="signup">Esci</a>
+            </div>
+        </div>
+        <div class="hidden md:hidden mobile-overlay absolute top-16 left-0 right-0 bottom-0 bg-black/40 z-[198]" id="mobile-overlay"></div>
+    <!-- Hero -->
+    <section class="pt-40 pb-16 lg:pt-48 lg:pb-20">
+        <div class="px-4 md:px-6 lg:px-8 max-w-[72rem] mx-auto">
+            <p class="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold tracking-wider text-yellow-400 uppercase bg-zinc-900 rounded-full mb-6">
+                <span class="w-1.5 h-1.5 bg-yellow-400 rounded-full"></span>Eventi del quartiere
+            </p>
+            <h1 class="text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] font-extrabold tracking-tight leading-[1.08] mb-6 max-w-[48ch]">
+                Oltre i <span class="text-yellow-400">confini</span> della strada
+            </h1>
+            <p class="text-lg md:text-xl leading-relaxed text-zinc-300 mb-10 max-w-[52ch]">
+                Feste di quartiere, barbecue, tornei, cene tra vicini. Organizza e partecipa. Un calendario sempre aggiornato su quello che succede.
+            </p>
+            <a href="#" class="inline-flex items-center justify-center bg-yellow-400 text-black font-semibold text-sm px-6 py-3 rounded-full transition-all hover:bg-zinc-900 hover:text-yellow-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 min-h-[2.75rem]">Vedi eventi</a>
+        </div>
+    </section>
+    <hr class="mx-4 md:mx-6 lg:mx-8 max-w-[72rem] border-t-2 border-zinc-900">
+
+    <!-- Events Grid -->
+    <section class="max-w-[72rem] mx-auto px-4 md:px-6 lg:px-8 py-16">
+        <div class="pt-4 pb-12">
+            <p class="text-xs font-semibold tracking-wider text-zinc-500 uppercase mb-2">In arrivo</p>
+            <h2 class="text-[1.75rem] md:text-[2rem] font-bold tracking-tight leading-tight mb-2 max-w-[40ch]">Prossimi eventi</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[72rem] mx-auto">
+            <div class="event-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
+                <div class="event-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🎪</div>
+                <h3 class="text-lg font-bold tracking-tight mb-2">Festa di Quartiere</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed mb-3">Sabato 19 Luglio, ore 19:00 — Barraque con musica dal vivo, giochi per bambini e stand gastronomici.</p>
+                <div class="event-meta flex items-center justify-between text-xs text-zinc-500">
+                    <span>📍 Piazza del Quartiere</span><span>19 Lug</span>
+                </div>
+            </div>
+            <div class="event-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
+                <div class="event-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🏃</div>
+                <h3 class="text-lg font-bold tracking-tight mb-2">Gara di Corsa</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed mb-3">Domenica 5 Agosto — 5km e 10km tra le vie del quartiere. Inizia da via Roma.</p>
+                <div class="event-meta flex items-center justify-between text-xs text-zinc-500">
+                    <span>📍 Via Roma</span><span>5 Ago</span>
+                </div>
+            </div>
+            <div class="event-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
+                <div class="event-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">📚</div>
+                <h3 class="text-lg font-bold tracking-tight mb-2">Incontro Book Club</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed mb-3">Mercoledì 22 Luglio — "Il Cacciatore di Aquiloni" di Khaled Hosseini. Aula 3, Biblioteca Quartiere.</p>
+                <div class="event-meta flex items-center justify-between text-xs text-zinc-500">
+                    <span>📍 Biblioteca</span><span>22 Lug</span>
+                </div>
+            </div>
+            <div class="event-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
+                <div class="event-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🎵</div>
+                <h3 class="text-lg font-bold tracking-tight mb-2">Concerto in Piazza</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed mb-3">Venerdì 1 Agosto — "Suoni d'Estate" con la band locale. Ingresso libero fino ad esaurimento posti.</p>
+                <div class="event-meta flex items-center justify-between text-xs text-zinc-500">
+                    <span>📍 Piazza del Quartiere</span><span>1 Ago</span>
+                </div>
+            </div>
+            <div class="event-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
+                <div class="event-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🧹</div>
+                <h3 class="text-lg font-bold tracking-tight mb-2">Giornata Pulizia</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed mb-3">Sabato 12 Luglio — Pulizia collettiva del parco e delle aree comuni. Caffè e merenda inclusi!</p>
+                <div class="event-meta flex items-center justify-between text-xs text-zinc-500">
+                    <span>📍 Parco Girasoli</span><span>12 Lug</span>
+                </div>
+            </div>
+            <div class="event-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
+                <div class="event-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🍕</div>
+                <h3 class="text-lg font-bold tracking-tight mb-2">Cena tra Vicini</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed mb-3">Domenica 19 Luglio — Ogni porto un piatto. Via Roma 15, ore 20:00. Prenota il tuo piatto!</p>
+                <div class="event-meta flex items-center justify-between text-xs text-zinc-500">
+                    <span>📍 Via Roma 15</span><span>19 Lug</span>
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="flex flex-wrap items-center justify-between gap-3 px-6 lg:px-8 py-8 border-t border-zinc-800">
+            <span class="text-sm text-zinc-500">&copy; 2026 Bisiacaria.com &middot; La community del tuo quartiere</span>
+            <div class="flex gap-5">
+                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors">Privacy</a>
+                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors">Termini</a>
+                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors">Contatti</a>
+            </div>
+        </footer>
+</div>
+        <style>
+            .hamburger.open .hamburger-line:first-child { transform: rotate(45deg) translate(5px, 5px); }
+            .hamburger.open .hamburger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+            .hamburger.open .hamburger-line:last-child { transform: rotate(-45deg) translate(5px, -5px); }
+            .nav-link.active, .mobile-nav-link.active { color: #facc15; }
+            @media (max-width: 768px) { .mobile-menu { display: flex; } .mobile-menu.hidden { display: none; } }
+        </style>
+        <script>
+            (function() {
+                var hamburger = document.getElementById('hamburger');
+                var menu = document.getElementById('mobile-menu');
+                var overlay = document.getElementById('mobile-overlay');
+                function toggleMenu() {
+                    var open = menu.classList.contains('hidden');
+                    if (open) { hamburger.classList.add('open'); menu.classList.remove('hidden'); overlay.classList.remove('hidden'); }
+                    else { hamburger.classList.remove('open'); menu.classList.add('hidden'); overlay.classList.add('hidden'); }
+                }
+                hamburger.addEventListener('click', toggleMenu);
+                overlay.addEventListener('click', toggleMenu);
+            })();
+        </script>
 </body>
 </html>

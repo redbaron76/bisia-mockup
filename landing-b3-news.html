@@ -3,249 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bisiacaria.com — News & Annunci</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --black: #0a0a0c; --gray-950: #0f0f12; --gray-900: #16161a;
-            --gray-800: #1e1e24; --gray-700: #2a2a32; --gray-600: #3a3a44;
-            --gray-400: #888890; --gray-300: #aaaab2; --white: #fff;
-            --accent: #ffcc00; --accent-light: rgba(255,204,0,0.1);
-            --green: #22c55e; --blue: #3b82f6; --pink: #ec4899;
-            --purple: #a855f7; --orange: #f97316;
+    <title>News — Bisiacaria.com</title>
+    <meta name="description" content="News del quartiere Bisiacaria: eventi, avvisi comunali e servizi.">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                },
+            },
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--black); color: var(--white); }
-
-        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,12,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--gray-800); }
-        .nav-logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.2rem; text-decoration: none; display: flex; align-items: center; }
-        .nav-logo .brand { color: var(--white); }
-        .nav-logo .dot { color: var(--accent); }
-        
-        .nav-center a { color: var(--gray-400); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
-        .nav-center a:hover { color: var(--white); }
-        .nav-center a.active { color: var(--accent); }
-        .nav-right { display: flex; gap: 0.75rem; align-items: center; }
-
-        .btn { padding: 0.5rem 1.2rem; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; font-family: inherit; }
-        .btn-soft { background: var(--gray-800); color: var(--white); border: 1px solid var(--gray-700); }
-        .btn-fill { background: var(--accent); color: var(--black); }
-        .avatar { border-radius: 50%; object-fit: cover; border: 2px solid var(--gray-700); }
-
-        .page { padding-top: 5rem; max-width: 900px; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; padding-bottom: 3rem; }
-
-        .page-header { margin-bottom: 2rem; }
-        .page-header h1 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 700; }
-        .page-header h1 small { font-size: 0.9rem; color: var(--gray-400); font-weight: 400; display: block; }
-
-        /* NEWS FEED */
-        .feed { display: flex; flex-direction: column; gap: 1rem; }
-        .news { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 14px; padding: 1.5rem; transition: all 0.3s; cursor: pointer; }
-        .news:hover { border-color: var(--gray-600); }
-        .news.featured { border-color: var(--accent); background: rgba(255,204,0,0.03); }
-        .news-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
-        .news-source { font-size: 0.72rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
-        .news-time { font-size: 0.72rem; color: var(--gray-500); }
-        .news-pin { margin-left: auto; font-size: 0.65rem; padding: 0.2rem 0.5rem; border-radius: 100px; background: var(--accent); color: var(--black); font-weight: 700; }
-        .news h3 { font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .news p { color: var(--gray-400); font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.75rem; }
-        .news-footer { display: flex; gap: 1rem; align-items: center; }
-        .news-action { font-size: 0.75rem; color: var(--gray-500); display: flex; align-items: center; gap: 0.3rem; cursor: pointer; }
-        .news-action:hover { color: var(--accent); }
-
-        /* ANNUNCI */
-        .annunci-header { margin: 2.5rem 0 1rem; }
-        .annunci-header h2 { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 600; }
-        .annuncio { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: center; margin-bottom: 0.75rem; cursor: pointer; }
-        .annuncio:hover { border-color: var(--gray-600); }
-        .annuncio-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
-        .annuncio-icon.buy { background: rgba(59,130,246,0.15); }
-        .annuncio-icon.sell { background: rgba(34,197,94,0.15); }
-        .annuncio-icon.free { background: rgba(255,204,0,0.15); }
-        .annuncio-content { flex: 1; }
-        .annuncio-content h4 { font-size: 0.9rem; font-weight: 600; }
-        .annuncio-content p { font-size: 0.8rem; color: var(--gray-400); }
-        .annuncio-price { font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 700; color: var(--accent); white-space: nowrap; }
-
-        footer { padding: 2.5rem 2rem; text-align: center; border-top: 1px solid var(--gray-800); color: var(--gray-600); font-size: 0.85rem; }
-        .mobile-nav { display: none; position: fixed; bottom: 0; width: 100%; z-index: 100; background: rgba(10,10,12,0.95); backdrop-filter: blur(20px); border-top: 1px solid var(--gray-800); padding: 0.5rem 0; }
-        .mobile-nav-items { display: flex; justify-content: space-around; }
-        .mobile-nav-item { display: flex; flex-direction: column; align-items: center; gap: 0.15rem; color: var(--gray-400); text-decoration: none; font-size: 0.6rem; }
-        .mobile-nav-item .icon { font-size: 1.1rem; }
-        .mobile-nav-item.active { color: var(--accent); }
-        .hamburger { display: none; width: 36px; height: 36px; border: none; background: transparent; cursor: pointer; flex-direction: column; justify-content: center; align-items: center; gap: 5px; transition: opacity 0.2s;}
-        .hamburger span { display: block; width: 20px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s ease; transform-origin: center; }
-        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0);}
-        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-        .nav-overlay { position: fixed; top: 60px; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
-        .nav-overlay.open { opacity: 1; pointer-events: auto; }
-
-        @media (min-width: 1025px) {
-            .hamburger { display: none; }
-            .nav-center { position: static; flex-direction: row; background: transparent; border-bottom: none; padding: 0; transform: none; pointer-events: auto; display: flex; gap: 1.5rem; align-items: center; }
-            .nav-center a { padding: 0; border-bottom: none; font-size: 0.9rem; }
-            .nav-overlay { display: none; }
-        }        @media (max-width: 1024px) {
-            .nav-center { position: fixed; top: 60px; left: 0; right: 0; bottom: 0; height: calc(100vh - 60px); -webkit-overflow-scrolling: touch; background: rgba(10,10,12,0.98); backdrop-filter: blur(20px); display: flex; flex-direction: column; gap: 0.5rem; padding: 1.25rem 1.5rem; overflow-y: auto; transform: translateY(-110%); transition: transform 0.3s ease; pointer-events: none; opacity: 0; }
-            .nav-center.open { transform: translateY(0); pointer-events: auto; opacity: 1; }
-            .nav-center a { color: var(--gray-300); text-decoration: none; font-size: 1rem; font-weight: 500; padding: 0.6rem 0; border-bottom: 1px solid var(--gray-800); transition: color 0.2s; }
-            .nav-center a:hover { color: var(--white); }
-            .nav-center a.active { color: var(--accent); }
-        }
-
-        @media (max-width: 768px) {.hamburger { display: flex; } .nav-overlay { display: block; }  .hamburger { display: flex; } .nav-overlay { display: block; } .hamburger { display: flex; } .nav-overlay { display: block; } .page { padding-left: 1rem; padding-right: 1rem; padding-bottom: 5rem; } }
-        @media (max-width: 600px) { .mobile-nav { display: block; } }
-    </style>
-</head>
-<body>
-    <nav>
-        <a href="index.html" class="nav-logo"><span class="brand">Bisiacaria</span><span class="dot">.com</span>
-        </a>
-        <div class="nav-center" id="nav-center">
-            <a href="landing-4-warm.html">Home</a>
-            <a href="landing-b1-forum.html">Forum</a>
-            <a href="landing-b2-mercato.html">Mercatino</a>
-            <a href="landing-b3-news.html">News</a>
-            <a href="landing-b4-groups.html">Gruppi</a>
-            <a href="landing-b5-directory.html">Directory</a>
-            <a href="landing-b6-drawer.html">Layout</a>
-            <a href="landing-c1-community.html">Community</a>
-            <a href="landing-c3-events.html">Eventi</a>
-            <a href="landing-profile-matteo.html">Profilo</a>
-            <a href="settings.html">Impostazioni</a>
-            <a href="signup.html">Esci</a>
-        </div>
-        <div class="nav-right">
-            <a class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></a>
-        </div>
-    </nav>
-    <div class="nav-overlay" id="nav-overlay"></div>
-
-    <div class="page">
-        <div class="page-header">
-            <h1>News & Annunci<small>L'informazione locale in tempo reale</small></h1>
-        </div>
-
-        <div class="feed">
-            <div class="news featured">
-                <div class="news-head">
-                    <span class="news-source">📌 Comune</span>
-                    <span class="news-time">Ieri, 18:30</span>
-                    <span class="news-pin">📌 Pin</span>
-                </div>
-                <h3>Agibilità parcheggio Piazza Verdi — dal 1 luglio</h3>
-                <p>Dopo i lavori di rifacimento, il parcheggio di Piazza Verdi riapre il 1 luglio con nuovi spaziaccessibili e colonnine di ricarica elettrica.</p>
-                <div class="news-footer">
-                    <span class="news-action">💬 34</span>
-                    <span class="news-action">👁 1.2K</span>
-                    <span class="news-action">🔗 Condividi</span>
-                </div>
-            </div>
-
-            <div class="news">
-                <div class="news-head">
-                    <span class="news-source">🚨 Emergenze</span>
-                    <span class="news-time">3 ore fa</span>
-                </div>
-                <h3>Interventi idraulici via Roma — chiusa la carreggiata nord</h3>
-                <p>Per lavori urgenti di sostituzione tubazioni, via Roma sarà a singola carreggiata alternata dalle 8:00 alle 17:00 per 3 giorni.</p>
-                <div class="news-footer">
-                    <span class="news-action">💬 18</span>
-                    <span class="news-action">👁 890</span>
-                </div>
-            </div>
-
-            <div class="news">
-                <div class="news-head">
-                    <span class="news-source">🎉 Eventi</span>
-                    <span class="news-time">Ieri</span>
-                </div>
-                <h3>Padel tournament — iscrizioni aperte!</h3>
-                <p>Il torneo di padel del quartiere torna a settembre. 32 coppie, prize pool 500€. Iscrizioni chiuse il 20 agosto.</p>
-                <div class="news-footer">
-                    <span class="news-action">💬 42</span>
-                    <span class="news-action">👁 650</span>
-                </div>
-            </div>
-
-            <div class="news">
-                <div class="news-head">
-                    <span class="news-source">💬 Forum</span>
-                    <span class="news-time">5 ore fa</span>
-                </div>
-                <h3>Cos'è successo alla festa di San Giovanni?</h3>
-                <p>La festa di quartiere è stata un successo! Oltre 300 persone presenti. Ecco un riepilogo delle attività.</p>
-                <div class="news-footer">
-                    <span class="news-action">💬 67</span>
-                    <span class="news-action">👁 1.5K</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="annunci-header">
-            <h2>📋 Annunci Recenti</h2>
-        </div>
-
-        <div class="annuncio">
-            <div class="annuncio-icon sell">🏠</div>
-            <div class="annuncio-content">
-                <h4>Cerco inquilino per stanza — Appartamento 3 locali</h4>
-                <p>Villa Verde, zona nord · 400€/mese · disponibile da settembre</p>
-            </div>
-            <div class="annuncio-price">400€</div>
-        </div>
-        <div class="annuncio">
-            <div class="annuncio-icon buy">📱</div>
-            <div class="annuncio-content">
-                <h4>Compro PlayStation 5 usata — anche con difetti</h4>
-                <p>Qualsiasi stato · Ritiro a mano · Budget max 300€</p>
-            </div>
-            <div class="annuncio-price">300€</div>
-        </div>
-        <div class="annuncio">
-            <div class="annuncio-icon free">🎁</div>
-            <div class="annuncio-content">
-                <h4>Regalo divanetto bambino — fatto appena 2 mesi</h4>
-                <p>Ritiro a mano · Basso是自ridotto · Villa Verde zona nord</p>
-            </div>
-            <div class="annuncio-price">Gratis</div>
-        </div>
-        <div class="annuncio">
-            <div class="annuncio-icon sell">🔧</div>
-            <div class="annuncio-content">
-                <h4>Offerta: idraulico per piccoli lavori — prezzi onesti</h4>
-                <p>Disponibile anche per emergenze · 10 anni esperienza · riferimento disponibili</p>
-            </div>
-            <div class="annuncio-price">Su richiesta</div>
-        </div>
-    </div>
-
-    <div class="mobile-nav">
-        <div class="mobile-nav-items">
-            <a href="landing-4-warm.html" class="mobile-nav-item"><span class="icon">🏠</span>Home</a>
-            <a href="landing-b1-forum.html" class="mobile-nav-item"><span class="icon">💬</span>Forum</a>
-            <a href="#" class="mobile-nav-item active"><span class="icon">📰</span>News</a>
-            <a href="landing-c3-events.html" class="mobile-nav-item"><span class="icon">🎉</span>Eventi</a>
-            <a href="landing-profile-matteo.html" class="mobile-nav-item"><span class="icon">👤</span>Profilo</a>
-        </div>
-    </div>
-
-    <footer>© 2026 Bisiacaria.com · News & annunci del tuo quartiere ✦</footer><script>
-
-
-        document.getElementById('hamburger').addEventListener('click', function(e) {
-            e.preventDefault();
-            this.classList.toggle('open');
-            document.getElementById('nav-center').classList.toggle('open');
-            document.getElementById('nav-overlay').classList.toggle('open');
-        });
-        document.getElementById('nav-overlay').addEventListener('click', function() {
-            document.getElementById('hamburger').classList.remove('open');
-            document.getElementById('nav-center').classList.remove('open');
-            document.getElementById('nav-overlay').classList.remove('open');
-        });
-
     </script>
+</head>
+<body class="bg-zinc-950 text-zinc-200 font-sans antialiased">
+<div class="min-h-screen">
+        <header class="fixed top-0 left-0 right-0 z-[200] flex items-center justify-between px-4 py-3 md:px-6 lg:px-8 bg-zinc-950 border-b border-zinc-800">
+            <a href="index.html" class="flex items-center gap-1 text-[1.05rem] font-bold tracking-tight">
+                <span class="text-white">Bisiacaria</span><span class="text-yellow-400">.com</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-6 lg:gap-8">
+                <a href="landing-4-warm.html" data-page="home" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Home</a>
+                <a href="landing-b1-forum.html" data-page="forum" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Forum</a>
+                <a href="landing-b2-mercato.html" data-page="mercato" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Mercatino</a>
+                <a href="landing-b3-news.html" data-page="news" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">News</a>
+                <a href="landing-b4-groups.html" data-page="gruppi" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Gruppi</a>
+                <a href="landing-b5-directory.html" data-page="directory" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Directory</a>
+                <a href="landing-b6-drawer.html" data-page="layout" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Layout</a>
+                <a href="landing-c1-community.html" data-page="community" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Community</a>
+                <a href="landing-c3-events.html" data-page="events" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Eventi</a>
+                <a href="signup.html" class="inline-flex items-center justify-center bg-yellow-400 text-black font-semibold text-sm px-6 py-2 rounded-full transition-all hover:bg-zinc-900 hover:text-yellow-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 min-h-[2.75rem]">Esci</a>
+            </nav>
+            <button class="md:hidden hamburger w-9 h-9 flex flex-col items-center justify-center gap-[5px] bg-transparent" id="hamburger" aria-label="Menu">
+                <span class="hamburger-line block w-5 h-[2px] bg-zinc-900 rounded-full transition-transform duration-200 ease-out"></span>
+                <span class="hamburger-line block w-5 h-[2px] bg-zinc-900 rounded-full transition-opacity duration-200 ease-out"></span>
+                <span class="hamburger-line block w-5 h-[2px] bg-zinc-900 rounded-full transition-transform duration-200 ease-out"></span>
+            </button>
+        </header>
+        <div class="hidden md:flex mobile-menu absolute top-16 left-0 right-0 bottom-0 overflow-y-auto bg-zinc-950/98 backdrop-blur-lg z-[199]" id="mobile-menu">
+            <div class="flex flex-col p-4 gap-2">
+                <a href="landing-4-warm.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="home">Home</a>
+                <a href="landing-b1-forum.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="forum">Forum</a>
+                <a href="landing-b2-mercato.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="mercato">Mercatino</a>
+                <a href="landing-b3-news.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="news">News</a>
+                <a href="landing-b4-groups.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="gruppi">Gruppi</a>
+                <a href="landing-b5-directory.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="directory">Directory</a>
+                <a href="landing-b6-drawer.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="layout">Layout</a>
+                <a href="landing-c1-community.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="community">Community</a>
+                <a href="landing-c3-events.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="events">Eventi</a>
+                <a href="settings.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="settings">Impostazioni</a>
+                <a href="signup.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="signup">Esci</a>
+            </div>
+        </div>
+        <div class="hidden md:hidden mobile-overlay absolute top-16 left-0 right-0 bottom-0 bg-black/40 z-[198]" id="mobile-overlay"></div>
+    <!-- Hero -->
+    <section class="pt-40 pb-16 lg:pt-48 lg:pb-20">
+        <div class="px-4 md:px-6 lg:px-8 max-w-[72rem] mx-auto">
+            <p class="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold tracking-wider text-yellow-400 uppercase bg-zinc-900 rounded-full mb-6">
+                <span class="w-1.5 h-1.5 bg-yellow-400 rounded-full"></span>News del quartiere
+            </p>
+            <h1 class="text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] font-extrabold tracking-tight leading-[1.08] mb-6 max-w-[48ch]">
+                Tutto ciò che <span class="text-yellow-400">suce</span> nel quartiere
+            </h1>
+            <p class="text-lg md:text-xl leading-relaxed text-zinc-300 mb-10 max-w-[52ch]">
+                Le ultime notizie del quartiere, eventi, avvisi comunali e servizi utili. Tutto quello che succede, in un unico stream.
+            </p>
+            <a href="#" class="inline-flex items-center justify-center bg-yellow-400 text-black font-semibold text-sm px-6 py-3 rounded-full transition-all hover:bg-zinc-900 hover:text-yellow-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 min-h-[2.75rem]">Leggi le news</a>
+        </div>
+    </section>
+    <hr class="mx-4 md:mx-6 lg:mx-8 max-w-[72rem] border-t-2 border-zinc-900">
+
+    <!-- News Grid -->
+    <section class="max-w-[72rem] mx-auto px-4 md:px-6 lg:px-8 py-16">
+        <div class="pt-4 pb-12">
+            <p class="text-xs font-semibold tracking-wider text-zinc-500 uppercase mb-2">Ultime</p>
+            <h2 class="text-[1.75rem] md:text-[2rem] font-bold tracking-tight leading-tight mb-2 max-w-[40ch]">Le news più recenti</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[72rem] mx-auto">
+            <div class="news-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
+                <div class="news-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🏗️</div>
+                <h3 class="text-lg font-bold tracking-tight mb-2">Lavori in corso</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Chiusura temporanea della via Roma per lavori di ristrutturazione del marciapiede. Dritto il cantiere.</p>
+                <div class="news-meta flex items-center justify-between text-xs text-zinc-500">
+                    <span>12 Giu 2026</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Pubblicato</span>
+                </div>
+            </div>
+            <div class="news-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
+                <div class="news-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🚌</div>
+                <h3 class="text-lg font-bold tracking-tight mb-2">Nuova linea autobus</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed mb-4">La città aggiunge la linea 42 che collega il quartiere al centro in 12 minuti. Ultimo aggiornamento per i pendolari.</p>
+                <div class="news-meta flex items-center justify-between text-xs text-zinc-500">
+                    <span>10 Giu 2026</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Pubblicato</span>
+                </div>
+            </div>
+            <div class="news-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
+                <div class="news-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🌳</div>
+                <h3 class="text-lg font-bold tracking-tight mb-2">Nuovo parco giochi</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Inaugurato il parco giochi "I girasoli" con area attrezzata per bimbi e spazio per gli adulti.</p>
+                <div class="news-meta flex items-center justify-between text-xs text-zinc-500">
+                    <span>8 Giu 2026</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Pubblicato</span>
+                </div>
+            </div>
+            <div class="news-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
+                <div class="news-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🔒</div>
+                <h3 class="text-lg font-bold tracking-tight mb-2">Sicurezza</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Nuove telecamere di sorveglianza installate lungo via Milano. Aumento sicurezza percepita del 30%.</p>
+                <div class="news-meta flex items-center justify-between text-xs text-zinc-500">
+                    <span>5 Giu 2026</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Pubblicato</span>
+                </div>
+            </div>
+            <div class="news-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
+                <div class="news-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">💡</div>
+                <h3 class="text-lg font-bold tracking-tight mb-2">Illuminazione LED</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Completato il piano di illuminazione LED del quartiere. Riduzione consumi del 40% e più luce sulle strade.</p>
+                <div class="news-meta flex items-center justify-between text-xs text-zinc-500">
+                    <span>2 Giu 2026</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Pubblicato</span>
+                </div>
+            </div>
+            <div class="news-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
+                <div class="news-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🏥</div>
+                <h3 class="text-lg font-bold tracking-tight mb-2">Nuovo ambulatorio</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Aperto il nuovo ambulatorio di quartiere con medico di base, pediatra e guardia medica 24/7.</p>
+                <div class="news-meta flex items-center justify-between text-xs text-zinc-500">
+                    <span>30 Mag 2026</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Pubblicato</span>
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="flex flex-wrap items-center justify-between gap-3 px-6 lg:px-8 py-8 border-t border-zinc-800">
+            <span class="text-sm text-zinc-500">&copy; 2026 Bisiacaria.com &middot; La community del tuo quartiere</span>
+            <div class="flex gap-5">
+                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors">Privacy</a>
+                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors">Termini</a>
+                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors">Contatti</a>
+            </div>
+        </footer>
+</div>
+        <style>
+            .hamburger.open .hamburger-line:first-child { transform: rotate(45deg) translate(5px, 5px); }
+            .hamburger.open .hamburger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+            .hamburger.open .hamburger-line:last-child { transform: rotate(-45deg) translate(5px, -5px); }
+            .nav-link.active, .mobile-nav-link.active { color: #facc15; }
+            @media (max-width: 768px) { .mobile-menu { display: flex; } .mobile-menu.hidden { display: none; } }
+        </style>
+        <script>
+            (function() {
+                var hamburger = document.getElementById('hamburger');
+                var menu = document.getElementById('mobile-menu');
+                var overlay = document.getElementById('mobile-overlay');
+                function toggleMenu() {
+                    var open = menu.classList.contains('hidden');
+                    if (open) { hamburger.classList.add('open'); menu.classList.remove('hidden'); overlay.classList.remove('hidden'); }
+                    else { hamburger.classList.remove('open'); menu.classList.add('hidden'); overlay.classList.add('hidden'); }
+                }
+                hamburger.addEventListener('click', toggleMenu);
+                overlay.addEventListener('click', toggleMenu);
+            })();
+        </script>
 </body>
 </html>

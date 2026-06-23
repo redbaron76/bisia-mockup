@@ -3,236 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bisiacaria.com — Gruppi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --black: #0a0a0c; --gray-950: #0f0f12; --gray-900: #16161a;
-            --gray-800: #1e1e24; --gray-700: #2a2a32; --gray-600: #3a3a44;
-            --gray-400: #888890; --gray-300: #aaaab2; --white: #fff;
-            --accent: #ffcc00; --accent-light: rgba(255,204,0,0.1);
-            --green: #22c55e; --blue: #3b82f6; --pink: #ec4899;
-            --purple: #a855f7; --orange: #f97316; --teal: #14b8a6;
+    <title>Gruppi — Bisiacaria.com</title>
+    <meta name="description" content="Gruppi di interesse nel quartiere Bisiacaria: dog lovers, club del libro, running.">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                },
+            },
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--black); color: var(--white); }
-
-        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,12,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--gray-800); }
-        .nav-logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.2rem; text-decoration: none; display: flex; align-items: center; }
-        .nav-logo .brand { color: var(--white); }
-        .nav-logo .dot { color: var(--accent); }
-        
-        .nav-center a { color: var(--gray-400); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
-        .nav-center a:hover { color: var(--white); }
-        .nav-center a.active { color: var(--accent); }
-        .nav-right { display: flex; gap: 0.75rem; align-items: center; }
-
-        .btn { padding: 0.5rem 1.2rem; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; font-family: inherit; }
-        .btn-soft { background: var(--gray-800); color: var(--white); border: 1px solid var(--gray-700); }
-        .btn-fill { background: var(--accent); color: var(--black); }
-        .avatar { border-radius: 50%; object-fit: cover; border: 2px solid var(--gray-700); }
-
-        .page { padding-top: 5rem; max-width: 1100px; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; padding-bottom: 3rem; }
-
-        .page-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
-        .page-header h1 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 700; }
-        .page-header h1 small { font-size: 0.9rem; color: var(--gray-400); font-weight: 400; display: block; }
-
-        /* MY GROUPS */
-        .my-groups { display: flex; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
-        .my-group { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 14px; padding: 1.25rem; flex: 1; min-width: 200px; max-width: 280px; cursor: pointer; transition: all 0.3s; }
-        .my-group:hover { border-color: var(--gray-600); }
-        .my-group-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
-        .my-group h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
-        .my-group p { font-size: 0.78rem; color: var(--gray-400); }
-        .my-group .members { font-size: 0.72rem; color: var(--gray-500); margin-top: 0.5rem; }
-
-        /* GROUP GRID */
-        .groups-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
-        .group-card { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 14px; padding: 1.5rem; transition: all 0.3s; cursor: pointer; }
-        .group-card:hover { border-color: var(--gray-600); }
-        .group-card-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
-        .group-card-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
-        .group-card-icon.blue { background: rgba(59,130,246,0.15); }
-        .group-card-icon.green { background: rgba(34,197,94,0.15); }
-        .group-card-icon.orange { background: rgba(249,115,22,0.15); }
-        .group-card-icon.purple { background: rgba(168,85,247,0.15); }
-        .group-card-icon.pink { background: rgba(236,72,153,0.15); }
-        .group-card h3 { font-size: 1rem; font-weight: 600; }
-        .group-card .desc { font-size: 0.85rem; color: var(--gray-400); margin-bottom: 1rem; line-height: 1.5; }
-        .group-card .members { display: flex; align-items: center; gap: 0.5rem; }
-        .group-card .avatars-stack { display: flex; }
-        .group-card .avatars-stack img { width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--gray-900); margin-left: -8px; }
-        .group-card .avatars-stack img:first-child { margin-left: 0; }
-        .group-card .member-count { font-size: 0.75rem; color: var(--gray-500); }
-
-        footer { padding: 2.5rem 2rem; text-align: center; border-top: 1px solid var(--gray-800); color: var(--gray-600); font-size: 0.85rem; }
-        .mobile-nav { display: none; position: fixed; bottom: 0; width: 100%; z-index: 100; background: rgba(10,10,12,0.95); backdrop-filter: blur(20px); border-top: 1px solid var(--gray-800); padding: 0.5rem 0; }
-        .mobile-nav-items { display: flex; justify-content: space-around; }
-        .mobile-nav-item { display: flex; flex-direction: column; align-items: center; gap: 0.15rem; color: var(--gray-400); text-decoration: none; font-size: 0.6rem; }
-        .mobile-nav-item .icon { font-size: 1.1rem; }
-        .mobile-nav-item.active { color: var(--accent); }
-        .hamburger { display: none; width: 36px; height: 36px; border: none; background: transparent; cursor: pointer; flex-direction: column; justify-content: center; align-items: center; gap: 5px; transition: opacity 0.2s;}
-        .hamburger span { display: block; width: 20px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s ease; transform-origin: center; }
-        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0);}
-        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-        .nav-overlay { position: fixed; top: 60px; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
-        .nav-overlay.open { opacity: 1; pointer-events: auto; }
-
-        @media (min-width: 1025px) {
-            .hamburger { display: none; }
-            .nav-center { position: static; flex-direction: row; background: transparent; border-bottom: none; padding: 0; transform: none; pointer-events: auto; display: flex; gap: 1.5rem; align-items: center; }
-            .nav-center a { padding: 0; border-bottom: none; font-size: 0.9rem; }
-            .nav-overlay { display: none; }
-        }        @media (max-width: 1024px) {
-            .nav-center { position: fixed; top: 60px; left: 0; right: 0; bottom: 0; height: calc(100vh - 60px); -webkit-overflow-scrolling: touch; background: rgba(10,10,12,0.98); backdrop-filter: blur(20px); display: flex; flex-direction: column; gap: 0.5rem; padding: 1.25rem 1.5rem; overflow-y: auto; transform: translateY(-110%); transition: transform 0.3s ease; pointer-events: none; opacity: 0; }
-            .nav-center.open { transform: translateY(0); pointer-events: auto; opacity: 1; }
-            .nav-center a { color: var(--gray-300); text-decoration: none; font-size: 1rem; font-weight: 500; padding: 0.6rem 0; border-bottom: 1px solid var(--gray-800); transition: color 0.2s; }
-            .nav-center a:hover { color: var(--white); }
-            .nav-center a.active { color: var(--accent); }
-        }
-
-        @media (max-width: 768px) {.hamburger { display: flex; } .nav-overlay { display: block; }  .hamburger { display: flex; } .nav-overlay { display: block; } .hamburger { display: flex; } .nav-overlay { display: block; } .page { padding-left: 1rem; padding-right: 1rem; padding-bottom: 5rem; } }
-        @media (max-width: 600px) { .mobile-nav { display: block; } }
-    </style>
-</head>
-<body>
-    <nav>
-        <a href="index.html" class="nav-logo"><span class="brand">Bisiacaria</span><span class="dot">.com</span>
-        </a>
-        <div class="nav-center" id="nav-center">
-            <a href="landing-4-warm.html">Home</a>
-            <a href="landing-b1-forum.html">Forum</a>
-            <a href="landing-b2-mercato.html">Mercatino</a>
-            <a href="landing-b3-news.html">News</a>
-            <a href="landing-b4-groups.html">Gruppi</a>
-            <a href="landing-b5-directory.html">Directory</a>
-            <a href="landing-b6-drawer.html">Layout</a>
-            <a href="landing-c1-community.html">Community</a>
-            <a href="landing-c3-events.html">Eventi</a>
-            <a href="landing-profile-matteo.html">Profilo</a>
-            <a href="settings.html">Impostazioni</a>
-            <a href="signup.html">Esci</a>
-        </div>
-        <div class="nav-right">
-            <a class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></a>
-        </div>
-    </nav>
-    <div class="nav-overlay" id="nav-overlay"></div>
-
-    <div class="page">
-        <div class="page-header">
-            <h1>Gruppi<small>Unisciti o crea un gruppo tematico</small></h1>
-        </div>
-
-        <div class="my-groups">
-            <div class="my-group">
-                <div class="my-group-icon">🍕</div>
-                <h3>Amici del Pane</h3>
-                <p>Chi si riunisce per pizza ogni venerdì</p>
-                <div class="members">👥 24 membri</div>
-            </div>
-            <div class="my-group">
-                <div class="my-group-icon">🏃</div>
-                <h3>Running Villa Verde</h3>
-                <p>Giri mattutini e percorrenza inferiore</p>
-                <div class="members">👥 67 membri</div>
-            </div>
-            <div class="my-group">
-                <div class="my-group-icon">📚</div>
-                <h3>Club del Libro</h3>
-                <p>Discutiamo un libro al mese</p>
-                <div class="members">👥 18 membri</div>
-            </div>
-        </div>
-
-        <h2 style="font-family:'Outfit',sans-serif; font-size:1.2rem; font-weight:600; margin-bottom:1rem;">🔥 Gruppi in evidenza</h2>
-
-        <div class="groups-grid">
-            <div class="group-card">
-                <div class="group-card-header">
-                    <div class="group-card-icon blue">🎸</div>
-                    <h3>Musicisti del Quartiere</h3>
-                </div>
-                <p class="desc">Suoniamo, ci scambiamo strumenti e organizziamo serate musicali. Tutti i livelli welcome!</p>
-                <div class="members">
-                    <div class="avatars-stack"><img src="https://i.pravatar.cc/48?img=1" alt=""><img src="https://i.pravatar.cc/48?img=2" alt=""><img src="https://i.pravatar.cc/48?img=3" alt=""></div>
-                    <span class="member-count">+142 membri</span>
-                </div>
-            </div>
-            <div class="group-card">
-                <div class="group-card-header">
-                    <div class="group-card-icon green">🌱</div>
-                    <h3>Orto Urbano</h3>
-                </div>
-                <p class="desc">Condividiamo semi, ricette e risultati del nostro orto condiviso in piazza.</p>
-                <div class="members">
-                    <div class="avatars-stack"><img src="https://i.pravatar.cc/48?img=4" alt=""><img src="https://i.pravatar.cc/48?img=5" alt=""><img src="https://i.pravatar.cc/48?img=6" alt=""></div>
-                    <span class="member-count">+89 membri</span>
-                </div>
-            </div>
-            <div class="group-card">
-                <div class="group-card-header">
-                    <div class="group-card-icon orange">⚽</div>
-                    <h3>Calcetto Sabato</h3>
-                </div>
-                <p class="desc">Partite amichevoli ogni sabato mattina al campo comunale. Si gira.</p>
-                <div class="members">
-                    <div class="avatars-stack"><img src="https://i.pravatar.cc/48?img=7" alt=""><img src="https://i.pravatar.cc/48?img=8" alt=""><img src="https://i.pravatar.cc/48?img=9" alt=""></div>
-                    <span class="member-count">+56 membri</span>
-                </div>
-            </div>
-            <div class="group-card">
-                <div class="group-card-header">
-                    <div class="group-card-icon purple">🎮</div>
-                    <h3>Gaming Night</h3>
-                </div>
-                <p class="desc">Giochi da tavolo, video games, tornei. Giovedì sera al bar sotto casa.</p>
-                <div class="members">
-                    <div class="avatars-stack"><img src="https://i.pravatar.cc/48?img=10" alt=""><img src="https://i.pravatar.cc/48?img=11" alt=""><img src="https://i.pravatar.cc/48?img=12" alt=""></div>
-                    <span class="member-count">+73 membri</span>
-                </div>
-            </div>
-            <div class="group-card">
-                <div class="group-card-header">
-                    <div class="group-card-icon pink">🧁</div>
-                    <h3>Pasticciotti & Caffè</h3>
-                </div>
-                <p class="desc">Ricette, incontri e ricette. Tutti impastano, tutti assaggiano.</p>
-                <div class="members">
-                    <div class="avatars-stack"><img src="https://i.pravatar.cc/48?img=13" alt=""><img src="https://i.pravatar.cc/48?img=14" alt=""><img src="https://i.pravatar.cc/48?img=15" alt=""></div>
-                    <span class="member-count">+104 membri</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="mobile-nav">
-        <div class="mobile-nav-items">
-            <a href="landing-4-warm.html" class="mobile-nav-item"><span class="icon">🏠</span>Home</a>
-            <a href="landing-b1-forum.html" class="mobile-nav-item"><span class="icon">💬</span>Forum</a>
-            <a href="#" class="mobile-nav-item active"><span class="icon">👥</span>Gruppi</a>
-            <a href="#" class="mobile-nav-item"><span class="icon">+</span>Crea</a>
-            <a href="landing-profile-matteo.html" class="mobile-nav-item"><span class="icon">👤</span>Profilo</a>
-        </div>
-    </div>
-
-    <footer>© 2026 Bisiacaria.com · I gruppi del tuo quartiere ✦</footer><script>
-
-
-        document.getElementById('hamburger').addEventListener('click', function(e) {
-            e.preventDefault();
-            this.classList.toggle('open');
-            document.getElementById('nav-center').classList.toggle('open');
-            document.getElementById('nav-overlay').classList.toggle('open');
-        });
-        document.getElementById('nav-overlay').addEventListener('click', function() {
-            document.getElementById('hamburger').classList.remove('open');
-            document.getElementById('nav-center').classList.remove('open');
-            document.getElementById('nav-overlay').classList.remove('open');
-        });
-
     </script>
+</head>
+<body class="bg-zinc-950 text-zinc-200 font-sans antialiased">
+<div class="min-h-screen">
+        <header class="fixed top-0 left-0 right-0 z-[200] flex items-center justify-between px-4 py-3 md:px-6 lg:px-8 bg-zinc-950 border-b border-zinc-800">
+            <a href="index.html" class="flex items-center gap-1 text-[1.05rem] font-bold tracking-tight">
+                <span class="text-white">Bisiacaria</span><span class="text-yellow-400">.com</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-6 lg:gap-8">
+                <a href="landing-4-warm.html" data-page="home" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Home</a>
+                <a href="landing-b1-forum.html" data-page="forum" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Forum</a>
+                <a href="landing-b2-mercato.html" data-page="mercato" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Mercatino</a>
+                <a href="landing-b3-news.html" data-page="news" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">News</a>
+                <a href="landing-b4-groups.html" data-page="gruppi" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Gruppi</a>
+                <a href="landing-b5-directory.html" data-page="directory" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Directory</a>
+                <a href="landing-b6-drawer.html" data-page="layout" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Layout</a>
+                <a href="landing-c1-community.html" data-page="community" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Community</a>
+                <a href="landing-c3-events.html" data-page="events" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Eventi</a>
+                <a href="signup.html" class="inline-flex items-center justify-center bg-yellow-400 text-black font-semibold text-sm px-6 py-2 rounded-full transition-all hover:bg-zinc-900 hover:text-yellow-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 min-h-[2.75rem]">Esci</a>
+            </nav>
+            <button class="md:hidden hamburger w-9 h-9 flex flex-col items-center justify-center gap-[5px] bg-transparent" id="hamburger" aria-label="Menu">
+                <span class="hamburger-line block w-5 h-[2px] bg-zinc-900 rounded-full transition-transform duration-200 ease-out"></span>
+                <span class="hamburger-line block w-5 h-[2px] bg-zinc-900 rounded-full transition-opacity duration-200 ease-out"></span>
+                <span class="hamburger-line block w-5 h-[2px] bg-zinc-900 rounded-full transition-transform duration-200 ease-out"></span>
+            </button>
+        </header>
+        <div class="hidden md:flex mobile-menu absolute top-16 left-0 right-0 bottom-0 overflow-y-auto bg-zinc-950/98 backdrop-blur-lg z-[199]" id="mobile-menu">
+            <div class="flex flex-col p-4 gap-2">
+                <a href="landing-4-warm.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="home">Home</a>
+                <a href="landing-b1-forum.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="forum">Forum</a>
+                <a href="landing-b2-mercato.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="mercato">Mercatino</a>
+                <a href="landing-b3-news.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="news">News</a>
+                <a href="landing-b4-groups.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="gruppi">Gruppi</a>
+                <a href="landing-b5-directory.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="directory">Directory</a>
+                <a href="landing-b6-drawer.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="layout">Layout</a>
+                <a href="landing-c1-community.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="community">Community</a>
+                <a href="landing-c3-events.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="events">Eventi</a>
+                <a href="settings.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="settings">Impostazioni</a>
+                <a href="signup.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="signup">Esci</a>
+            </div>
+        </div>
+        <div class="hidden md:hidden mobile-overlay absolute top-16 left-0 right-0 bottom-0 bg-black/40 z-[198]" id="mobile-overlay"></div>
+    <!-- Hero -->
+    <section class="pt-40 pb-16 lg:pt-48 lg:pb-20">
+        <div class="px-4 md:px-6 lg:px-8 max-w-[72rem] mx-auto">
+            <p class="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold tracking-wider text-yellow-400 uppercase bg-zinc-900 rounded-full mb-6">
+                <span class="w-1.5 h-1.5 bg-yellow-400 rounded-full"></span>Gruppi del quartiere
+            </p>
+            <h1 class="text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] font-extrabold tracking-tight leading-[1.08] mb-6 max-w-[48ch]">
+                Trova il tuo <span class="text-yellow-400">gruppo</span>
+            </h1>
+            <p class="text-lg md:text-xl leading-relaxed text-zinc-300 mb-10 max-w-[52ch]">
+                Gruppi di interesse nel quartiere. Dog lovers, club del libro, musicisti, running — trova i tuoi simili.
+            </p>
+            <a href="#" class="inline-flex items-center justify-center bg-yellow-400 text-black font-semibold text-sm px-6 py-3 rounded-full transition-all hover:bg-zinc-900 hover:text-yellow-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 min-h-[2.75rem]">Esplora i gruppi</a>
+        </div>
+    </section>
+    <hr class="mx-4 md:mx-6 lg:mx-8 max-w-[72rem] border-t-2 border-zinc-900">
+
+    <!-- Groups Grid -->
+    <section class="max-w-[72rem] mx-auto px-4 md:px-6 lg:px-8 py-16">
+        <div class="pt-4 pb-12">
+            <p class="text-xs font-semibold tracking-wider text-zinc-500 uppercase mb-2">Iscriviti</p>
+            <h2 class="text-[1.75rem] md:text-[2rem] font-bold tracking-tight leading-tight mb-2 max-w-[40ch]">I gruppi più attivi</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[72rem] mx-auto">
+            <div class="group-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
+                <div class="group-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🐕</div>
+                <h3 class="text-lg font-bold tracking-tight mb-2">Dog Lovers</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Uscite nel parco, consigli veterinari, passeggiate di gruppo per il cane.</p>
+                <div class="group-meta flex items-center justify-between text-xs text-zinc-500">
+                    <span>89 membri</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Attivo</span>
+                </div>
+            </div>
+            <div class="group-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
+                <div class="group-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">📖</div>
+                <h3 class="text-lg font-bold tracking-tight mb-2">Club del Libro</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Incontro mensile per discutere un libro. Rotazione della sede tra i membri.</p>
+                <div class="group-meta flex items-center justify-between text-xs text-zinc-500">
+                    <span>34 membri</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Attivo</span>
+                </div>
+            </div>
+            <div class="group-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
+                <div class="group-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🎸</div>
+                <h3 class="text-lg font-bold tracking-tight mb-2">Musicisti</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Prove, jam session, concerti di quartiere. Dai principianti ai professionisti.</p>
+                <div class="group-meta flex items-center justify-between text-xs text-zinc-500">
+                    <span>56 membri</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Attivo</span>
+                </div>
+            </div>
+            <div class="group-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
+                <div class="group-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🍳</div>
+                <h3 class="text-lg font-bold tracking-tight mb-2">Cucina Quotidiana</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Ricette, tutorial, cene collettive. I sapori del quartiere mescolati.</p>
+                <div class="group-meta flex items-center justify-between text-xs text-zinc-500">
+                    <span>72 membri</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Attivo</span>
+                </div>
+            </div>
+            <div class="group-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
+                <div class="group-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🏃</div>
+                <h3 class="text-lg font-bold tracking-tight mb-2">Running Club</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Uscite mattiniere nel quartiere, maratone insieme. Tutti i livelli.</p>
+                <div class="group-meta flex items-center justify-between text-xs text-zinc-500">
+                    <span>103 membri</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Attivo</span>
+                </div>
+            </div>
+            <div class="group-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
+                <div class="group-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🌿</div>
+                <h3 class="text-lg font-bold tracking-tight mb-2">Orto di Quartiere</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Orto comune con ortaggi e fiori. Coltiva e condividi il raccolto.</p>
+                <div class="group-meta flex items-center justify-between text-xs text-zinc-500">
+                    <span>45 membri</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Attivo</span>
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="flex flex-wrap items-center justify-between gap-3 px-6 lg:px-8 py-8 border-t border-zinc-800">
+            <span class="text-sm text-zinc-500">&copy; 2026 Bisiacaria.com &middot; La community del tuo quartiere</span>
+            <div class="flex gap-5">
+                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors">Privacy</a>
+                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors">Termini</a>
+                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors">Contatti</a>
+            </div>
+        </footer>
+</div>
+        <style>
+            .hamburger.open .hamburger-line:first-child { transform: rotate(45deg) translate(5px, 5px); }
+            .hamburger.open .hamburger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+            .hamburger.open .hamburger-line:last-child { transform: rotate(-45deg) translate(5px, -5px); }
+            .nav-link.active, .mobile-nav-link.active { color: #facc15; }
+            @media (max-width: 768px) { .mobile-menu { display: flex; } .mobile-menu.hidden { display: none; } }
+        </style>
+        <script>
+            (function() {
+                var hamburger = document.getElementById('hamburger');
+                var menu = document.getElementById('mobile-menu');
+                var overlay = document.getElementById('mobile-overlay');
+                function toggleMenu() {
+                    var open = menu.classList.contains('hidden');
+                    if (open) { hamburger.classList.add('open'); menu.classList.remove('hidden'); overlay.classList.remove('hidden'); }
+                    else { hamburger.classList.remove('open'); menu.classList.add('hidden'); overlay.classList.add('hidden'); }
+                }
+                hamburger.addEventListener('click', toggleMenu);
+                overlay.addEventListener('click', toggleMenu);
+            })();
+        </script>
 </body>
 </html>
