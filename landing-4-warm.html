@@ -2,249 +2,1026 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bisiacaria.com — Landing Page Calda</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Bisiacaria.com — La community del tuo quartiere</title>
+    <meta name="description" content="Bisiacaria.com è la piattaforma dove vicini si scambiano idee, informazioni e avvenimenti del quartiere.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        /* Hallmark · macrostructure: Long Document · genre: editorial · theme: Bloom
+         * tone: warm community · anchor hue: oklch(62% 0.15 82) golden
+         * display: Bricolage Grotesque 700 · body: Newsreader 400 · outlier: Geist Mono 400
+         * paper: oklch(87% 0.012 82) · accent: oklch(62% 0.15 82) golden
+         * keywords: editorial-01 · audience=neighbors · use=join-community · prose-led
+         */
+
+        /* ── Tokens ───────────────────────────────────── */
         :root {
-            --black: #0a0a0c; --gray-950: #0f0f12; --gray-900: #16161a;
-            --gray-800: #1e1e24; --gray-700: #2a2a32; --gray-600: #3a3a44;
-            --gray-400: #888890; --gray-300: #aaaab2; --white: #fff;
-            --accent: #ffcc00; --accent-light: rgba(255,204,0,0.1);
-            --green: #22c55e; --blue: #3b82f6; --pink: #ec4899;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--black); color: var(--white); }
+            /* Paper band */
+            --color-paper:     oklch(87% 0.012 82);
+            --color-paper-2:   oklch(82% 0.014 82);
+            --color-paper-3:   oklch(75% 0.015 82);
 
-        /* NAV */
-        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; background: var(--bg-nav); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
-        .nav-logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.2rem; text-decoration: none; display: flex; align-items: center; }
-        .nav-logo .brand { color: var(--white); }
-        .nav-logo .dot { color: var(--accent); }
-        
-        .nav-center a { color: var(--gray-400); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
-        .nav-center a:hover { color: var(--white); }
-        .nav-center a.active { color: var(--accent); }
-        .nav-right { display: flex; gap: 0.75rem; align-items: center; }
+            /* Ink band */
+            --color-ink:       oklch(16% 0.012 82);
+            --color-ink-2:     oklch(32% 0.008 82);
+            --color-muted:     oklch(52% 0.006 82);
+            --color-neutral:   oklch(62% 0.008 82);
+            --color-rule:      oklch(72% 0.010 82);
+            --color-rule-2:    oklch(80% 0.008 82);
 
-        /* BUTTONS */
-        .btn { padding: 0.55rem 1.4rem; border-radius: 100px; font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; font-family: inherit; display: inline-flex; align-items: center; gap: 0.5rem; }
-        .btn-soft { background: var(--gray-800); color: var(--white); border: 1px solid var(--gray-700); }
-        .btn-soft:hover { background: var(--gray-700); }
-        .btn-fill { background: var(--accent); color: var(--black); }
-        .btn-fill:hover { background: var(--accent-hover); }
+            /* Accent — warm golden, max 3% surface */
+            --color-accent:    oklch(62% 0.15 82);
+            --color-accent-ink: oklch(16% 0.01 82);
+            --color-accent-soft: oklch(90% 0.012 82);
 
-        /* HERO */
-        .hero { padding: 9rem 2rem 4rem; text-align: center; position: relative; overflow: hidden; }
-        .hero::before { content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(255,204,0,0.06) 0%, transparent 60%); pointer-events: none; }
-        .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent-light); border: 1px solid rgba(255,204,0,0.2); padding: 0.5rem 1.2rem; border-radius: 100px; font-size: 0.85rem; color: var(--accent); margin-bottom: 2rem; }
-        h1 { font-family: 'Outfit', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.05; margin-bottom: 1.5rem; }
-        .gradient { background: linear-gradient(135deg, var(--accent) 0%, #ff9500 50%, #ff6b00 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .subtitle { font-size: 1.15rem; color: var(--gray-400); max-width: 520px; margin: 0 auto 2.5rem; }
-        .cta-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+            /* Focus */
+            --color-focus:     oklch(58% 0.20 82);
 
-        /* SECTIONS */
-        section { padding: 5rem 2rem; }
-        .section-header { text-align: center; margin-bottom: 3rem; }
-        .section-header h2 { font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .section-header p { color: var(--gray-400); }
+            /* Typography */
+            --font-display:    "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+            --font-body:       "Newsreader", ui-serif, Georgia, serif;
+            --font-outlier:    "Geist Mono", ui-monospace, monospace;
 
-        /* CARDS */
-        .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; max-width: 1100px; margin: 0 auto; }
-        .card { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 20px; padding: 2rem; transition: all 0.4s; }
-        .card:hover { border-color: var(--gray-600); transform: translateY(-4px); }
-        .card-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.25rem; background: var(--accent-light); border: 1px solid rgba(255,204,0,0.15); }
-        .card h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .card p { color: var(--gray-400); font-size: 0.9rem; line-height: 1.6; }
+            /* Scale — 1.25 major third */
+            --text-xs:   0.64rem;   /* 10.24 */
+            --text-sm:   0.8rem;    /* 12.8 */
+            --text-base: 1rem;      /* 16 */
+            --text-md:   1.25rem;   /* 20 */
+            --text-lg:   1.5625rem; /* 25 */
+            --text-xl:   1.9531rem; /* 31 */
+            --text-2xl:  2.4414rem;
+            --text-3xl:  3.0518rem;
+            --text-display: clamp(2.25rem, 4vw + 0.5rem, 4.5rem);
+            --text-display-s: clamp(1.75rem, 3vw + 0.5rem, 3rem);
 
-        /* STATS */
-        .stats { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
-        .stat { text-align: center; }
-        .stat .num { font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent); }
-        .stat .label { font-size: 0.85rem; color: var(--gray-400); margin-top: 0.25rem; }
+            /* Spacing — 4pt */
+            --space-3xs: 0.125rem;
+            --space-2xs: 0.25rem;
+            --space-xs:  0.5rem;
+            --space-sm:  0.75rem;
+            --space-md:  1rem;
+            --space-lg:  1.5rem;
+            --space-xl:  2.5rem;
+            --space-2xl: 4rem;
+            --space-3xl: 6rem;
+            --space-4xl: 9rem;
 
-        /* PRICING */
-        .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 900px; margin: 0 auto; }
-        .price-card { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 20px; padding: 2.5rem; position: relative; }
-        .price-card.featured { border-color: var(--accent); box-shadow: 0 0 40px rgba(255,204,0,0.08); }
-        .price-card.featured::before { content: 'Popolare'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--accent); color: var(--black); padding: 0.25rem 0.8rem; border-radius: 100px; font-size: 0.75rem; font-weight: 700; }
-        .price-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
-        .price-card .price { font-family: 'Outfit', sans-serif; font-size: 2.5rem; font-weight: 800; margin: 1rem 0; }
-        .price-card .price span { font-size: 0.9rem; font-weight: 400; color: var(--gray-400); }
-        .price-card ul { list-style: none; margin: 1.5rem 0; }
-        .price-card ul li { padding: 0.4rem 0; color: var(--gray-400); font-size: 0.9rem; }
-        .price-card ul li::before { content: '✓ '; color: var(--accent); font-weight: 700; }
-        .price-btn { display: block; text-align: center; background: var(--gray-800); color: var(--white); padding: 0.9rem; border-radius: 12px; font-weight: 600; text-decoration: none; transition: all 0.3s; border: 1px solid var(--gray-700); }
-        .price-btn:hover { background: var(--gray-700); }
-        .price-card.featured .price-btn { background: var(--accent); color: var(--black); border-color: var(--accent); }
+            /* Motion */
+            --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-in:   cubic-bezier(0.7, 0, 0.84, 0);
+            --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+            --dur-short: 220ms;
+            --dur-long:  420ms;
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-pill: 100px;
 
-        /* FOOTER */
-        footer { padding: 2.5rem 2rem; text-align: center; border-top: 1px solid var(--gray-800); color: var(--gray-600); font-size: 0.85rem; }
-
-        /* RESPONSIVE */
-        .hamburger { display: none; width: 36px; height: 36px; border: none; background: transparent; cursor: pointer; flex-direction: column; justify-content: center; align-items: center; gap: 5px; transition: opacity 0.2s;}
-        .hamburger span { display: block; width: 20px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s ease; transform-origin: center; }
-        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0);}
-        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-        .nav-overlay { position: fixed; top: 60px; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
-        .nav-overlay.open { opacity: 1; pointer-events: auto; }
-
-        @media (min-width: 1025px) {
-            .hamburger { display: none; }
-            .nav-center { position: static; flex-direction: row; background: transparent; border-bottom: none; padding: 0; transform: none; pointer-events: auto; display: flex; gap: 1.5rem; align-items: center; }
-            .nav-center a { padding: 0; border-bottom: none; font-size: 0.9rem; }
-            .nav-overlay { display: none; }
-        }        @media (max-width: 1024px) {
-            .nav-center { position: fixed; top: 60px; left: 0; right: 0; bottom: 0; height: calc(100vh - 60px); -webkit-overflow-scrolling: touch; background: rgba(10,10,12,0.98); backdrop-filter: blur(20px); display: flex; flex-direction: column; gap: 0.5rem; padding: 1.25rem 1.5rem; overflow-y: auto; transform: translateY(-110%); transition: transform 0.3s ease; pointer-events: none; opacity: 0; }
-            .nav-center.open { transform: translateY(0); pointer-events: auto; opacity: 1; }
-            .nav-center a { color: var(--gray-300); text-decoration: none; font-size: 1rem; font-weight: 500; padding: 0.6rem 0; border-bottom: 1px solid var(--gray-800); transition: color 0.2s; }
-            .nav-center a:hover { color: var(--white); }
-            .nav-center a.active { color: var(--accent); }
+            /* Z */
+            --z-base: 1;
+            --z-raised: 10;
+            --z-sticky: 200;
+            --z-overlay: 400;
         }
 
-        @media (max-width: 768px) { .hamburger { display: flex; } .nav-overlay { display: block; }
-            
-            .hero { padding: 7rem 1.5rem 3rem; }
-            .cards-grid, .pricing-grid { grid-template-columns: 1fr; }
-            .stats { gap: 1.5rem; }
+        /* ── Reset ────────────────────────────────────── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            overflow-x: clip;
+            scroll-behavior: smooth;
+        }
+        body {
+            overflow-x: clip;
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            line-height: 1.65;
+            color: var(--color-ink);
+            background: var(--color-paper);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ── Global typography ────────────────────────── */
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-style: normal;
+            letter-spacing: -0.025em;
+            line-height: 1.08;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        /* ── Container ────────────────────────────────── */
+        .page {
+            max-width: 72rem;
+            margin: 0 auto;
+            padding-inline: clamp(1rem, 4vw, 3.5rem);
+        }
+
+        /* ── Nav — N1b SaaS three-section ─────────────── */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: var(--z-sticky);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-sm) clamp(1rem, 4vw, 3.5rem);
+            background: var(--color-paper);
+            border-bottom: 1px solid var(--color-rule-2);
+        }
+
+        .nav__brand {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: var(--text-md);
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: baseline;
+            gap: 0;
+        }
+
+        .nav__brand .dot {
+            color: var(--color-accent);
+        }
+
+        .nav__links {
+            display: flex;
+            gap: var(--space-lg);
+            align-items: center;
+        }
+
+        .nav__link {
+            font-family: var(--font-display);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--color-muted);
+            transition: color var(--dur-short) var(--ease-out);
+            white-space: nowrap;
+        }
+
+        .nav__link:hover,
+        .nav__link:focus-visible {
+            color: var(--color-ink);
+        }
+
+        .nav__link.active {
+            color: var(--color-accent);
+        }
+
+        .nav__cta {
+            font-family: var(--font-display);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            padding: var(--space-xs) var(--space-sm);
+            background: var(--color-accent);
+            color: var(--color-accent-ink);
+            border-radius: var(--radius-pill);
+            transition: background-color var(--dur-short) var(--ease-out),
+                        transform 100ms var(--ease-out);
+            white-space: nowrap;
+        }
+
+        .nav__cta:hover,
+        .nav__cta:focus-visible {
+            background-color: var(--color-ink);
+            color: var(--color-paper);
+        }
+
+        .nav__cta:active {
+            transform: translateY(1px);
+        }
+
+        /* Mobile hamburger */
+        .nav__toggle {
+            display: none;
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav__toggle span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--color-ink);
+            border-radius: 2px;
+            transition: all var(--dur-short) var(--ease-out);
+            transform-origin: center;
+        }
+
+        .nav__toggle.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .nav__toggle.open span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .nav__toggle.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile nav */
+        .nav__sheet {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: calc(100vh - 60px);
+            -webkit-overflow-scrolling: touch;
+            background: oklch(87% 0.012 82 / 0.98);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+            padding: var(--space-lg);
+            overflow-y: auto;
+            transform: translateY(-110%);
+            transition: transform var(--dur-long) var(--ease-out);
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .nav__sheet.open {
+            transform: translateY(0);
+            pointer-events: auto;
+            opacity: 1;
+        }
+
+        .nav__sheet a {
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-weight: 500;
+            color: var(--color-ink-2);
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid var(--color-rule-2);
+            transition: color var(--dur-short) var(--ease-out);
+        }
+
+        .nav__sheet a:hover,
+        .nav__sheet a:focus-visible {
+            color: var(--color-ink);
+        }
+
+        .nav__sheet a.active {
+            color: var(--color-accent);
+        }
+
+        .nav__sheet-overlay {
+            position: fixed;
+            inset: 60px 0 0 0;
+            background: oklch(16% 0.012 82 / 0.25);
+            z-index: calc(var(--z-overlay) - 1);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--dur-short) var(--ease-out);
+        }
+
+        .nav__sheet-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Nav responsive */
+        @media (min-width: 60rem) {
+            .nav__toggle { display: none; }
+            .nav__sheet { display: none; }
+            .nav__sheet-overlay { display: none; }
+        }
+
+        @media (max-width: 60rem) {
+            .nav__links { display: none; }
+        }
+
+        @media (max-width: 40rem) {
+            .nav__toggle { display: flex; }
+        }
+
+        /* ── Focus ring — instant ─────────────────────── */
+        :focus-visible {
+            outline: 2px solid var(--color-focus);
+            outline-offset: 2px;
+        }
+
+        /* ── Section — hero ───────────────────────────── */
+        .hero {
+            padding-top: calc(60px + var(--space-4xl));
+            padding-bottom: var(--space-3xl);
+        }
+
+        .hero__eyebrow {
+            font-family: var(--font-outlier);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: var(--space-md);
+        }
+
+        .hero__head {
+            font-size: var(--text-display);
+            font-weight: 700;
+            margin-bottom: var(--space-lg);
+            max-width: 50ch;
+            overflow-wrap: anywhere;
+            min-width: 0;
+        }
+
+        .hero__head .accent {
+            color: var(--color-accent);
+        }
+
+        .hero__lede {
+            font-size: var(--text-lg);
+            line-height: 1.55;
+            color: var(--color-ink-2);
+            max-width: 56ch;
+            margin-bottom: var(--space-xl);
+        }
+
+        .hero__actions {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        /* ── Rules / dividers ─────────────────────────── */
+        .rule {
+            border: none;
+            height: 1px;
+            background: var(--color-rule);
+            margin: var(--space-2xl) 0;
+        }
+
+        .rule--thick {
+            height: 2px;
+            background: var(--color-ink);
+            margin: var(--space-3xl) 0;
+        }
+
+        /* ── CTA buttons ──────────────────────────────── */
+        .btn {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: var(--text-sm);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-pill);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            transition: background-color var(--dur-short) var(--ease-out),
+                        transform 100ms var(--ease-out);
+            white-space: nowrap;
+            min-height: 44px;
+        }
+
+        .btn--fill {
+            background: var(--color-accent);
+            color: var(--color-accent-ink);
+        }
+
+        .btn--fill:hover,
+        .btn--fill:focus-visible {
+            background-color: var(--color-ink);
+            color: var(--color-paper);
+        }
+
+        .btn--fill:active {
+            transform: translateY(1px);
+        }
+
+        .btn--ghost {
+            background: transparent;
+            color: var(--color-ink-2);
+            border: 1px solid var(--color-rule);
+        }
+
+        .btn--ghost:hover,
+        .btn--ghost:focus-visible {
+            color: var(--color-ink);
+            border-color: var(--color-ink-2);
+        }
+
+        .btn--ghost:active {
+            transform: translateY(1px);
+        }
+
+        /* ── Prose section ────────────────────────────── */
+        .prose {
+            max-width: 65ch;
+            margin: 0 auto;
+            padding: var(--space-2xl) 0;
+        }
+
+        .prose p {
+            margin-bottom: var(--space-lg);
+            color: var(--color-ink-2);
+        }
+
+        .prose p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ── Section head ─────────────────────────────── */
+        .sec-head {
+            padding-block: var(--space-3xl);
+        }
+
+        .sec-head__label {
+            font-family: var(--font-outlier);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--color-muted);
+            margin-bottom: var(--space-sm);
+        }
+
+        .sec-head__title {
+            font-size: var(--text-2xl);
+            max-width: 40ch;
+            margin-bottom: var(--space-md);
+        }
+
+        .sec-head__sub {
+            font-size: var(--text-md);
+            color: var(--color-ink-2);
+            max-width: 56ch;
+        }
+
+        /* ── Features — asymmetric pairs ──────────────── */
+        .features {
+            padding-block: var(--space-2xl);
+        }
+
+        .feature-pair {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-xl);
+            padding-block: var(--space-2xl);
+            border-bottom: 1px solid var(--color-rule-2);
+        }
+
+        .feature-pair:last-child {
+            border-bottom: none;
+        }
+
+        .feature-pair__text {
+            max-width: 48ch;
+        }
+
+        .feature-pair__title {
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-sm);
+        }
+
+        .feature-pair__desc {
+            color: var(--color-ink-2);
+            font-size: var(--text-base);
+        }
+
+        .feature-pair__visual {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+
+        /* Small decorative marks for features */
+        .feature-pair__mark {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            background: var(--color-accent-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-lg);
+            color: var(--color-accent);
+            margin-bottom: var(--space-md);
+            flex-shrink: 0;
+        }
+
+        /* ── Stats ────────────────────────────────────── */
+        .stats {
+            padding-block: var(--space-3xl);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: var(--space-2xl);
+            max-width: 80rem;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat__num {
+            font-family: var(--font-outlier);
+            font-size: var(--text-3xl);
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+            color: var(--color-accent);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .stat__label {
+            font-family: var(--font-display);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--color-muted);
+            margin-top: var(--space-xs);
+        }
+
+        /* ── Pricing — conversational row ─────────────── */
+        .pricing {
+            padding-block: var(--space-2xl);
+        }
+
+        .pricing-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-xl);
+        }
+
+        .price-card {
+            padding: var(--space-xl);
+            border: 1px solid var(--color-rule);
+            border-radius: var(--radius-md);
+            background: var(--color-paper);
+            transition: border-color var(--dur-short) var(--ease-out),
+                        transform 100ms var(--ease-out);
+        }
+
+        .price-card:hover,
+        .price-card:focus-within {
+            border-color: var(--color-ink-2);
+        }
+
+        .price-card:active {
+            transform: translateY(1px);
+        }
+
+        .price-card--featured {
+            border-color: var(--color-accent);
+            position: relative;
+        }
+
+        .price-card--featured::before {
+            content: "Consigliato";
+            position: absolute;
+            top: calc(-1 * var(--space-2xs));
+            left: var(--space-lg);
+            background: var(--color-accent);
+            color: var(--color-accent-ink);
+            font-family: var(--font-display);
+            font-size: var(--text-xs);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            padding: var(--space-2xs) var(--space-sm);
+            border-radius: var(--radius-pill);
+        }
+
+        .price-card__name {
+            font-size: var(--text-md);
+            font-weight: 700;
+            margin-bottom: var(--space-2xs);
+        }
+
+        .price-card__desc {
+            font-size: var(--text-sm);
+            color: var(--color-muted);
+            margin-bottom: var(--space-md);
+        }
+
+        .price-card__amount {
+            font-family: var(--font-outlier);
+            font-size: var(--text-2xl);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: var(--space-md);
+        }
+
+        .price-card__amount .period {
+            font-size: var(--text-sm);
+            font-weight: 400;
+            color: var(--color-muted);
+        }
+
+        .price-card__list {
+            list-style: none;
+            margin-bottom: var(--space-lg);
+        }
+
+        .price-card__list li {
+            font-size: var(--text-sm);
+            color: var(--color-ink-2);
+            padding: var(--space-2xs) 0;
+            padding-inline-start: var(--space-sm);
+            position: relative;
+        }
+
+        .price-card__list li::before {
+            content: "";
+            position: absolute;
+            inset-inline-start: 0;
+            top: 50%;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            transform: translateY(-50%);
+        }
+
+        /* ── Footer — Ft2 Inline rule single line ─────── */
+        .foot {
+            padding: var(--space-xl) 0;
+            border-top: 1px solid var(--color-rule-2);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-sm);
+            font-family: var(--font-display);
+            font-size: var(--text-sm);
+            color: var(--color-muted);
+        }
+
+        .foot__links {
+            display: flex;
+            gap: var(--space-md);
+        }
+
+        .foot__link {
+            color: var(--color-muted);
+            transition: color var(--dur-short) var(--ease-out);
+            white-space: nowrap;
+        }
+
+        .foot__link:hover,
+        .foot__link:focus-visible {
+            color: var(--color-ink);
+        }
+
+        /* ── Reduced motion ───────────────────────────── */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 150ms !important;
+                transition-duration: 150ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+
+        /* ── Mobile tweaks ────────────────────────────── */
+        @media (max-width: 40rem) {
+            .hero__head {
+                font-size: clamp(1.75rem, 7vw, 2.5rem);
+            }
+
+            .hero__lede {
+                font-size: var(--text-md);
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--space-xl);
+            }
+
+            .pricing-row {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-pair {
+                grid-template-columns: 1fr;
+                gap: var(--space-md);
+            }
+
+            .foot {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (min-width: 40rem) and (max-width: 60rem) {
+            .stats {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 60rem) {
+            .feature-pair {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+
+            .feature-pair:nth-child(even) {
+                direction: rtl;
+            }
+
+            .feature-pair:nth-child(even) .feature-pair__text {
+                direction: ltr;
+            }
+
+            .feature-pair:nth-child(even) .feature-pair__visual {
+                direction: ltr;
+            }
+
+            .pricing-row {
+                grid-template-columns: 1fr 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html" class="nav-logo"><span class="brand">Bisiacaria</span><span class="dot">.com</span>
+
+    <!-- Nav -->
+    <nav class="nav">
+        <a href="index.html" class="nav__brand">
+            Bisiacaria<span class="dot">.com</span>
         </a>
-        <div class="nav-center" id="nav-center">
-            <a href="landing-4-warm.html">Home</a>
-            <a href="landing-b1-forum.html">Forum</a>
-            <a href="landing-b2-mercato.html">Mercatino</a>
-            <a href="landing-b3-news.html">News</a>
-            <a href="landing-b4-groups.html">Gruppi</a>
-            <a href="landing-b5-directory.html">Directory</a>
-            <a href="landing-b6-drawer.html">Layout</a>
-            <a href="landing-c1-community.html">Community</a>
-            <a href="landing-c3-events.html">Eventi</a>
-            <a href="landing-profile-matteo.html">Profilo</a>
-            <a href="settings.html">Impostazioni</a>
-            <a href="signup.html">Esci</a>
+        <div class="nav__links">
+            <a href="landing-4-warm.html" class="nav__link active">Home</a>
+            <a href="landing-b1-forum.html" class="nav__link">Forum</a>
+            <a href="landing-b2-mercato.html" class="nav__link">Mercatino</a>
+            <a href="landing-b3-news.html" class="nav__link">News</a>
+            <a href="landing-b4-groups.html" class="nav__link">Gruppi</a>
+            <a href="landing-b5-directory.html" class="nav__link">Directory</a>
+            <a href="landing-b6-drawer.html" class="nav__link">Layout</a>
+            <a href="landing-c1-community.html" class="nav__link">Community</a>
+            <a href="landing-c3-events.html" class="nav__link">Eventi</a>
+            <a href="signup.html" class="nav__cta">Esci</a>
         </div>
-        <div class="nav-right">
-            <a class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></a>
-        </div>
+        <button class="nav__toggle" id="nav-toggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
-    <div class="nav-overlay" id="nav-overlay"></div>
+    <div class="nav__sheet" id="nav-sheet">
+        <a href="landing-4-warm.html" class="active">Home</a>
+        <a href="landing-b1-forum.html">Forum</a>
+        <a href="landing-b2-mercato.html">Mercatino</a>
+        <a href="landing-b3-news.html">News</a>
+        <a href="landing-b4-groups.html">Gruppi</a>
+        <a href="landing-b5-directory.html">Directory</a>
+        <a href="landing-b6-drawer.html">Layout</a>
+        <a href="landing-c1-community.html">Community</a>
+        <a href="landing-c3-events.html">Eventi</a>
+        <a href="settings.html">Impostazioni</a>
+        <a href="signup.html">Esci</a>
+    </div>
+    <div class="nav__sheet-overlay" id="nav-overlay"></div>
 
-    <section class="hero">
-        <div class="hero-badge">✦ La community del tuo quartiere</div>
-        <h1>Living together,<br><span class="gradient">building better</span></h1>
-        <p class="subtitle">Bisiacaria.com è la piattaforma dove vicini si scambiano idee, informazioni e avvenimenti del quartiere.</p>
-        <div class="cta-row">
-            <a href="#" class="btn btn-fill" style="padding: 0.9rem 2rem;">Unisciti Ora</a>
-            <a href="#features" class="btn btn-soft">Scopri di più →</a>
+    <div class="page">
+
+        <!-- Hero -->
+        <section class="hero">
+            <p class="hero__eyebrow">La community del tuo quartiere</p>
+            <h1 class="hero__head">
+                Un posto dove i<br>nomenti <span class="accent">si costruiscono</span>
+            </h1>
+            <p class="hero__lede">
+                Bisiacaria.com è la piattaforma dove vicini si scambiano idee, informazioni e avvenimenti del quartiere. Forum, mercatino, news, eventi — tutto in un unico posto.
+            </p>
+            <div class="hero__actions">
+                <a href="#pricing" class="btn btn--fill">Inizia Gratis</a>
+                <a href="#features" class="btn btn--ghost">Scopri di pi&ugrave;</a>
+            </div>
+        </section>
+
+        <hr class="rule--thick">
+
+        <!-- Prose intro -->
+        <div class="prose">
+            <p>
+                I quartieri funzionano quando le persone si conoscono. Bisiacaria nasce per dare a ogni vicinato uno spazio dove parlare, scambiare, organizzare — senza algoritmi che decidono cosa vedi, senza troppi click per fare una cosa semplice.
+            </p>
+            <p>
+                È una piazza digitale. Ci si ritrova, si chiede consiglio, si condivide un annuncio, si invita alla festa di quartiere. È così che i quartieri veri funzionano.
+            </p>
         </div>
-    </section>
 
-    <section id="features">
-        <div class="section-header">
-            <h2>Tutto ciò che serve al quartiere</h2>
-            <p>Forum, mercatino, news, eventi — tutto in un unico posto</p>
-        </div>
-        <div class="cards-grid">
-            <div class="card">
-                <div class="card-icon">💬</div>
-                <h3>Forum</h3>
-                <p>Discussioni, categorie, utenti attivi. Parla di tutto e di nulla con la community.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🛒</div>
-                <h3>Mercatino</h3>
-                <p>Compra, vendi e scambi tra vicini. Senza intermediari, a portata di mano.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">📰</div>
-                <h3>News & Annunci</h3>
-                <p>Le ultime notizie del quartiere, eventi, avvisi comunali e或服务人.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🎉</div>
-                <h3>Eventi</h3>
-                <p>Feste di quartiere, barbecue, tornei. Organizza e partecipa.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">📚</div>
-                <h3>Guide</h3>
-                <p>Risposte pratiche: idraulico, avvocato, pediatri… tutti rispondono.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">👤</div>
-                <h3>Profili</h3>
-                <p>Conosci i tuoi vicini. Puzzo, interessi, badge e attività condivisa.</p>
-            </div>
-        </div>
-    </section>
+        <hr class="rule">
 
-    <section style="background: var(--gray-950);">
-        <div class="section-header">
-            <h2>Cresciamo insieme</h2>
-        </div>
-        <div class="stats">
-            <div class="stat"><div class="num">2,847</div><div class="label">Membri</div></div>
-            <div class="stat"><div class="num">4,567</div><div class="label">Topic</div></div>
-            <div class="stat"><div class="num">32K</div><div class="label">Reply</div></div>
-            <div class="stat"><div class="num">+120</div><div class="label">Settimana</div></div>
-        </div>
-    </section>
-
-    <section id="pricing">
-        <div class="section-header">
-            <h2>Piani</h2>
-            <p>Scegli il livello che fa per te</p>
-        </div>
-        <div class="pricing-grid">
-            <div class="price-card">
-                <h3>Neighborhood</h3>
-                <p style="color: var(--gray-400); font-size: 0.9rem;">Per il quartiere base</p>
-                <div class="price">Gratis</div>
-                <ul>
-                    <li>Forum completo</li>
-                    <li>Mercatino base</li>
-                    <li>News del quartiere</li>
-                    <li>Community support</li>
-                </ul>
-                <a href="#" class="price-btn">Inizia Gratis</a>
+        <!-- Features -->
+        <section class="features" id="features">
+            <div class="sec-head">
+                <p class="sec-head__label">Funzionalit&agrave;</p>
+                <h2 class="sec-head__title">Tutto ci&ograve; che serve al quartiere</h2>
+                <p class="sec-head__sub">Sei sezioni. Niente superfluo. Solo quello che serve davvero.</p>
             </div>
-            <div class="price-card featured">
-                <h3>Superquartiere</h3>
-                <p style="color: var(--gray-400); font-size: 0.9rem;">Per chi vuole di più</p>
-                <div class="price">€9<span>/mese</span></div>
-                <ul>
-                    <li>Tutto di Neighborhood</li>
-                    <li>Eventi premium</li>
-                    <li>Badge speciali</li>
-                    <li>Promozione profilo</li>
-                    <li>Supporto prioritario</li>
-                </ul>
-                <a href="#" class="price-btn">Passa a Superquartiere</a>
+
+            <div class="feature-pair">
+                <div class="feature-pair__text">
+                    <div class="feature-pair__mark">💬</div>
+                    <h3 class="feature-pair__title">Forum</h3>
+                    <p class="feature-pair__desc">Discussioni organizzate per categorie. Utenti attivi, moderazione chiara, thread ordinati. Parla di tutto e di nulla con la community del tuo quartiere.</p>
+                </div>
+                <div class="feature-pair__visual" style="color: var(--color-muted); font-size: var(--text-sm); font-family: var(--font-body);">
+                    <div style="border: 1px solid var(--color-rule); border-radius: var(--radius-sm); padding: var(--space-sm) var(--space-md); background: var(--color-paper-2); max-width: 32ch; font-style: italic;">
+                        "Dite che c'&egrave; un idraulico affidabile in zona?"
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
 
-    <footer>© 2026 Bisiacaria.com · La community del tuo quartiere ✦</footer><script>
+            <div class="feature-pair">
+                <div class="feature-pair__text">
+                    <div class="feature-pair__mark">🛒</div>
+                    <h3 class="feature-pair__title">Mercatino</h3>
+                    <p class="feature-pair__desc">Compra, vendi e scambi tra vicini. Oggetti che non ti servono pi&ugrave; ritrovano un proprietario. Senza intermediari, a portata di mano.</p>
+                </div>
+                <div class="feature-pair__visual" style="color: var(--color-muted); font-size: var(--text-sm); font-family: var(--font-body);">
+                    <div style="border: 1px solid var(--color-rule); border-radius: var(--radius-sm); padding: var(--space-sm) var(--space-md); background: var(--color-paper-2); max-width: 32ch; font-style: italic;">
+                        "Vendo passeggino usato, ottime condizioni &ndash; &euro;25"
+                    </div>
+                </div>
+            </div>
 
+            <div class="feature-pair">
+                <div class="feature-pair__text">
+                    <div class="feature-pair__mark">📰</div>
+                    <h3 class="feature-pair__title">News &amp; Annunci</h3>
+                    <p class="feature-pair__desc">Le ultime notizie del quartiere, eventi, avvisi comunali e servizi utili. Tutto quello che succede, in un unico stream.</p>
+                </div>
+                <div class="feature-pair__visual" style="color: var(--color-muted); font-size: var(--text-sm); font-family: var(--font-body);">
+                    <div style="border: 1px solid var(--color-rule); border-radius: var(--radius-sm); padding: var(--space-sm) var(--space-md); background: var(--color-paper-2); max-width: 32ch; font-style: italic;">
+                        "Chiusura strada Martedi&rsquo; 14 per lavori comunali"
+                    </div>
+                </div>
+            </div>
 
-        document.getElementById('hamburger').addEventListener('click', function(e) {
-            e.preventDefault();
-            this.classList.toggle('open');
-            document.getElementById('nav-center').classList.toggle('open');
-            document.getElementById('nav-overlay').classList.toggle('open');
-        });
-        document.getElementById('nav-overlay').addEventListener('click', function() {
-            document.getElementById('hamburger').classList.remove('open');
-            document.getElementById('nav-center').classList.remove('open');
-            document.getElementById('nav-overlay').classList.remove('open');
-        });
+            <div class="feature-pair">
+                <div class="feature-pair__text">
+                    <div class="feature-pair__mark">🎉</div>
+                    <h3 class="feature-pair__title">Eventi</h3>
+                    <p class="feature-pair__desc">Feste di quartiere, barbecue, tornei, cene tra vicini. Organizza e partecipa. Un calendario sempre aggiornato su quello che succede.</p>
+                </div>
+                <div class="feature-pair__visual" style="color: var(--color-muted); font-size: var(--text-sm); font-family: var(--font-body);">
+                    <div style="border: 1px solid var(--color-rule); border-radius: var(--radius-sm); padding: var(--space-sm) var(--space-md); background: var(--color-paper-2); max-width: 32ch; font-style: italic;">
+                        "BBQ di quartiere — Sabato 19 luglio, ore 19:00"
+                    </div>
+                </div>
+            </div>
 
+            <div class="feature-pair">
+                <div class="feature-pair__text">
+                    <div class="feature-pair__mark">📚</div>
+                    <h3 class="feature-pair__title">Guide</h3>
+                    <p class="feature-pair__desc">Risposte pratiche: idraulico, avvocato, pediatri, insegnanti. Tutti rispondono, tutti imparano. La memoria collettiva del quartiere.</p>
+                </div>
+                <div class="feature-pair__visual" style="color: var(--color-muted); font-size: var(--text-sm); font-family: var(--font-body);">
+                    <div style="border: 1px solid var(--color-rule); border-radius: var(--radius-sm); padding: var(--space-sm) var(--space-md); background: var(--color-paper-2); max-width: 32ch; font-style: italic;">
+                        "Il pediatra pi&ugrave; indicato: dott.ssa M. — Via Roma 12"
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-pair">
+                <div class="feature-pair__text">
+                    <div class="feature-pair__mark">👤</div>
+                    <h3 class="feature-pair__title">Profili</h3>
+                    <p class="feature-pair__desc">Conosci i tuoi vicini. Presentati, condividi interessi, ottieni badge e mostra la tua attivit&agrave. Un profilo &egrave; una porta aperta.</p>
+                </div>
+                <div class="feature-pair__visual" style="color: var(--color-muted); font-size: var(--text-sm); font-family: var(--font-body);">
+                    <div style="border: 1px solid var(--color-rule); border-radius: var(--radius-sm); padding: var(--space-sm) var(--space-md); background: var(--color-paper-2); max-width: 32ch; font-style: italic;">
+                        "Marco · Barista · Ciclista · Tutor di matematica"
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="rule">
+
+        <!-- Stats -->
+        <section class="stats">
+            <div class="stat">
+                <span class="stat__num">2.847</span>
+                <span class="stat__label">Membri</span>
+            </div>
+            <div class="stat">
+                <span class="stat__num">4.567</span>
+                <span class="stat__label">Topic</span>
+            </div>
+            <div class="stat">
+                <span class="stat__num">32K</span>
+                <span class="stat__label">Risposte</span>
+            </div>
+            <div class="stat">
+                <span class="stat__num">+120</span>
+                <span class="stat__label">A settimana</span>
+            </div>
+        </section>
+
+        <hr class="rule">
+
+        <!-- Pricing -->
+        <section class="pricing" id="pricing">
+            <div class="sec-head">
+                <p class="sec-head__label">Piani</p>
+                <h2 class="sec-head__title">Scegli il livello che fa per te</h2>
+            </div>
+            <div class="pricing-row">
+                <div class="price-card">
+                    <h3 class="price-card__name">Neighborhood</h3>
+                    <p class="price-card__desc">Per il quartiere base</p>
+                    <div class="price-card__amount">Gratis</div>
+                    <ul class="price-card__list">
+                        <li>Forum completo</li>
+                        <li>Mercatino base</li>
+                        <li>News del quartiere</li>
+                        <li>Community support</li>
+                    </ul>
+                    <a href="#" class="btn btn--ghost" style="width: 100%; justify-content: center;">Inizia Gratis</a>
+                </div>
+                <div class="price-card price-card--featured">
+                    <h3 class="price-card__name">Superquartiere</h3>
+                    <p class="price-card__desc">Per chi vuole di pi&ugrave;</p>
+                    <div class="price-card__amount">&euro;9<span class="period">/mese</span></div>
+                    <ul class="price-card__list">
+                        <li>Tutto di Neighborhood</li>
+                        <li>Eventi premium</li>
+                        <li>Badge speciali</li>
+                        <li>Promozione profilo</li>
+                        <li>Supporto prioritario</li>
+                    </ul>
+                    <a href="#" class="btn btn--fill" style="width: 100%; justify-content: center;">Passa a Superquartiere</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="foot">
+            <span>&copy; 2026 Bisiacaria.com &middot; La community del tuo quartiere</span>
+            <div class="foot__links">
+                <a href="#" class="foot__link">Privacy</a>
+                <a href="#" class="foot__link">Termini</a>
+                <a href="#" class="foot__link">Contatti</a>
+            </div>
+        </footer>
+
+    </div><!-- /.page -->
+
+    <script>
+        (function() {
+            var toggle = document.getElementById('nav-toggle');
+            var sheet = document.getElementById('nav-sheet');
+            var overlay = document.getElementById('nav-overlay');
+
+            function openSheet() {
+                toggle.classList.add('open');
+                sheet.classList.add('open');
+                overlay.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeSheet() {
+                toggle.classList.remove('open');
+                sheet.classList.remove('open');
+                overlay.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            toggle.addEventListener('click', function() {
+                if (sheet.classList.contains('open')) {
+                    closeSheet();
+                } else {
+                    openSheet();
+                }
+            });
+
+            overlay.addEventListener('click', closeSheet);
+
+            // Close on Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeSheet();
+            });
+        })();
     </script>
+
 </body>
 </html>
