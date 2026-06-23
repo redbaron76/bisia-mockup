@@ -106,6 +106,12 @@
             .nav-center { position: static; flex-direction: row; background: transparent; border-bottom: none; padding: 0; transform: none; pointer-events: auto; display: flex; gap: 1.5rem; align-items: center; }
             .nav-center a { padding: 0; border-bottom: none; font-size: 0.9rem; }
             .nav-overlay { display: none; }
+        }        @media (max-width: 1024px) {
+            .nav-center { position: fixed; top: 60px; left: 0; right: 0; bottom: 0; background: rgba(10,10,12,0.98); backdrop-filter: blur(20px); display: flex; flex-direction: column; gap: 0.5rem; padding: 1.25rem 1.5rem; overflow-y: auto; transform: translateY(-110%); transition: transform 0.3s ease; pointer-events: none; opacity: 0; }
+            .nav-center.open { transform: translateY(0); pointer-events: auto; opacity: 1; }
+            .nav-center a { color: var(--gray-300); text-decoration: none; font-size: 1rem; font-weight: 500; padding: 0.6rem 0; border-bottom: 1px solid var(--gray-800); transition: color 0.2s; }
+            .nav-center a:hover { color: var(--white); }
+            .nav-center a.active { color: var(--accent); }
         }
 
         @media (max-width: 768px) {.hamburger { display: flex; } .nav-overlay { display: block; }
