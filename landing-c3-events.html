@@ -84,10 +84,10 @@
         .mobile-nav-item { display: flex; flex-direction: column; align-items: center; gap: 0.15rem; color: var(--gray-400); text-decoration: none; font-size: 0.6rem; }
         .mobile-nav-item .icon { font-size: 1.1rem; }
         .mobile-nav-item.active { color: var(--accent); }
-        .hamburger { display: none; width: 36px; height: 36px; border: none; background: transparent; cursor: pointer; flex-direction: column; justify-content: center; align-items: center; gap: 5px; }
-        .hamburger span { display: block; width: 20px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
+        .hamburger { display: none; width: 36px; height: 36px; border: none; background: transparent; cursor: pointer; flex-direction: column; justify-content: center; align-items: center; gap: 5px; transition: opacity 0.2s;}
+        .hamburger span { display: block; width: 20px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s ease; transform-origin: center; }
         .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0);}
         .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
         .nav-overlay { position: fixed; top: 60px; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
         .nav-overlay.open { opacity: 1; pointer-events: auto; }
@@ -98,7 +98,7 @@
             .nav-center a { padding: 0; border-bottom: none; font-size: 0.9rem; }
             .nav-overlay { display: none; }
         }        @media (max-width: 1024px) {
-            .nav-center { position: fixed; top: 60px; left: 0; right: 0; bottom: 0; background: rgba(10,10,12,0.98); backdrop-filter: blur(20px); display: flex; flex-direction: column; gap: 0.5rem; padding: 1.25rem 1.5rem; overflow-y: auto; transform: translateY(-110%); transition: transform 0.3s ease; pointer-events: none; opacity: 0; }
+            .nav-center { position: fixed; top: 60px; left: 0; right: 0; bottom: 0; height: calc(100vh - 60px); -webkit-overflow-scrolling: touch; background: rgba(10,10,12,0.98); backdrop-filter: blur(20px); display: flex; flex-direction: column; gap: 0.5rem; padding: 1.25rem 1.5rem; overflow-y: auto; transform: translateY(-110%); transition: transform 0.3s ease; pointer-events: none; opacity: 0; }
             .nav-center.open { transform: translateY(0); pointer-events: auto; opacity: 1; }
             .nav-center a { color: var(--gray-300); text-decoration: none; font-size: 1rem; font-weight: 500; padding: 0.6rem 0; border-bottom: 1px solid var(--gray-800); transition: color 0.2s; }
             .nav-center a:hover { color: var(--white); }
