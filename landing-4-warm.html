@@ -10,9 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
     <style>
         /* Hallmark · macrostructure: Long Document · genre: editorial · theme: Bloom
-         * tone: warm community · anchor hue: oklch(62% 0.15 82) golden
+         * tone: warm community · anchor hue: oklch(52% 0.16 82) burnt-gold
          * display: Bricolage Grotesque 700 · body: Newsreader 400 · outlier: Geist Mono 400
-         * paper: oklch(87% 0.012 82) · accent: oklch(62% 0.15 82) golden
+         * paper: oklch(87% 0.012 82) · accent: oklch(52% 0.16 82) burnt-gold
          * keywords: editorial-01 · audience=neighbors · use=join-community · prose-led
          */
 
@@ -31,13 +31,13 @@
             --color-rule:      oklch(72% 0.010 82);
             --color-rule-2:    oklch(80% 0.008 82);
 
-            /* Accent — warm golden, max 3% surface */
-            --color-accent:    oklch(62% 0.15 82);
+            /* Accent — burnt-gold */
+            --color-accent:    oklch(52% 0.16 82);
             --color-accent-ink: oklch(16% 0.01 82);
             --color-accent-soft: oklch(90% 0.012 82);
 
             /* Focus */
-            --color-focus:     oklch(58% 0.20 82);
+            --color-focus:     oklch(52% 0.16 82);
 
             /* Typography */
             --font-display:    "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
@@ -178,6 +178,10 @@
             color: var(--color-ink);
         }
 
+        .nav__link:active {
+            color: var(--color-accent);
+        }
+
         .nav__link.active {
             color: var(--color-accent);
         }
@@ -225,7 +229,8 @@
             height: 2px;
             background: var(--color-ink);
             border-radius: 2px;
-            transition: all var(--dur-short) var(--ease-out);
+            transition: transform var(--dur-short) var(--ease-out),
+                        opacity var(--dur-short) var(--ease-out);
             transform-origin: center;
         }
 
@@ -339,8 +344,10 @@
         }
 
         .hero__head {
-            font-size: var(--text-display);
+            font-family: var(--font-display);
+            font-size: clamp(2.25rem, 4vw + 0.5rem, 3.5rem);
             font-weight: 700;
+            line-height: 1.08;
             margin-bottom: var(--space-lg);
             max-width: 50ch;
             overflow-wrap: anywhere;
@@ -801,9 +808,9 @@
 
         <!-- Hero -->
         <section class="hero">
-            <p class="hero__eyebrow">La community del tuo quartiere</p>
+            <p class="hero__eyebrow"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" style="vertical-align: -2px; margin-inline-end: 4px;"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/></svg>La community del tuo quartiere</p>
             <h1 class="hero__head">
-                Un posto dove i<br>nomenti <span class="accent">si costruiscono</span>
+                Un posto dove i<br>momenti <span class="accent">si costruiscono</span>
             </h1>
             <p class="hero__lede">
                 Bisiacaria.com è la piattaforma dove vicini si scambiano idee, informazioni e avvenimenti del quartiere. Forum, mercatino, news, eventi — tutto in un unico posto.
@@ -838,79 +845,67 @@
 
             <div class="feature-pair">
                 <div class="feature-pair__text">
-                    <div class="feature-pair__mark">💬</div>
+                    <div class="feature-pair__mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
                     <h3 class="feature-pair__title">Forum</h3>
                     <p class="feature-pair__desc">Discussioni organizzate per categorie. Utenti attivi, moderazione chiara, thread ordinati. Parla di tutto e di nulla con la community del tuo quartiere.</p>
                 </div>
-                <div class="feature-pair__visual" style="color: var(--color-muted); font-size: var(--text-sm); font-family: var(--font-body);">
-                    <div style="border: 1px solid var(--color-rule); border-radius: var(--radius-sm); padding: var(--space-sm) var(--space-md); background: var(--color-paper-2); max-width: 32ch; font-style: italic;">
-                        "Dite che c'&egrave; un idraulico affidabile in zona?"
-                    </div>
+                <div class="feature-pair__visual" aria-hidden="true">
+                    <div style="width: 2px; height: 48px; background: var(--color-accent); border-radius: 1px;"></div>
                 </div>
             </div>
 
             <div class="feature-pair">
                 <div class="feature-pair__text">
-                    <div class="feature-pair__mark">🛒</div>
+                    <div class="feature-pair__mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
                     <h3 class="feature-pair__title">Mercatino</h3>
                     <p class="feature-pair__desc">Compra, vendi e scambi tra vicini. Oggetti che non ti servono pi&ugrave; ritrovano un proprietario. Senza intermediari, a portata di mano.</p>
                 </div>
-                <div class="feature-pair__visual" style="color: var(--color-muted); font-size: var(--text-sm); font-family: var(--font-body);">
-                    <div style="border: 1px solid var(--color-rule); border-radius: var(--radius-sm); padding: var(--space-sm) var(--space-md); background: var(--color-paper-2); max-width: 32ch; font-style: italic;">
-                        "Vendo passeggino usato, ottime condizioni &ndash; &euro;25"
-                    </div>
+                <div class="feature-pair__visual" aria-hidden="true">
+                    <div style="width: 2px; height: 48px; background: var(--color-accent); border-radius: 1px;"></div>
                 </div>
             </div>
 
             <div class="feature-pair">
                 <div class="feature-pair__text">
-                    <div class="feature-pair__mark">📰</div>
+                    <div class="feature-pair__mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6z"/></svg></div>
                     <h3 class="feature-pair__title">News &amp; Annunci</h3>
                     <p class="feature-pair__desc">Le ultime notizie del quartiere, eventi, avvisi comunali e servizi utili. Tutto quello che succede, in un unico stream.</p>
                 </div>
-                <div class="feature-pair__visual" style="color: var(--color-muted); font-size: var(--text-sm); font-family: var(--font-body);">
-                    <div style="border: 1px solid var(--color-rule); border-radius: var(--radius-sm); padding: var(--space-sm) var(--space-md); background: var(--color-paper-2); max-width: 32ch; font-style: italic;">
-                        "Chiusura strada Martedi&rsquo; 14 per lavori comunali"
-                    </div>
+                <div class="feature-pair__visual" aria-hidden="true">
+                    <div style="width: 2px; height: 48px; background: var(--color-accent); border-radius: 1px;"></div>
                 </div>
             </div>
 
             <div class="feature-pair">
                 <div class="feature-pair__text">
-                    <div class="feature-pair__mark">🎉</div>
+                    <div class="feature-pair__mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.8 11.3 2 22l10.7-3.7"/><path d="M4 17.8c.5-1.3 1.5-2.3 2.8-2.8"/><path d="M6 8c.5-1.3 1.5-2.3 2.8-2.8"/><path d="M8 5c.5-1.3 1.5-2.3 2.8-2.8"/><path d="M13.3 3c.5 1.3 1.5 2.3 2.8 2.8"/><path d="M16 5c-.5 1.3-1.5 2.3-2.8 2.8"/><path d="M18 8c-.5 1.3-1.5 2.3-2.8 2.8"/><path d="M20 11c-.5 1.3-1.5 2.3-2.8 2.8"/><path d="M14.8 14.5 22 21"/></svg></div>
                     <h3 class="feature-pair__title">Eventi</h3>
                     <p class="feature-pair__desc">Feste di quartiere, barbecue, tornei, cene tra vicini. Organizza e partecipa. Un calendario sempre aggiornato su quello che succede.</p>
                 </div>
-                <div class="feature-pair__visual" style="color: var(--color-muted); font-size: var(--text-sm); font-family: var(--font-body);">
-                    <div style="border: 1px solid var(--color-rule); border-radius: var(--radius-sm); padding: var(--space-sm) var(--space-md); background: var(--color-paper-2); max-width: 32ch; font-style: italic;">
-                        "BBQ di quartiere — Sabato 19 luglio, ore 19:00"
-                    </div>
+                <div class="feature-pair__visual" aria-hidden="true">
+                    <div style="width: 2px; height: 48px; background: var(--color-accent); border-radius: 1px;"></div>
                 </div>
             </div>
 
             <div class="feature-pair">
                 <div class="feature-pair__text">
-                    <div class="feature-pair__mark">📚</div>
+                    <div class="feature-pair__mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></div>
                     <h3 class="feature-pair__title">Guide</h3>
                     <p class="feature-pair__desc">Risposte pratiche: idraulico, avvocato, pediatri, insegnanti. Tutti rispondono, tutti imparano. La memoria collettiva del quartiere.</p>
                 </div>
-                <div class="feature-pair__visual" style="color: var(--color-muted); font-size: var(--text-sm); font-family: var(--font-body);">
-                    <div style="border: 1px solid var(--color-rule); border-radius: var(--radius-sm); padding: var(--space-sm) var(--space-md); background: var(--color-paper-2); max-width: 32ch; font-style: italic;">
-                        "Il pediatra pi&ugrave; indicato: dott.ssa M. — Via Roma 12"
-                    </div>
+                <div class="feature-pair__visual" aria-hidden="true">
+                    <div style="width: 2px; height: 48px; background: var(--color-accent); border-radius: 1px;"></div>
                 </div>
             </div>
 
             <div class="feature-pair">
                 <div class="feature-pair__text">
-                    <div class="feature-pair__mark">👤</div>
+                    <div class="feature-pair__mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
                     <h3 class="feature-pair__title">Profili</h3>
                     <p class="feature-pair__desc">Conosci i tuoi vicini. Presentati, condividi interessi, ottieni badge e mostra la tua attivit&agrave. Un profilo &egrave; una porta aperta.</p>
                 </div>
-                <div class="feature-pair__visual" style="color: var(--color-muted); font-size: var(--text-sm); font-family: var(--font-body);">
-                    <div style="border: 1px solid var(--color-rule); border-radius: var(--radius-sm); padding: var(--space-sm) var(--space-md); background: var(--color-paper-2); max-width: 32ch; font-style: italic;">
-                        "Marco · Barista · Ciclista · Tutor di matematica"
-                    </div>
+                <div class="feature-pair__visual" aria-hidden="true">
+                    <div style="width: 2px; height: 48px; background: var(--color-accent); border-radius: 1px;"></div>
                 </div>
             </div>
         </section>
