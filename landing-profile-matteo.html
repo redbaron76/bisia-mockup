@@ -3,148 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matteo Rossi — Bisiacaria.com</title>
-    <meta name="description" content="Profilo utente Matteo Rossi sul quartiere Bisiacaria.">
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                },
-            },
-        }
-    </script>
-</head>
-<body class="bg-zinc-950 text-zinc-200 font-sans antialiased">
-<div class="min-h-screen">
-        <header class="fixed top-0 left-0 right-0 z-[200] flex items-center justify-between px-4 py-3 md:px-6 lg:px-8 bg-zinc-950 border-b border-zinc-800">
-            <a href="index.html" class="flex items-center gap-1 text-[1.05rem] font-bold tracking-tight">
-                <span class="text-white">Bisiacaria</span><span class="text-yellow-400">.com</span>
-            </a>
-            <nav class="hidden md:flex items-center gap-6 lg:gap-8">
-                <a href="landing-4-warm.html" data-page="home" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Home</a>
-                <a href="landing-b1-forum.html" data-page="forum" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Forum</a>
-                <a href="landing-b2-mercato.html" data-page="mercato" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Mercatino</a>
-                <a href="landing-b3-news.html" data-page="news" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">News</a>
-                <a href="landing-b4-groups.html" data-page="gruppi" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Gruppi</a>
-                <a href="landing-b5-directory.html" data-page="directory" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Directory</a>
-                <a href="landing-b6-drawer.html" data-page="layout" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Layout</a>
-                <a href="landing-c1-community.html" data-page="community" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Community</a>
-                <a href="landing-c3-events.html" data-page="events" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Eventi</a>
-                <a href="signup.html" class="inline-flex items-center justify-center bg-yellow-400 text-black font-semibold text-sm px-6 py-2 rounded-full transition-all hover:bg-zinc-900 hover:text-yellow-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 min-h-[2.75rem]">Esci</a>
-            </nav>
-            <button class="md:hidden hamburger w-9 h-9 flex flex-col items-center justify-center gap-[5px] bg-transparent" id="hamburger" aria-label="Menu">
-                <span class="hamburger-line block w-5 h-[2px] bg-zinc-900 rounded-full transition-transform duration-200 ease-out"></span>
-                <span class="hamburger-line block w-5 h-[2px] bg-zinc-900 rounded-full transition-opacity duration-200 ease-out"></span>
-                <span class="hamburger-line block w-5 h-[2px] bg-zinc-900 rounded-full transition-transform duration-200 ease-out"></span>
-            </button>
-        </header>
-        <div class="hidden md:flex mobile-menu absolute top-16 left-0 right-0 bottom-0 overflow-y-auto bg-zinc-950/98 backdrop-blur-lg z-[199]" id="mobile-menu">
-            <div class="flex flex-col p-4 gap-2">
-                <a href="landing-4-warm.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="home">Home</a>
-                <a href="landing-b1-forum.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="forum">Forum</a>
-                <a href="landing-b2-mercato.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="mercato">Mercatino</a>
-                <a href="landing-b3-news.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="news">News</a>
-                <a href="landing-b4-groups.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="gruppi">Gruppi</a>
-                <a href="landing-b5-directory.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="directory">Directory</a>
-                <a href="landing-b6-drawer.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="layout">Layout</a>
-                <a href="landing-c1-community.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="community">Community</a>
-                <a href="landing-c3-events.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="events">Eventi</a>
-                <a href="settings.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="settings">Impostazioni</a>
-                <a href="signup.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="signup">Esci</a>
-            </div>
-        </div>
-        <div class="hidden md:hidden mobile-overlay absolute top-16 left-0 right-0 bottom-0 bg-black/40 z-[198]" id="mobile-overlay"></div>
-    <!-- Hero -->
-    <section class="pt-40 pb-16 lg:pt-48 lg:pb-20">
-        <div class="px-4 md:px-6 lg:px-8 max-w-[72rem] mx-auto">
-            <div class="flex items-center gap-4 mb-6">
-                <div class="w-16 h-16 rounded-full bg-zinc-800 text-yellow-400 text-2xl flex items-center justify-center flex-shrink-0">👤</div>
-                <div>
-                    <h1 class="text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] font-extrabold tracking-tight leading-[1.08] mb-2 max-w-[48ch]">
-                        <span class="text-yellow-400">Matteo</span> Rossi
-                    </h1>
-                    <p class="text-lg text-zinc-400">Barista · Ciclista · Tutor di matematica</p>
-                </div>
-            </div>
-            <p class="text-lg leading-relaxed text-zinc-300 mb-8 max-w-[52ch]">
-                Matematico di giorno, barista di notte. Ciclista appassionato e tutor per studenti del quartiere. Nato e cresciuto qui, legato a queste strade come a nulla al mondo.
-            </p>
-            <div class="flex flex-wrap gap-3 mb-8">
-                <a href="#" class="inline-flex items-center justify-center bg-yellow-400 text-black font-semibold text-sm px-5 py-2.5 rounded-full transition-all hover:bg-zinc-900 hover:text-yellow-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 min-h-[2.75rem]">Contatta</a>
-                <a href="#" class="inline-flex items-center justify-center bg-transparent text-zinc-300 font-semibold text-sm px-5 py-2.5 rounded-full border border-zinc-700 transition-all hover:text-white hover:border-zinc-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 min-h-[2.75rem]">Segui</a>
-            </div>
-            <div class="flex flex-wrap gap-6 text-sm text-zinc-400">
-                <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-yellow-400 rounded-full"></span>Attivo da 2 anni</span>
-                <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-yellow-400 rounded-full"></span>89 messaggi</span>
-                <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-yellow-400 rounded-full"></span>3 guide pubblicate</span>
-            </div>
-        </div>
-    </section>
-    <hr class="mx-4 md:mx-6 lg:mx-8 max-w-[72rem] border-t-2 border-zinc-900">
-
-    <!-- Activity -->
-    <section class="max-w-[72rem] mx-auto px-4 md:px-6 lg:px-8 py-16">
-        <div class="pt-4 pb-12">
-            <p class="text-xs font-semibold tracking-wider text-zinc-500 uppercase mb-2">Attività</p>
-            <h2 class="text-[1.75rem] md:text-[2rem] font-bold tracking-tight leading-tight mb-2 max-w-[40ch]">Ultime attività di Matteo</h2>
-        </div>
-        <div class="space-y-4 max-w-[72rem] mx-auto">
-            <div class="p-4 border border-zinc-800 rounded-lg bg-zinc-900/50">
-                <p class="text-sm text-zinc-300 mb-2">"Dite che c'è un idraulico affidabile in zona?"</p>
-                <div class="flex items-center gap-4 text-xs text-zinc-500">
-                    <span>Forum</span><span>2 ore fa</span><span>12 risposte</span>
-                </div>
-            </div>
-            <div class="p-4 border border-zinc-800 rounded-lg bg-zinc-900/50">
-                <p class="text-sm text-zinc-300 mb-2">"Il pediatra più indicato: dott.ssa M. — Via Roma 12"</p>
-                <div class="flex items-center gap-4 text-xs text-zinc-500">
-                    <span>Guide</span><span>1 giorno fa</span><span>34 like</span>
-                </div>
-            </div>
-            <div class="p-4 border border-zinc-800 rounded-lg bg-zinc-900/50">
-                <p class="text-sm text-zinc-300 mb-2">"Vendo bicicletta usata, ottime condizioni — €150"</p>
-                <div class="flex items-center gap-4 text-xs text-zinc-500">
-                    <span>Mercatino</span><span>3 giorni fa</span><span>8 views</span>
-                </div>
-            </div>
-        </div>
-    </section>
-        <footer class="flex flex-wrap items-center justify-between gap-3 px-6 lg:px-8 py-8 border-t border-zinc-800">
-            <span class="text-sm text-zinc-500">&copy; 2026 Bisiacaria.com &middot; La community del tuo quartiere</span>
-            <div class="flex gap-5">
-                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors">Privacy</a>
-                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors">Termini</a>
-                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors">Contatti</a>
-            </div>
-        </footer>
-</div>
+    <title>Matteo Greco — Bisiacaria</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
         <style>
-            .hamburger.open .hamburger-line:first-child { transform: rotate(45deg) translate(5px, 5px); }
-            .hamburger.open .hamburger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
-            .hamburger.open .hamburger-line:last-child { transform: rotate(-45deg) translate(5px, -5px); }
-            .nav-link.active, .mobile-nav-link.active { color: #facc15; }
-            @media (max-width: 768px) { .mobile-menu { display: flex; } .mobile-menu.hidden { display: none; } }
-        </style>
-        <script>
-            (function() {
-                var hamburger = document.getElementById('hamburger');
-                var menu = document.getElementById('mobile-menu');
-                var overlay = document.getElementById('mobile-overlay');
-                function toggleMenu() {
-                    var open = menu.classList.contains('hidden');
-                    if (open) { hamburger.classList.add('open'); menu.classList.remove('hidden'); overlay.classList.remove('hidden'); }
-                    else { hamburger.classList.remove('open'); menu.classList.add('hidden'); overlay.classList.add('hidden'); }
-                }
-                hamburger.addEventListener('click', toggleMenu);
-                overlay.addEventListener('click', toggleMenu);
-            })();
-        </script>
+        @import "tailwindcss";
+        @layer base, components;
+        @layer base {
+            :root { --accent: #ffcc00; }
+            body { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; background: #0a0a0c; color: #fff; }
+        }
+        @layer components {
+:root { --black: #050508; --gray-950: #0c0c10; --gray-900: #111118; --gray-800: #1a1a24; --gray-700: #252532; --gray-600: #333344; --gray-500: #555568; --gray-400: #88889a; --accent: #ffcc00; --accent-glow: rgba(255,204,0,0.15); --accent-light: rgba(255,204,0,0.08); --teal: #14b8a6; --teal-glow: rgba(20,184,166,0.15); --blue: #3b82f6; --blue-glow: rgba(59,130,246,0.15); --violet: #8b5cf6; --violet-glow: rgba(139,92,246,0.15); --pink: #ec4899; --pink-glow: rgba(236,72,153,0.15); --orange: #f97316; --orange-glow: rgba(249,115,22,0.15); --lime: #84cc16; --green: #22c55e; --green-glow: rgba(34,197,94,0.15); --rose: #f43f5e; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--black); color: #e4e4ef; min-height: 100vh; display: flex; flex-direction: column; }
+        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; height: 64px; background: rgba(5,5,8,0.88); backdrop-filter: blur(24px); border-bottom: 1px solid var(--gray-800); }
+        .logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.35rem; display: flex; align-items: center; gap: 0.4rem; }
+        .logo span { color: var(--accent); } .logo .dot { color: var(--gray-600); }
+        .nav-center { display: flex; gap: 0.25rem; background: var(--gray-900); padding: 0.25rem; border-radius: 100px; }
+        .nav-center a { color: var(--gray-400); text-decoration: none; font-size: 0.82rem; font-weight: 500; padding: 0.4rem 1rem; border-radius: 100px; transition: all 0.2s; }
+        .nav-center a:hover { color: var(--white); } .nav-center a.active { background: var(--accent); color: #0a0a0c; font-weight: 600; }
+        .nav-right { display: flex; align-items: center; gap: 0.5rem; }
+        .nav-icon { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border-radius: 10px; color: var(--gray-400); font-size: 1.1rem; transition: all 0.2s; cursor: pointer; }
+        .nav-icon:hover { background: var(--gray-800); color: var(--white); }
+        .avatar { border-radius: 50%; object-fit: cover; border: 2px solid var(--gray-700); cursor: pointer; transition: border-color 0.2s; }
+        .avatar:hover { border-color: var(--accent); }
+        .avatar-sm { width: 28px; height: 28px; } .avatar-md { width: 36px; height: 36px; }
+        .avatar-lg { width: 56px; height: 56px; } .avatar-xl { width: 96px; height: 96px; border: 3px solid var(--gray-700); }
+        .avatar-xxl { width: 140px; height: 140px; border: 4px solid var(--gray-700); }
+        .app { max-width: 1100px; margin: 0 auto; padding-top: 80px; padding-left: 2rem; padding-right: 2rem; flex: 1; }
+        .breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--gray-500); margin-bottom: 1.5rem; }
+        .breadcrumb a { color: var(--gray-400); text-decoration: none; }
+        .breadcrumb a:hover { color: var(--accent); }
+
+        /* PROFILE HEADER */
+        .profile-header { position: relative; margin-bottom: 2rem; }
+        .profile-cover { height: 180px; border-radius: 20px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); position: relative; overflow: hidden; }
+        .profile-cover::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 70% 30%, var(--accent-glow), transparent 60%); }
+        .profile-cover-text { position: absolute; bottom: 20px; left: 24px; font-family: 'Outfit', sans-serif; font-size: 2.5rem; font-weight: 800; opacity: 0.1; color: var(--white); }
+        .profile-info { display: flex; gap: 1.5rem; align-items: flex-end; margin-top: -50px; position: relative; z-index: 1; padding: 0 1rem; }
+        .profile-avatar-wrap { position: relative; }
+        .profile-avatar-wrap .online { position: absolute; bottom: 4px; right: 4px; width: 20px; height: 20px; background: var(--green); border-radius: 50%; border: 3px solid var(--gray-900); }
+        .profile-main { flex: 1; padding-bottom: 0.5rem; }
+        .profile-main h1 { font-family: 'Outfit', sans-serif; font-size: 1.6rem; font-weight: 700; }
+        .profile-main .handle { color: var(--gray-500); font-size: 0.9rem; margin-top: 0.15rem; }
+        .profile-actions { display: flex; gap: 0.5rem; padding-bottom: 0.5rem; }
+        .btn { padding: 0.55rem 1.4rem; border-radius: 100px; font-size: 0.85rem; font-weight: 600; border: none; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+        .btn-primary { background: var(--accent); color: #0a0a0c; }
+        .btn-primary:hover { background: #ffe033; }
+        .btn-outline { background: transparent; border: 1px solid var(--gray-700); color: var(--gray-400); }
+        .btn-outline:hover { border-color: var(--gray-500); color: var(--white); }
+
+        /* STATS ROW */
+        .profile-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+        .stat-card { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 16px; padding: 1.25rem; text-align: center; }
+        .stat-card .val { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+        .stat-card .lbl { font-size: 0.78rem; color: var(--gray-500); margin-top: 0.25rem; }
+
+        /* ABOUT */
+        .about-section { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 16px; padding: 1.5rem; margin-bottom: 2rem; }
+        .about-section h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .about-section p { color: var(--gray-400); font-size: 0.9rem; line-height: 1.7; }
+        .about-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+        .tag { background: var(--accent-light); color: var(--accent); padding: 0.3rem 0.7rem; border-radius: 100px; font-size: 0.75rem; font-weight: 500; }
+        .tag.teal { background: var(--teal-glow); color: var(--teal); }
+        .tag.blue { background: var(--blue-glow); color: var(--blue); }
+        .tag.violet { background: var(--violet-glow); color: var(--violet); }
+        .tag.pink { background: var(--pink-glow); color: var(--pink); }
+        .tag.orange { background: var(--orange-glow); color: var(--orange); }
+
+        /* ACHIEVEMENTS */
+        .badges-section { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.75rem; margin-bottom: 2rem; }
+        .badge-card { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 14px; padding: 1rem; text-align: center; transition: all 0.2s; }
+        .badge-card:hover { border-color: var(--gray-600); transform: translateY(-2px); }
+        .badge-card .icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .badge-card .name { font-size: 0.82rem; font-weight: 600; margin-bottom: 0.15rem; }
+        .badge-card .desc { font-size: 0.7rem; color: var(--gray-500); }
+
+        /* ACTIVITY FEED */
+        .content-layout { display: grid; grid-template-columns: 1fr 300px; gap: 2rem; }
+        .feed-item { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 14px; padding: 1.25rem; margin-bottom: 1rem; }
+        .feed-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+        .feed-header img { width: 32px; height: 32px; border-radius: 50%; }
+        .feed-header .name { font-weight: 600; font-size: 0.88rem; }
+        .feed-header .type { color: var(--gray-500); font-size: 0.78rem; }
+        .feed-header .time { margin-left: auto; color: var(--gray-500); font-size: 0.72rem; }
+        .feed-body { color: var(--gray-400); font-size: 0.85rem; line-height: 1.6; margin-bottom: 0.75rem; }
+        .feed-actions { display: flex; gap: 1.5rem; }
+        .feed-actions .action { display: flex; align-items: center; gap: 0.3rem; color: var(--gray-500); font-size: 0.78rem; cursor: pointer; transition: color 0.2s; }
+        .feed-actions .action:hover { color: var(--accent); }
+
+        /* SIDEBAR */
+        .sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
+        .widget { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 16px; padding: 1.25rem; }
+        .widget h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+        .member-since { font-size: 0.82rem; color: var(--gray-400); line-height: 1.6; }
+        .member-since span { color: var(--accent); font-weight: 600; }
+        .detail-row { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--gray-800); }
+        .detail-row:last-child { border-bottom: none; }
+        .detail-row .lbl { font-size: 0.78rem; color: var(--gray-500); }
+        .detail-row .val { font-size: 0.82rem; font-weight: 500; }
+        .review-item { padding: 0.75rem 0; border-bottom: 1px solid var(--gray-800); }
+        .review-item:last-child { border-bottom: none; }
+        .review-item .review-biz { font-size: 0.82rem; font-weight: 600; margin-bottom: 0.2rem; }
+        .review-item .review-stars { color: var(--accent); font-size: 0.75rem; letter-spacing: 1px; margin-bottom: 0.2rem; }
+        .review-item .review-text { font-size: 0.78rem; color: var(--gray-400); line-height: 1.5; }
+        .review-item .review-date { font-size: 0.68rem; color: var(--gray-600); margin-top: 0.25rem; }
+        footer { padding: 2rem; text-align: center; color: var(--gray-600); font-size: 0.78rem; border-top: 1px solid var(--gray-800); margin-top: auto; }
+
+        @media (max-width: 850px) { .content-layout { grid-template-columns: 1fr; } .sidebar { order: -1; } }
+        @media (max-width: 700px) { .profile-stats { grid-template-columns: repeat(2, 1fr); } .profile-info { flex-direction: column; align-items: flex-start; gap: 1rem; } .profile-actions { width: 100%; } .btn { flex: 1; text-align: center; } .nav-center { display: none; } .app { padding-left: 1rem; padding-right: 1rem; } .badges-section { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px) { .profile-stats { grid-template-columns: repeat(2, 1fr); } .profile-cover { height: 140px; } .profile-avatar-xxl { width: 100px; height: 100px; } }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Bisiacaria<span>.com</span><span class="dot">·</span><span style="color:var(--gray-500);font-size:0.82rem;">Profilo</span></div>
+        <div class="nav-center"><a href="#">Forum</a><a href="#">News</a><a href="#">Gruppi</a><a href="#" class="active">Directory</a></div>
+        <div class="nav-right">
+            <div class="nav-icon">🔔</div>
+            <div class="nav-icon">💬</div>
+            <img class="avatar avatar-md" src="https://i.pravatar.cc/72?img=32" alt="">
+        </div>
+    </nav>
+    <div class="app">
+        <div class="breadcrumb"><a href="#">Home</a><span>›</span><a href="#">Directory</a><span>›</span><span>Matteo Greco</span></div>
+
+        <div class="profile-header">
+            <div class="profile-cover"><span class="profile-cover-text">Matteo</span></div>
+            <div class="profile-info">
+                <div class="profile-avatar-wrap">
+                    <img class="avatar avatar-xxl" src="https://i.pravatar.cc/240?img=53" alt="">
+                    <div class="online"></div>
+                </div>
+                <div class="profile-main">
+                    <h1>Matteo Greco</h1>
+                    <div class="handle">@matteo_greco · Membro dal 2024</div>
+                </div>
+                <div class="profile-actions">
+                    <button class="btn btn-primary">✉️ Messaggio</button>
+                    <button class="btn btn-outline">➕ Segui</button>
+                    <button class="btn btn-outline">⋯</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-stats">
+            <div class="stat-card"><div class="val">4.8</div><div class="lbl">Valutazione media</div></div>
+            <div class="stat-card"><div class="val">87</div><div class="lbl">Recensioni</div></div>
+            <div class="stat-card"><div class="val">23</div><div class="lbl">Post</div></div>
+            <div class="stat-card"><div class="val">312</div><div class="lbl">Follower</div></div>
+        </div>
+
+        <div class="about-section">
+            <h2>👤 Chi sono</h2>
+            <p>Nativo di Bisiacaria da 32 anni. Appassionato di tech, ciclisti domencale e caffè corretto. Collaboro con il Neighborhood Helpers come moderatore e ho aiutato a creare il Mercatino digitale. Cerco sempre i migliori servizi del quartiere e condivido le mie scoperte con la community.</p>
+            <div class="about-tags">
+                <span class="tag">💻 Tech</span><span class="tag teal">🚲 Ciclismo</span><span class="tag blue">📸 Fotografia</span><span class="tag violet">☕ Caffè</span><span class="tag orange">🤝 Community</span><span class="tag pink">🍕 Food</span>
+            </div>
+        </div>
+
+        <div class="badges-section">
+            <div class="badge-card"><div class="icon">⭐</div><div class="name">Top Reviewer</div><div class="desc">50+ recensioni</div></div>
+            <div class="badge-card"><div class="icon">🏆</div><div class="name">Veterno</div><div class="desc">2+ anni attivo</div></div>
+            <div class="badge-card"><div class="icon">🤝</div><div class="name">Helper</div><div class="desc">Moderatore</div></div>
+            <div class="badge-card"><div class="icon">💡</div><div class="name">Early Adopter</div><div class="desc">Primi 100 utenti</div></div>
+            <div class="badge-card"><div class="icon">📸</div><div class="name">Fotografo</div><div class="desc">100+ foto</div></div>
+            <div class="badge-card"><div class="icon">🎯</div><div class="name">Esploratore</div><div class="desc">Tutti i servizi</div></div>
+        </div>
+
+        <div class="content-layout">
+            <div>
+                <h2 style="font-size:1.1rem;font-weight:600;margin-bottom:1rem;">📝 Activity</h2>
+                <div class="feed-item">
+                    <div class="feed-header">
+                        <img src="https://i.pravatar.cc/64?img=53" alt="">
+                        <div><div class="name">Matteo Greco</div><div class="type">Ha lasciato una recensione</div></div>
+                        <div class="time">2 ore fa</div>
+                    </div>
+                    <div class="feed-body">Ho lasciato una recensione per <b>Panetteria Rossi</b>: "Il miglior pane del quartiere, incredibile. Ogni domenica compro le loro focacce per tutta la famiglia."</div>
+                    <div class="feed-actions"><span class="action">❤️ 24</span><span class="action">💬 3</span></div>
+                </div>
+                <div class="feed-item">
+                    <div class="feed-header">
+                        <img src="https://i.pravatar.cc/64?img=53" alt="">
+                        <div><div class="name">Matteo Greco</div><div class="type">Ha aderito al gruppo</div></div>
+                        <div class="time">1 giorno fa</div>
+                    </div>
+                    <div class="feed-body">Si è unito al gruppo <b>Bisiacaria Tech</b>. Ora è parte di una community di 198 membri che discutono di programmazione, design e nuovi tool.</div>
+                    <div class="feed-actions"><span class="action">❤️ 12</span><span class="action">💬 1</span></div>
+                </div>
+                <div class="feed-item">
+                    <div class="feed-header">
+                        <img src="https://i.pravatar.cc/64?img=53" alt="">
+                        <div><div class="name">Matteo Greco</div><div class="type">Ha pubblicato un post</div></div>
+                        <div class="time">3 giorni fa</div>
+                    </div>
+                    <div class="feed-body">"Ragazzi, aprendo la nuova pista ciclabile in Via Roma dobbiamo pensarci anche ai semafori. Quelli al cross di Via Bellezza sono ancora vecchi e non funzionano bene. Qualcuno ha già segnalato al comune?"</div>
+                    <div class="feed-actions"><span class="action">❤️ 45</span><span class="action">💬 18</span></div>
+                </div>
+                <div class="feed-item">
+                    <div class="feed-header">
+                        <img src="https://i.pravatar.cc/64?img=53" alt="">
+                        <div><div class="name">Matteo Greco</div><div class="type">Ha aggiunto un servizio</div></div>
+                        <div class="time">1 settimana fa</div>
+                    </div>
+                    <div class="feed-body">Ha aggiunto <b>FitZone Bisiacaria</b> alla directory: nuova palestra aperta in Via Sport 3 con attrezzatura TechnoGym e corsi group fitness.</div>
+                    <div class="feed-actions"><span class="action">❤️ 31</span><span class="action">💬 7</span></div>
+                </div>
+            </div>
+            <div class="sidebar">
+                <div class="widget">
+                    <h3>📋 Info</h3>
+                    <div class="member-since">Membro da: <span>Marzo 2024</span></div>
+                    <div style="margin-top:0.75rem;">
+                        <div class="detail-row"><span class="lbl">Quartiere</span><span class="val">Villa Verde</span></div>
+                        <div class="detail-row"><span class="lbl">Ruolo</span><span class="val">Moderatore</span></div>
+                        <div class="detail-row"><span class="lbl">Interessi</span><span class="val">Tech, Bike, Foto</span></div>
+                        <div class="detail-row"><span class="lbl">Email</span><span class="val">m.greco@bis...</span></div>
+                    </div>
+                </div>
+                <div class="widget">
+                    <h3>📝 Ultime recensioni</h3>
+                    <div class="review-item">
+                        <div class="review-biz">Panetteria Rossi</div>
+                        <div class="review-stars">★★★★★</div>
+                        <div class="review-text">Miglior pane del quartiere, focacce incredibili...</div>
+                        <div class="review-date">2 ore fa</div>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-biz">Barbieri & C.</div>
+                        <div class="review-stars">★★★★★</div>
+                        <div class="review-text">Taglio perfetto, ambiente incredibile...</div>
+                        <div class="review-date">3 giorni fa</div>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-biz">Meccanico Bisi</div>
+                        <div class="review-stars">★★★★☆</div>
+                        <div class="review-text">Buon lavoro, prices onesti. Un po' lento...</div>
+                        <div class="review-date">1 settimana fa</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>© 2026 Bisiacaria.com · Il profilo di Matteo ✦</footer>
 </body>
 </html>

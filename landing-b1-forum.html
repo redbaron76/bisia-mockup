@@ -3,174 +3,321 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forum — Bisiacaria.com</title>
-    <meta name="description" content="Forum del quartiere Bisiacaria: discussioni, categorie, utenti attivi.">
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                },
-            },
-        }
-    </script>
-</head>
-<body class="bg-zinc-950 text-zinc-200 font-sans antialiased">
-<div class="min-h-screen">
-        <header class="fixed top-0 left-0 right-0 z-[200] flex items-center justify-between px-4 py-3 md:px-6 lg:px-8 bg-zinc-950 border-b border-zinc-800">
-            <a href="index.html" class="flex items-center gap-1 text-[1.05rem] font-bold tracking-tight">
-                <span class="text-white">Bisiacaria</span><span class="text-yellow-400">.com</span>
-            </a>
-            <nav class="hidden md:flex items-center gap-6 lg:gap-8">
-                <a href="landing-4-warm.html" data-page="home" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Home</a>
-                <a href="landing-b1-forum.html" data-page="forum" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Forum</a>
-                <a href="landing-b2-mercato.html" data-page="mercato" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Mercatino</a>
-                <a href="landing-b3-news.html" data-page="news" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">News</a>
-                <a href="landing-b4-groups.html" data-page="gruppi" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Gruppi</a>
-                <a href="landing-b5-directory.html" data-page="directory" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Directory</a>
-                <a href="landing-b6-drawer.html" data-page="layout" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Layout</a>
-                <a href="landing-c1-community.html" data-page="community" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Community</a>
-                <a href="landing-c3-events.html" data-page="events" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Eventi</a>
-                <a href="signup.html" class="inline-flex items-center justify-center bg-yellow-400 text-black font-semibold text-sm px-6 py-2 rounded-full transition-all hover:bg-zinc-900 hover:text-yellow-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 min-h-[2.75rem]">Esci</a>
-            </nav>
-            <button class="md:hidden hamburger w-9 h-9 flex flex-col items-center justify-center gap-[5px] bg-transparent" id="hamburger" aria-label="Menu">
-                <span class="hamburger-line block w-5 h-[2px] bg-zinc-900 rounded-full transition-transform duration-200 ease-out"></span>
-                <span class="hamburger-line block w-5 h-[2px] bg-zinc-900 rounded-full transition-opacity duration-200 ease-out"></span>
-                <span class="hamburger-line block w-5 h-[2px] bg-zinc-900 rounded-full transition-transform duration-200 ease-out"></span>
-            </button>
-        </header>
-        <div class="hidden md:flex mobile-menu absolute top-16 left-0 right-0 bottom-0 overflow-y-auto bg-zinc-950/98 backdrop-blur-lg z-[199]" id="mobile-menu">
-            <div class="flex flex-col p-4 gap-2">
-                <a href="landing-4-warm.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="home">Home</a>
-                <a href="landing-b1-forum.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="forum">Forum</a>
-                <a href="landing-b2-mercato.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="mercato">Mercatino</a>
-                <a href="landing-b3-news.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="news">News</a>
-                <a href="landing-b4-groups.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="gruppi">Gruppi</a>
-                <a href="landing-b5-directory.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="directory">Directory</a>
-                <a href="landing-b6-drawer.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="layout">Layout</a>
-                <a href="landing-c1-community.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="community">Community</a>
-                <a href="landing-c3-events.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="events">Eventi</a>
-                <a href="settings.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="settings">Impostazioni</a>
-                <a href="signup.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="signup">Esci</a>
-            </div>
-        </div>
-        <div class="hidden md:hidden mobile-overlay absolute top-16 left-0 right-0 bottom-0 bg-black/40 z-[198]" id="mobile-overlay"></div>
-    <!-- Hero -->
-    <section class="pt-40 pb-16 lg:pt-48 lg:pb-20">
-        <div class="px-4 md:px-6 lg:px-8 max-w-[72rem] mx-auto">
-            <p class="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold tracking-wider text-yellow-400 uppercase bg-zinc-900 rounded-full mb-6">
-                <span class="w-1.5 h-1.5 bg-yellow-400 rounded-full"></span>Forum del quartiere
-            </p>
-            <h1 class="text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] font-extrabold tracking-tight leading-[1.08] mb-6 max-w-[48ch]">
-                Il <span class="text-yellow-400">foro</span> dove si scambiano le idee
-            </h1>
-            <p class="text-lg md:text-xl leading-relaxed text-zinc-300 mb-10 max-w-[52ch]">
-                Discussioni organizzate per categorie. Utenti attivi, moderazione chiara, thread ordinati.
-            </p>
-            <a href="#" class="inline-flex items-center justify-center bg-yellow-400 text-black font-semibold text-sm px-6 py-3 rounded-full transition-all hover:bg-zinc-900 hover:text-yellow-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 min-h-[2.75rem]">Leggi le discussioni</a>
-        </div>
-    </section>
-    <hr class="mx-4 md:mx-6 lg:mx-8 max-w-[72rem] border-t-2 border-zinc-900">
-
-    <!-- Category Grid -->
-    <section class="max-w-[72rem] mx-auto px-4 md:px-6 lg:px-8 py-16">
-        <div class="pt-4 pb-12">
-            <p class="text-xs font-semibold tracking-wider text-zinc-500 uppercase mb-2">Categorie</p>
-            <h2 class="text-[1.75rem] md:text-[2rem] font-bold tracking-tight leading-tight mb-2 max-w-[40ch]">Esplora i temi del quartiere</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[72rem] mx-auto">
-            <div class="forum-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
-                <div class="forum-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">💬</div>
-                <h3 class="text-lg font-bold tracking-tight mb-2">Tecnologia</h3>
-                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Discussioni su gadget, software, e le ultime novità tech. Tutti表达的 opinion!</p>
-                <div class="forum-meta flex items-center justify-between text-xs text-zinc-500">
-                    <span>47 discussioni · 128 messaggi</span>
-                    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Online</span>
-                </div>
-            </div>
-            <div class="forum-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
-                <div class="forum-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🎨</div>
-                <h3 class="text-lg font-bold tracking-tight mb-2">Arte &amp; Cultura</h3>
-                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Mostre, cinema, musica, libri. Scopri gli eventi culturali del quartiere.</p>
-                <div class="forum-meta flex items-center justify-between text-xs text-zinc-500">
-                    <span>32 discussioni · 89 messaggi</span>
-                    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Online</span>
-                </div>
-            </div>
-            <div class="forum-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
-                <div class="forum-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🌱</div>
-                <h3 class="text-lg font-bold tracking-tight mb-2">Giardinaggio</h3>
-                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Consigli su piante, fioriere, ortaggi. Scambia semi e idee con altri appassionati.</p>
-                <div class="forum-meta flex items-center justify-between text-xs text-zinc-500">
-                    <span>28 discussioni · 67 messaggi</span>
-                    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Online</span>
-                </div>
-            </div>
-            <div class="forum-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
-                <div class="forum-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🏃</div>
-                <h3 class="text-lg font-bold tracking-tight mb-2">Sport &amp; salute</h3>
-                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Corsa, yoga, ciclocity. Organizza uscite e gare di quartiere.</p>
-                <div class="forum-meta flex items-center justify-between text-xs text-zinc-500">
-                    <span>51 discussioni · 143 messaggi</span>
-                    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Online</span>
-                </div>
-            </div>
-            <div class="forum-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
-                <div class="forum-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">📷</div>
-                <h3 class="text-lg font-bold tracking-tight mb-2">Foto &amp; video</h3>
-                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Condividi scatti del quartiere, strumenti, tecniche. Ogni angolo ha una storia.</p>
-                <div class="forum-meta flex items-center justify-between text-xs text-zinc-500">
-                    <span>19 discussioni · 52 messaggi</span>
-                    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Online</span>
-                </div>
-            </div>
-            <div class="forum-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
-                <div class="forum-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🍕</div>
-                <h3 class="text-lg font-bold tracking-tight mb-2">Ristoranti &amp; enoteche</h3>
-                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Le migliori scoperte gastronomiche del quartiere. Recensioni oneste.</p>
-                <div class="forum-meta flex items-center justify-between text-xs text-zinc-500">
-                    <span>64 discussioni · 210 messaggi</span>
-                    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Online</span>
-                </div>
-            </div>
-        </div>
-    </section>
-        <footer class="flex flex-wrap items-center justify-between gap-3 px-6 lg:px-8 py-8 border-t border-zinc-800">
-            <span class="text-sm text-zinc-500">&copy; 2026 Bisiacaria.com &middot; La community del tuo quartiere</span>
-            <div class="flex gap-5">
-                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors">Privacy</a>
-                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors">Termini</a>
-                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors">Contatti</a>
-            </div>
-        </footer>
-</div>
+    <title>Bisiacaria — Forum</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
         <style>
-            .hamburger.open .hamburger-line:first-child { transform: rotate(45deg) translate(5px, 5px); }
-            .hamburger.open .hamburger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
-            .hamburger.open .hamburger-line:last-child { transform: rotate(-45deg) translate(5px, -5px); }
-            .nav-link.active, .mobile-nav-link.active { color: #facc15; }
-            @media (max-width: 768px) { .mobile-menu { display: flex; } .mobile-menu.hidden { display: none; } }
-        </style>
-        <script>
-            (function() {
-                var hamburger = document.getElementById('hamburger');
-                var menu = document.getElementById('mobile-menu');
-                var overlay = document.getElementById('mobile-overlay');
-                function toggleMenu() {
-                    var open = menu.classList.contains('hidden');
-                    if (open) { hamburger.classList.add('open'); menu.classList.remove('hidden'); overlay.classList.remove('hidden'); }
-                    else { hamburger.classList.remove('open'); menu.classList.add('hidden'); overlay.classList.add('hidden'); }
-                }
-                hamburger.addEventListener('click', toggleMenu);
-                overlay.addEventListener('click', toggleMenu);
-            })();
-        </script>
+        @import "tailwindcss";
+        @layer base, components;
+        @layer base {
+            :root { --accent: #ffcc00; }
+            body { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; background: #0a0a0c; color: #fff; }
+        }
+        @layer components {
+:root { --black: #0a0a0c; --gray-950: #0f0f12; --gray-900: #16161a; --gray-800: #1e1e24; --gray-700: #2a2a32; --gray-600: #3a3a44; --gray-400: #888890; --gray-300: #aaaab2; --white: #fff; --accent: #ffcc00; --accent-light: rgba(255,204,0,0.1); --green: #22c55e; --blue: #3b82f6; --pink: #ec4899; --purple: #a855f7; --orange: #f97316; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--black); color: var(--white); }
+
+        /* NAV */
+        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,12,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--gray-800); }
+        .logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.4rem; }
+        .logo span { color: var(--accent); }
+        .logo .dot { color: var(--gray-400); margin-right: 0.25rem; }
+        .nav-center { display: flex; gap: 1.5rem; }
+        .nav-center a { color: var(--gray-400); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+        .nav-center a:hover { color: var(--white); }
+        .nav-center a.active { color: var(--accent); }
+        .nav-search { position: relative; }
+        .nav-search input { background: var(--gray-900); border: 1px solid var(--gray-700); border-radius: 100px; padding: 0.5rem 1rem 0.5rem 2.2rem; color: var(--white); font-size: 0.85rem; width: 200px; outline: none; font-family: inherit; transition: all 0.3s; }
+        .nav-search input:focus { border-color: var(--accent); width: 260px; }
+        .nav-search::before { content: '🔍'; position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); font-size: 0.8rem; }
+        .nav-right { display: flex; align-items: center; gap: 0.75rem; }
+        .nav-notification { position: relative; font-size: 1.2rem; cursor: pointer; }
+        .nav-notification .badge { position: absolute; top: -4px; right: -6px; background: var(--pink); color: var(--white); font-size: 0.6rem; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+        .nav-avatar { width: 32px; height: 32px; border-radius: 50%; cursor: pointer; border: 2px solid var(--gray-700); }
+        .btn-new { background: var(--accent); color: var(--black); padding: 0.45rem 1.1rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600; border: none; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+        .btn-new:hover { background: #ffe033; }
+
+        /* LAYOUT */
+        .app { display: grid; grid-template-columns: 220px 1fr 280px; gap: 0; min-height: 100vh; max-width: 1280px; margin: 0 auto; padding-top: 5rem; }
+
+        /* LEFT SIDEBAR */
+        .sidebar-left { padding: 1.5rem 1rem; border-right: 1px solid var(--gray-800); position: sticky; top: 5rem; height: calc(100vh - 5rem); overflow-y: auto; }
+        .sidebar-left .section { margin-bottom: 1.5rem; }
+        .sidebar-left .section-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-500); margin-bottom: 0.5rem; padding: 0 0.75rem; }
+        .sidebar-left .menu-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0.75rem; border-radius: 10px; color: var(--gray-400); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: all 0.2s; }
+        .sidebar-left .menu-item:hover { background: var(--gray-900); color: var(--white); }
+        .sidebar-left .menu-item.active { background: var(--accent-light); color: var(--accent); }
+        .sidebar-left .menu-item .icon { width: 22px; text-align: center; }
+        .sidebar-left .menu-item .count { margin-left: auto; background: var(--gray-800); padding: 0.1rem 0.5rem; border-radius: 100px; font-size: 0.7rem; font-weight: 600; }
+        .sidebar-left .menu-item.active .count { background: rgba(255,204,0,0.2); color: var(--accent); }
+
+        /* CENTER */
+        .center { padding: 1.5rem 2rem; }
+        .page-header { margin-bottom: 1.5rem; }
+        .page-header h1 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .page-header p { color: var(--gray-400); font-size: 0.9rem; }
+
+        /* CATEGORY CARDS */
+        .categories { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+        .category-card { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 14px; padding: 1.25rem; transition: all 0.3s; cursor: pointer; }
+        .category-card:hover { border-color: var(--gray-600); }
+        .category-card .cat-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+        .category-card .cat-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        .category-card .cat-icon.blue { background: rgba(59,130,246,0.15); }
+        .category-card .cat-icon.green { background: rgba(34,197,94,0.15); }
+        .category-card .cat-icon.purple { background: rgba(168,85,247,0.15); }
+        .category-card .cat-icon.orange { background: rgba(249,115,22,0.15); }
+        .category-card .cat-icon.pink { background: rgba(236,72,153,0.15); }
+        .category-card .cat-icon.teal { background: rgba(20,184,166,0.15); }
+        .category-card .cat-name { font-weight: 600; font-size: 0.95rem; }
+        .category-card .cat-desc { color: var(--gray-400); font-size: 0.8rem; line-height: 1.4; }
+        .category-card .cat-stats { display: flex; gap: 1rem; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--gray-800); }
+        .category-card .cat-stats span { font-size: 0.75rem; color: var(--gray-500); }
+        .category-card .cat-stats span b { color: var(--gray-300); font-weight: 600; }
+
+        /* TOPIC LIST */
+        .topics-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .topics-header h2 { font-size: 1.1rem; font-weight: 600; }
+        .topics-header .tabs { display: flex; gap: 0.5rem; }
+        .tab-btn { background: none; border: none; color: var(--gray-400); font-size: 0.8rem; font-weight: 500; padding: 0.3rem 0.75rem; border-radius: 100px; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+        .tab-btn:hover { color: var(--white); }
+        .tab-btn.active { background: var(--accent-light); color: var(--accent); font-weight: 600; }
+        .topic-item { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.75rem; transition: all 0.2s; cursor: pointer; }
+        .topic-item:hover { border-color: var(--gray-600); }
+        .topic-item.pinned { border-color: var(--accent); background: rgba(255,204,0,0.03); }
+        .topic-top { display: flex; gap: 0.75rem; align-items: flex-start; }
+        .topic-avatar { width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0; }
+        .topic-content { flex: 1; min-width: 0; }
+        .topic-title-row { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .topic-title { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .topic-badge { font-size: 0.65rem; padding: 0.15rem 0.45rem; border-radius: 100px; font-weight: 600; }
+        .topic-badge.pin { background: var(--accent); color: var(--black); }
+        .topic-badge.hot { background: var(--pink); color: var(--white); }
+        .topic-badge.solved { background: var(--green); color: var(--black); }
+        .topic-meta { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.3rem; }
+        .topic-author { color: var(--gray-400); font-size: 0.78rem; }
+        .topic-time { color: var(--gray-500); font-size: 0.75rem; }
+        .topic-excerpt { color: var(--gray-400); font-size: 0.82rem; margin-top: 0.4rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .topic-bottom { display: flex; align-items: center; gap: 1.25rem; margin-top: 0.6rem; padding-top: 0.5rem; }
+        .topic-stat { font-size: 0.75rem; color: var(--gray-500); display: flex; align-items: center; gap: 0.3rem; }
+        .topic-stat .count { color: var(--gray-300); font-weight: 600; }
+
+        /* RIGHT SIDEBAR */
+        .sidebar-right { padding: 1.5rem 1rem; border-left: 1px solid var(--gray-800); position: sticky; top: 5rem; height: calc(100vh - 5rem); overflow-y: auto; }
+        .widget { background: var(--gray-900); border-radius: 14px; padding: 1.25rem; margin-bottom: 1rem; }
+        .widget h4 { font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.4rem; }
+        .top-user { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; }
+        .top-user .rank { font-size: 0.8rem; font-weight: 700; width: 20px; color: var(--accent); }
+        .top-user .avatar { width: 32px; height: 32px; border-radius: 50%; }
+        .top-user .info { flex: 1; }
+        .top-user .name { font-size: 0.82rem; font-weight: 500; }
+        .top-user .posts { font-size: 0.7rem; color: var(--gray-500); }
+        .top-user .badge-icon { font-size: 0.8rem; }
+
+        .recent-activity { margin-bottom: 0.5rem; }
+        .recent-activity .time { font-size: 0.7rem; color: var(--gray-500); margin-bottom: 0.2rem; }
+        .recent-activity .text { font-size: 0.78rem; color: var(--gray-400); line-height: 1.4; }
+        .recent-activity .text b { color: var(--gray-300); font-weight: 500; }
+
+        footer { padding: 2rem; text-align: center; color: var(--gray-600); font-size: 0.8rem; border-top: 1px solid var(--gray-800); }
+
+        /* MOBILE NAV */
+        .mobile-nav { display: none; position: fixed; bottom: 0; width: 100%; z-index: 100; background: rgba(10,10,12,0.95); backdrop-filter: blur(20px); border-top: 1px solid var(--gray-800); padding: 0.5rem 0; }
+        .mobile-nav-items { display: flex; justify-content: space-around; }
+        .mobile-nav-item { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; color: var(--gray-400); text-decoration: none; font-size: 0.65rem; }
+        .mobile-nav-item .icon { font-size: 1.2rem; }
+        .mobile-nav-item.active { color: var(--accent); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1100px) { .sidebar-right { display: none; } .app { grid-template-columns: 200px 1fr; } }
+        @media (max-width: 850px) { .sidebar-left { display: none; } .app { grid-template-columns: 1fr; padding-left: 0.75rem; padding-right: 0.75rem; } .nav-center, .nav-search { display: none; } .categories { grid-template-columns: 1fr; } .mobile-nav { display: block; } .app { padding-bottom: 5rem; } nav { padding: 1rem 1rem; } }
+        @media (max-width: 480px) { .center { padding: 1rem; } .topic-item { padding: 0.85rem; } .categories { gap: 0.75rem; } }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Bisiacaria<span>.com</span><span class="dot">·</span><span style="color:var(--green);font-size:0.65rem;">🟢 247 online</span></div>
+        <div class="nav-center">
+            <a href="#" class="active">Forum</a>
+            <a href="#">Guide</a>
+            <a href="#">Eventi</a>
+            <a href="#">Mercatino</a>
+        </div>
+        <div class="nav-search"><input type="text" placeholder="Cerca nel forum..."></div>
+        <div class="nav-right">
+            <button class="btn-new">+ Nuovo Topic</button>
+            <div class="nav-notification"><span class="badge">3</span></div>
+            <img class="nav-avatar" src="https://i.pravatar.cc/64?img=32" alt="">
+        </div>
+    </nav>
+
+    <div class="app">
+        <aside class="sidebar-left">
+            <div class="section">
+                <div class="section-title">Navigazione</div>
+                <a href="#" class="menu-item active"><span class="icon">🏠</span> Home <span class="count">24</span></a>
+                <a href="#" class="menu-item"><span class="icon">🔥</span> Popolari</a>
+                <a href="#" class="menu-item"><span class="icon">🕐</span> Recenti</a>
+                <a href="#" class="menu-item"><span class="icon">✅</span> Risolti</a>
+            </div>
+            <div class="section">
+                <div class="section-title">Categorie</div>
+                <a href="#" class="menu-item"><span class="icon">💬</span> Chiacchiere <span class="count">142</span></a>
+                <a href="#" class="menu-item"><span class="icon">❓</span> Domande <span class="count">89</span></a>
+                <a href="#" class="menu-item"><span class="icon">📢</span> Annunci</a>
+                <a href="#" class="menu-item"><span class="icon">🎉</span> Eventi</a>
+                <a href="#" class="menu-item"><span class="icon">💡</span> Idee</a>
+                <a href="#" class="menu-item"><span class="icon">📸</span> Foto</a>
+            </div>
+            <div class="section">
+                <div class="section-title">Il tuo forum</div>
+                <a href="#" class="menu-item"><span class="icon">👤</span> Il Mio Profilo</a>
+                <a href="#" class="menu-item"><span class="icon">⚙️</span> Impostazioni</a>
+            </div>
+        </aside>
+
+        <main class="center">
+            <div class="page-header">
+                <h1>Benvenuto su Bisiacaria.com</h1>
+                <p>La community locale dove ci si scambia idee, informazioni e avvenimenti del quartiere</p>
+            </div>
+
+            <div class="categories">
+                <div class="category-card">
+                    <div class="cat-header"><div class="cat-icon blue">💬</div><div class="cat-name">Chiacchiere Generali</div></div>
+                    <div class="cat-desc">Parla di tutto e di nulla con la community. Ricette, consigli, storie del quartiere.</div>
+                    <div class="cat-stats"><span><b>2,341</b> topic</span><span><b>18,920</b> reply</span><span><b>847</b> membri</span></div>
+                </div>
+                <div class="category-card">
+                    <div class="cat-header"><div class="cat-icon green">❓</div><div class="cat-name">Domande & Risposte</div></div>
+                    <div class="cat-desc">Hai bisogno di un consiglio? Chiedi qui. Medici, avvocati, idraulici… tutti rispondono.</div>
+                    <div class="cat-stats"><span><b>1,102</b> topic</span><span><b>4,560</b> reply</span><span><b>1.2K</b> membri</span></div>
+                </div>
+                <div class="category-card">
+                    <div class="cat-header"><div class="cat-icon purple">📢</div><div class="cat-name">Annunci del Quartiere</div></div>
+                    <div class="cat-desc">Cerchi? Offri? Vendite, svuota cantine, traslochi. Tutto qui.</div>
+                    <div class="cat-stats"><span><b>487</b> topic</span><span><b>2,100</b> reply</span><span><b>623</b> membri</span></div>
+                </div>
+                <div class="category-card">
+                    <div class="cat-header"><div class="cat-icon orange">🎉</div><div class="cat-name">Eventi & Incontri</div></div>
+                    <div class="cat-desc">Feste di quartiere, barbecue, tornei, cene. Organizza e partecipa.</div>
+                    <div class="cat-stats"><span><b>312</b> topic</span><span><b>1,890</b> reply</span><span><b>534</b> membri</span></div>
+                </div>
+                <div class="category-card">
+                    <div class="cat-header"><div class="cat-icon pink">💡</div><div class="cat-name">Idee & Progetto</div></div>
+                    <div class="cat-desc">Hai un'idea per migliorare il quartiere? Raccontala qui. Collaborazione massima.</div>
+                    <div class="cat-stats"><span><b>198</b> topic</span><span><b>1,230</b> reply</span><span><b>412</b> membri</span></div>
+                </div>
+                <div class="category-card">
+                    <div class="cat-header"><div class="cat-icon teal">📸</div><div class="cat-name">Foto & Video</div></div>
+                    <div class="cat-desc">Mostra i tuoi scatti del quartiere, i lavori faits, gli angoli nascosti.</div>
+                    <div class="cat-stats"><span><b>567</b> topic</span><span><b>3,440</b> reply</span><span><b>723</b> membri</span></div>
+                </div>
+            </div>
+
+            <div class="topics-header">
+                <h2>🔥 Topic più attivi</h2>
+                <div class="tabs">
+                    <button class="tab-btn active">Popolari</button>
+                    <button class="tab-btn">Recenti</button>
+                    <button class="tab-btn">Risolti</button>
+                </div>
+            </div>
+
+            <div class="topic-list">
+                <div class="topic-item pinned">
+                    <div class="topic-top">
+                        <img class="topic-avatar" src="https://i.pravatar.cc/72?img=44" alt="">
+                        <div class="topic-content">
+                            <div class="topic-title-row"><span class="topic-title">📌 Regolamento del Forum — da leggere!</span><span class="topic-badge pin">📌 Pin</span></div>
+                            <div class="topic-meta"><span class="topic-author">Marco Bisiacaro</span><span class="topic-time">2 sett fa</span></div>
+                        </div>
+                    </div>
+                    <div class="topic-bottom"><span class="topic-stat">💬 <span class="count">156</span></span><span class="topic-stat">👁 <span class="count">4.2K</span></span></div>
+                </div>
+
+                <div class="topic-item">
+                    <div class="topic-top">
+                        <img class="topic-avatar" src="https://i.pravatar.cc/72?img=12" alt="">
+                        <div class="topic-content">
+                            <div class="topic-title-row"><span class="topic-title">C'è qualcuno che ha provato il nuovo paninoteca in via Roma?</span><span class="topic-badge hot">🔥 Hot</span></div>
+                            <div class="topic-meta"><span class="topic-author">Lara Moretti</span><span class="topic-time">45 min fa</span></div>
+                            <div class="topic-excerpt">Ho provato la nuova paninoteca aperta due settimane fa in via Roma. Onestamente il pane è buonissimo ma il servizio...</div>
+                        </div>
+                    </div>
+                    <div class="topic-bottom"><span class="topic-stat">💬 <span class="count">87</span></span><span class="topic-stat">👁 <span class="count">1.2K</span></span></div>
+                </div>
+
+                <div class="topic-item">
+                    <div class="topic-top">
+                        <img class="topic-avatar" src="https://i.pravatar.cc/72?img=26" alt="">
+                        <div class="topic-content">
+                            <div class="topic-title-row"><span class="topic-title">Cerco idraulico di fiducia per riparazione perdita</span><span class="topic-badge solved">✅ Risolto</span></div>
+                            <div class="topic-meta"><span class="topic-author">Davide Boscolo</span><span class="topic-time">2 ore fa</span></div>
+                            <div class="topic-excerpt">Buongiorno a tutti, avrei bisogno di un idraulico per una perdita sotto il lavandino. Sono a Villa Verde, zona nord...</div>
+                        </div>
+                    </div>
+                    <div class="topic-bottom"><span class="topic-stat">💬 <span class="count">23</span></span><span class="topic-stat">👁 <span class="count">567</span></span></div>
+                </div>
+
+                <div class="topic-item">
+                    <div class="topic-top">
+                        <img class="topic-avatar" src="https://i.pravatar.cc/72?img=45" alt="">
+                        <div class="topic-content">
+                            <div class="topic-title-row"><span class="topic-title">Barbecue del 20 luglio — chi partecipa? 🍖</span></div>
+                            <div class="topic-meta"><span class="topic-author">Anna Pellegrini</span><span class="topic-time">5 ore fa</span></div>
+                            <div class="topic-excerpt">Ok ragazzi, l'edizione estiva del barbecue è fissata per sabato 20 luglio alle 18:00. Portate carne, bevande e soprattutto appetito!</div>
+                        </div>
+                    </div>
+                    <div class="topic-bottom"><span class="topic-stat">💬 <span class="count">134</span></span><span class="topic-stat">👁 <span class="count">2.8K</span></span></div>
+                </div>
+
+                <div class="topic-item">
+                    <div class="topic-top">
+                        <img class="topic-avatar" src="https://i.pravatar.cc/72?img=53" alt="">
+                        <div class="topic-content">
+                            <div class="topic-title-row"><span class="topic-title">Vendo bici elettrica usata — ottima stato</span></div>
+                            <div class="topic-meta"><span class="topic-author">Matteo Greco</span><span class="topic-time">8 ore fa</span></div>
+                            <div class="topic-excerpt">Ciao a tutti! Vendo la mia bici elettrica Diacqua che uso da un anno. 2500km, batteria stilla, cambio Shimano. Prezzo trattabile...</div>
+                        </div>
+                    </div>
+                    <div class="topic-bottom"><span class="topic-stat">💬 <span class="count">19</span></span><span class="topic-stat">👁 <span class="count">890</span></span></div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="sidebar-right">
+            <div class="widget">
+                <h4>👑 Top Membri</h4>
+                <div class="top-user"><span class="rank">1</span><img class="avatar" src="https://i.pravatar.cc/64?img=53" alt=""><div class="info"><div class="name">Matteo G.</div><div class="posts">1,247 post</div></div><span class="badge-icon">🛡️</span></div>
+                <div class="top-user"><span class="rank">2</span><img class="avatar" src="https://i.pravatar.cc/64?img=44" alt=""><div class="info"><div class="name">Marco B.</div><div class="posts">983 post</div></div><span class="badge-icon">⭐</span></div>
+                <div class="top-user"><span class="rank">3</span><img class="avatar" src="https://i.pravatar.cc/64?img=12" alt=""><div class="info"><div class="name">Lara M.</div><div class="posts">876 post</div></div></div>
+            </div>
+            <div class="widget">
+                <h4>🕐 Attività recente</h4>
+                <div class="recent-activity"><div class="time">12:34</div><div class="text"><b>Lara M.</b> ha reply sul topic "Nuova paninoteca"</div></div>
+                <div class="recent-activity"><div class="time">12:21</div><div class="text"><b>Davide B.</b> ha creato "Cerco idraulico"</div></div>
+                <div class="recent-activity"><div class="time">12:05</div><div class="text"><b>Anna P.</b> ha aggiorna "Barbecue 20 luglio"</div></div>
+                <div class="recent-activity"><div class="time">11:48</div><div class="text"><b>Matteo G.</b> ha upload 3 foto</div></div>
+            </div>
+            <div class="widget">
+                <h4>📊 Statistiche</h4>
+                <div style="font-size:0.8rem;color:var(--gray-400);line-height:2;"><div>Topic totali: <b style="color:var(--white)">4,567</b></div><div>Reply totali: <b style="color:var(--white)">32,140</b></div><div>Membri: <b style="color:var(--white)">2,847</b></div><div>Nuovi oggi: <b style="color:var(--accent)">+12</b></div></div>
+            </div>
+        </aside>
+    </div>
+
+    <div class="mobile-nav">
+        <div class="mobile-nav-items">
+            <a href="#" class="mobile-nav-item active"><span class="icon">🏠</span>Home</a>
+            <a href="#" class="mobile-nav-item"><span class="icon">🔍</span>Cerca</a>
+            <a href="#" class="mobile-nav-item"><span class="icon">+</span>Nuovo</a>
+            <a href="#" class="mobile-nav-item"><span class="icon">🔔</span>Avvisi<span style="background:var(--pink);color:#fff;font-size:0.55rem;padding:0.1rem 0.35rem;border-radius:100px;">3</span></a>
+            <a href="#" class="mobile-nav-item"><span class="icon">👤</span>Profilo</a>
+        </div>
+    </div>
+
+    <footer>© 2026 Bisiacaria.com · La community del tuo quartiere ✦</footer>
 </body>
 </html>
