@@ -5,15 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bisiacaria — News & Annunci</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-        <style>
-        @import "tailwindcss";
-        @layer base, components;
-        @layer base {
-            :root { --accent: #ffcc00; }
-            body { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; background: #0a0a0c; color: #fff; }
+<script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        accent: '#ffcc00',
+                    },
+                },
+            },
         }
+    </script>
+
+    <style>
         @layer components {
-:root { --black: #0a0a0c; --gray-950: #0f0f12; --gray-900: #16161a; --gray-800: #1e1e24; --gray-700: #2a2a32; --gray-400: #888890; --gray-300: #aaaab2; --white: #fff; --accent: #ffcc00; --accent-light: rgba(255,204,0,0.1); --green: #22c55e; --red: #ef4444; --blue: #3b82f6; --purple: #a855f7; }
+
+        :root { --black: #0a0a0c; --gray-950: #0f0f12; --gray-900: #16161a; --gray-800: #1e1e24; --gray-700: #2a2a32; --gray-400: #888890; --gray-300: #aaaab2; --white: #fff; --accent: #ffcc00; --accent-light: rgba(255,204,0,0.1); --green: #22c55e; --red: #ef4444; --blue: #3b82f6; --purple: #a855f7; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--black); color: var(--white); }
         nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,12,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--gray-800); }
@@ -83,6 +95,7 @@
         footer { padding: 2rem; text-align: center; color: var(--gray-600); font-size: 0.8rem; border-top: 1px solid var(--gray-800); margin-top: 2rem; }
         @media (max-width: 850px) { .news-grid { grid-template-columns: 1fr; } .page-layout { grid-template-columns: 1fr; } .nav-center { display: none; } }
         @media (max-width: 600px) { .app { padding-left: 0.75rem; padding-right: 0.75rem; } .featured-img { height: 200px; } .featured h2 { font-size: 1.3rem; } }
+    
         }
     </style>
 </head>
