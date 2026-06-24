@@ -3,168 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mercatino — Bisiacaria.com</title>
-    <meta name="description" content="Mercatino del quartiere Bisiacaria: compra, vendi e scambia tra vicini.">
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                },
-            },
-        }
-    </script>
-</head>
-<body class="bg-zinc-950 text-zinc-200 font-sans antialiased">
-<div class="min-h-screen">
-        <header class="fixed top-0 left-0 right-0 z-[200] flex items-center justify-between px-4 py-3 md:px-6 lg:px-8 bg-zinc-950 border-b border-zinc-800">
-            <a href="index.html" class="flex items-center gap-1 text-[1.05rem] font-bold tracking-tight">
-                <span class="text-white">Bisiacaria</span><span class="text-yellow-400">.com</span>
-            </a>
-            <nav class="hidden md:flex items-center gap-6 lg:gap-8">
-                <a href="landing-4-warm.html" data-page="home" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Home</a>
-                <a href="landing-b1-forum.html" data-page="forum" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Forum</a>
-                <a href="landing-b2-mercato.html" data-page="mercato" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Mercatino</a>
-                <a href="landing-b3-news.html" data-page="news" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">News</a>
-                <a href="landing-b4-groups.html" data-page="gruppi" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Gruppi</a>
-                <a href="landing-b5-directory.html" data-page="directory" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Directory</a>
-                <a href="landing-b6-drawer.html" data-page="layout" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Layout</a>
-                <a href="landing-c1-community.html" data-page="community" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Community</a>
-                <a href="landing-c3-events.html" data-page="events" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Eventi</a>
-                <a href="signup.html" class="inline-flex items-center justify-center bg-yellow-400 text-black font-semibold text-sm px-6 py-2 rounded-full transition-all hover:bg-zinc-900 hover:text-yellow-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 min-h-[2.75rem]">Esci</a>
-            </nav>
-            <button class="md:hidden hamburger w-9 h-9 flex flex-col items-center justify-center gap-[5px] bg-transparent" id="hamburger" aria-label="Menu">
-                <span class="hamburger-line block w-5 h-[2px] bg-zinc-900 rounded-full transition-transform duration-200 ease-out"></span>
-                <span class="hamburger-line block w-5 h-[2px] bg-zinc-900 rounded-full transition-opacity duration-200 ease-out"></span>
-                <span class="hamburger-line block w-5 h-[2px] bg-zinc-900 rounded-full transition-transform duration-200 ease-out"></span>
-            </button>
-        </header>
-        <div class="hidden md:flex mobile-menu absolute top-16 left-0 right-0 bottom-0 overflow-y-auto bg-zinc-950/98 backdrop-blur-lg z-[199]" id="mobile-menu">
-            <div class="flex flex-col p-4 gap-2">
-                <a href="landing-4-warm.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="home">Home</a>
-                <a href="landing-b1-forum.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="forum">Forum</a>
-                <a href="landing-b2-mercato.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="mercato">Mercatino</a>
-                <a href="landing-b3-news.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="news">News</a>
-                <a href="landing-b4-groups.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="gruppi">Gruppi</a>
-                <a href="landing-b5-directory.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="directory">Directory</a>
-                <a href="landing-b6-drawer.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="layout">Layout</a>
-                <a href="landing-c1-community.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="community">Community</a>
-                <a href="landing-c3-events.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="events">Eventi</a>
-                <a href="settings.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="settings">Impostazioni</a>
-                <a href="signup.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="signup">Esci</a>
-            </div>
-        </div>
-        <div class="hidden md:hidden mobile-overlay absolute top-16 left-0 right-0 bottom-0 bg-black/40 z-[198]" id="mobile-overlay"></div>
-    <!-- Hero -->
-    <section class="pt-40 pb-16 lg:pt-48 lg:pb-20">
-        <div class="px-4 md:px-6 lg:px-8 max-w-[72rem] mx-auto">
-            <p class="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold tracking-wider text-yellow-400 uppercase bg-zinc-900 rounded-full mb-6">
-                <span class="w-1.5 h-1.5 bg-yellow-400 rounded-full"></span>Mercatino del quartiere
-            </p>
-            <h1 class="text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] font-extrabold tracking-tight leading-[1.08] mb-6 max-w-[48ch]">
-                Compra, vendi, <span class="text-yellow-400">scambia</span>
-            </h1>
-            <p class="text-lg md:text-xl leading-relaxed text-zinc-300 mb-10 max-w-[52ch]">
-                Un mercatino di quartiere dove i vicini comprano, vendono e scambiano oggetti. Zero intermediari. A portata di mano.
-            </p>
-            <a href="#" class="inline-flex items-center justify-center bg-yellow-400 text-black font-semibold text-sm px-6 py-3 rounded-full transition-all hover:bg-zinc-900 hover:text-yellow-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 min-h-[2.75rem]">Esplora il mercato</a>
-        </div>
-    </section>
-    <hr class="mx-4 md:mx-6 lg:mx-8 max-w-[72rem] border-t-2 border-zinc-900">
-
-    <!-- Category Grid -->
-    <section class="max-w-[72rem] mx-auto px-4 md:px-6 lg:px-8 py-16">
-        <div class="pt-4 pb-12">
-            <p class="text-xs font-semibold tracking-wider text-zinc-500 uppercase mb-2">Categorie</p>
-            <h2 class="text-[1.75rem] md:text-[2rem] font-bold tracking-tight leading-tight mb-2 max-w-[40ch]">Cosa trovi sul mercatino</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[72rem] mx-auto">
-            <div class="mercato-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
-                <div class="mercato-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🪑</div>
-                <h3 class="text-lg font-bold tracking-tight mb-2">Mobili &amp; Arredamento</h3>
-                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Poltrone, tavoli, librerie — tutto ciò che un vicino non vuole più.</p>
-                <div class="mercato-meta flex items-center justify-between text-xs text-zinc-500">
-                    <span>23 annunci</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Attivi</span>
-                </div>
-            </div>
-            <div class="mercato-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
-                <div class="mercato-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🧸</div>
-                <h3 class="text-lg font-bold tracking-tight mb-2">Bambini &amp; Giochi</h3>
-                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Giocattoli, passeggini, libri per bambini. Seconda vita per i giochi.</p>
-                <div class="mercato-meta flex items-center justify-between text-xs text-zinc-500">
-                    <span>41 annunci</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Attivi</span>
-                </div>
-            </div>
-            <div class="mercato-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
-                <div class="mercato-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">💻</div>
-                <h3 class="text-lg font-bold tracking-tight mb-2">Elettronica</h3>
-                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Computer, tablet, smartphone — tecnologia a portata di mano.</p>
-                <div class="mercato-meta flex items-center justify-between text-xs text-zinc-500">
-                    <span>18 annunci</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Attivi</span>
-                </div>
-            </div>
-            <div class="mercato-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
-                <div class="mercato-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🚲</div>
-                <h3 class="text-lg font-bold tracking-tight mb-2">Bici &amp; Motori</h3>
-                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Biciclette, monopattini, accessori. Velocità nel quartiere.</p>
-                <div class="mercato-meta flex items-center justify-between text-xs text-zinc-500">
-                    <span>15 annunci</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Attivi</span>
-                </div>
-            </div>
-            <div class="mercato-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
-                <div class="mercato-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">📚</div>
-                <h3 class="text-lg font-bold tracking-tight mb-2">Libri &amp; Riviste</h3>
-                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Cartacei, digitali, manuali. Libri in rotazione continua.</p>
-                <div class="mercato-meta flex items-center justify-between text-xs text-zinc-500">
-                    <span>56 annunci</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Attivi</span>
-                </div>
-            </div>
-            <div class="mercato-card p-6 border border-zinc-800 rounded-lg bg-zinc-900/50 hover:border-zinc-600 hover:shadow-lg hover:shadow-yellow-400/5 transition-all">
-                <div class="mercato-icon flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-400/10 text-yellow-400 text-2xl mb-4">🛠️</div>
-                <h3 class="text-lg font-bold tracking-tight mb-2">Attrezzature</h3>
-                <p class="text-sm text-zinc-400 leading-relaxed mb-4">Utensili, oggetti da giardino, attrezzatura sportiva.</p>
-                <div class="mercato-meta flex items-center justify-between text-xs text-zinc-500">
-                    <span>31 annunci</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Attivi</span>
-                </div>
-            </div>
-        </div>
-    </section>
-        <footer class="flex flex-wrap items-center justify-between gap-3 px-6 lg:px-8 py-8 border-t border-zinc-800">
-            <span class="text-sm text-zinc-500">&copy; 2026 Bisiacaria.com &middot; La community del tuo quartiere</span>
-            <div class="flex gap-5">
-                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors">Privacy</a>
-                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors">Termini</a>
-                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors">Contatti</a>
-            </div>
-        </footer>
-</div>
+    <title>Bisiacaria — Mercatino</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
         <style>
-            .hamburger.open .hamburger-line:first-child { transform: rotate(45deg) translate(5px, 5px); }
-            .hamburger.open .hamburger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
-            .hamburger.open .hamburger-line:last-child { transform: rotate(-45deg) translate(5px, -5px); }
-            .nav-link.active, .mobile-nav-link.active { color: #facc15; }
-            @media (max-width: 768px) { .mobile-menu { display: flex; } .mobile-menu.hidden { display: none; } }
-        </style>
-        <script>
-            (function() {
-                var hamburger = document.getElementById('hamburger');
-                var menu = document.getElementById('mobile-menu');
-                var overlay = document.getElementById('mobile-overlay');
-                function toggleMenu() {
-                    var open = menu.classList.contains('hidden');
-                    if (open) { hamburger.classList.add('open'); menu.classList.remove('hidden'); overlay.classList.remove('hidden'); }
-                    else { hamburger.classList.remove('open'); menu.classList.add('hidden'); overlay.classList.add('hidden'); }
-                }
-                hamburger.addEventListener('click', toggleMenu);
-                overlay.addEventListener('click', toggleMenu);
-            })();
-        </script>
+        @import "tailwindcss";
+        @layer base, components;
+        @layer base {
+            :root { --accent: #ffcc00; }
+            body { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; background: #0a0a0c; color: #fff; }
+        }
+        @layer components {
+:root { --black: #0a0a0c; --gray-950: #0f0f12; --gray-900: #16161a; --gray-800: #1e1e24; --gray-700: #2a2a32; --gray-600: #3a3a44; --gray-400: #888890; --gray-300: #aaaab2; --white: #fff; --accent: #ffcc00; --accent-light: rgba(255,204,0,0.1); --green: #22c55e; --blue: #3b82f6; --pink: #ec4899; --purple: #a855f7; --orange: #f97316; --teal: #14b8a6; --red: #ef4444; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--black); color: var(--white); }
+
+        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,12,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--gray-800); }
+        .logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.4rem; }
+        .logo span { color: var(--accent); }
+        .logo .dot { color: var(--gray-400); margin-right: 0.25rem; }
+        .nav-center { display: flex; gap: 1.5rem; }
+        .nav-center a { color: var(--gray-400); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+        .nav-center a:hover { color: var(--white); }
+        .nav-center a.active { color: var(--accent); }
+        .nav-right { display: flex; gap: 1rem; align-items: center; }
+        .btn-new { background: var(--accent); color: var(--black); padding: 0.45rem 1.1rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600; border: none; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+        .btn-new:hover { background: #ffe033; }
+
+        .avatar { border-radius: 50%; object-fit: cover; border: 2px solid var(--gray-700); }
+        .avatar-sm { width: 32px; height: 32px; }
+        .avatar-md { width: 44px; height: 44px; }
+        .avatar-lg { width: 56px; height: 56px; }
+
+        /* LAYOUT */
+        .app { display: grid; grid-template-columns: 220px 1fr 280px; gap: 0; min-height: 100vh; max-width: 1280px; margin: 0 auto; padding-top: 5rem; }
+        .sidebar-left { padding: 1.5rem 1rem; border-right: 1px solid var(--gray-800); position: sticky; top: 5rem; height: calc(100vh - 5rem); overflow-y: auto; }
+        .sidebar-left .section { margin-bottom: 1.5rem; }
+        .sidebar-left .section-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-500); margin-bottom: 0.5rem; padding: 0 0.75rem; }
+        .sidebar-left .menu-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0.75rem; border-radius: 10px; color: var(--gray-400); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: all 0.2s; }
+        .sidebar-left .menu-item:hover { background: var(--gray-900); color: var(--white); }
+        .sidebar-left .menu-item.active { background: var(--accent-light); color: var(--accent); }
+        .sidebar-left .menu-item .icon { width: 22px; text-align: center; }
+
+        .center { padding: 1.5rem 2rem; }
+        .page-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem; }
+        .page-header h1 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .page-header p { color: var(--gray-400); font-size: 0.9rem; }
+        .page-header .btn-new { margin-bottom: 0.5rem; }
+
+        /* FILTERS */
+        .filters { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .filter-btn { background: var(--gray-900); border: 1px solid var(--gray-700); color: var(--gray-400); padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.8rem; font-weight: 500; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+        .filter-btn:hover { border-color: var(--gray-500); color: var(--white); }
+        .filter-btn.active { background: var(--accent); color: var(--black); border-color: var(--accent); font-weight: 600; }
+
+        /* PRODUCT GRID */
+        .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+        .product-card { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 14px; overflow: hidden; transition: all 0.3s; cursor: pointer; }
+        .product-card:hover { border-color: var(--gray-600); transform: translateY(-2px); }
+        .product-img { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; position: relative; }
+        .product-img.wood { background: linear-gradient(135deg, #2a1a0a, #1a1a0a); }
+        .product-img.elec { background: linear-gradient(135deg, #0a1a2a, #0a2a2a); }
+        .product-img.furn { background: linear-gradient(135deg, #1a1a0a, #2a2a1a); }
+        .product-img.sport { background: linear-gradient(135deg, #0a2a0a, #0a1a2a); }
+        .product-img.fash { background: linear-gradient(135deg, #2a0a1a, #1a0a2a); }
+        .product-img.kids { background: linear-gradient(135deg, #2a1a1a, #2a1a0a); }
+        .product-img.book { background: linear-gradient(135deg, #1a1a2a, #0a1a2a); }
+        .product-img.auto { background: linear-gradient(135deg, #1a1a1a, #2a2a2a); }
+        .product-badge { position: absolute; top: 8px; left: 8px; padding: 0.2rem 0.6rem; border-radius: 100px; font-size: 0.65rem; font-weight: 700; }
+        .product-badge.new { background: var(--green); color: var(--black); }
+        .product-badge.hot { background: var(--orange); color: var(--black); }
+        .product-badge.free { background: var(--accent); color: var(--black); }
+        .product-body { padding: 1rem; }
+        .product-price { font-size: 1.1rem; font-weight: 700; color: var(--accent); margin-bottom: 0.25rem; }
+        .product-title { font-size: 0.85rem; color: var(--gray-300); margin-bottom: 0.5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .product-footer { display: flex; justify-content: space-between; align-items: center; }
+        .product-seller { display: flex; align-items: center; gap: 0.4rem; }
+        .product-seller .avatar { width: 22px; height: 22px; }
+        .product-seller .name { font-size: 0.72rem; color: var(--gray-400); }
+        .product-time { font-size: 0.72rem; color: var(--gray-500); }
+
+        /* RIGHT SIDEBAR */
+        .sidebar-right { padding: 1.5rem 1rem; border-left: 1px solid var(--gray-800); position: sticky; top: 5rem; height: calc(100vh - 5rem); overflow-y: auto; }
+        .widget { background: var(--gray-900); border-radius: 14px; padding: 1.25rem; margin-bottom: 1rem; }
+        .widget h4 { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.75rem; }
+        .quick-tip { font-size: 0.78rem; color: var(--gray-400); padding: 0.4rem 0; line-height: 1.5; }
+        .quick-tip .icon { margin-right: 0.3rem; }
+
+        /* MOBILE NAV */
+        .mobile-nav { display: none; position: fixed; bottom: 0; width: 100%; z-index: 100; background: rgba(10,10,12,0.95); backdrop-filter: blur(20px); border-top: 1px solid var(--gray-800); padding: 0.5rem 0; }
+        .mobile-nav-items { display: flex; justify-content: space-around; }
+        .mobile-nav-item { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; color: var(--gray-400); text-decoration: none; font-size: 0.65rem; }
+        .mobile-nav-item .icon { font-size: 1.2rem; }
+        .mobile-nav-item.active { color: var(--accent); }
+
+        @media (max-width: 1100px) { .sidebar-right { display: none; } .app { grid-template-columns: 200px 1fr; } }
+        @media (max-width: 850px) { .sidebar-left { display: none; } .app { grid-template-columns: 1fr; padding-left: 0.75rem; padding-right: 0.75rem; } .nav-center { display: none; } .products { grid-template-columns: repeat(2, 1fr); } .mobile-nav { display: block; } .app { padding-bottom: 5rem; } }
+        @media (max-width: 480px) { .center { padding: 1rem; } .products { grid-template-columns: 1fr; } .filters { overflow-x: auto; flex-wrap: nowrap; } }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Bisiacaria<span>.com</span><span class="dot">·</span><span style="color:var(--gray-400);font-size:0.85rem;">🛒 Mercatino</span></div>
+        <div class="nav-center">
+            <a href="#">Forum</a>
+            <a href="#">Guide</a>
+            <a href="#">Eventi</a>
+            <a href="#" class="active">Mercatino</a>
+        </div>
+        <div class="nav-right">
+            <button class="btn-new">+ Vendi</button>
+            <img class="avatar avatar-md" src="https://i.pravatar.cc/88?img=32" alt="">
+        </div>
+    </nav>
+
+    <div class="app">
+        <aside class="sidebar-left">
+            <div class="section">
+                <div class="section-title">Sezioni</div>
+                <a href="#" class="menu-item active"><span class="icon">🏪</span> Tutti <span style="margin-left:auto;color:var(--gray-500);font-size:0.75rem;">89</span></a>
+                <a href="#" class="menu-item"><span class="icon">💻</span> Elettronica</a>
+                <a href="#" class="menu-item"><span class="icon">🛋️</span> Casa & Giardino</a>
+                <a href="#" class="menu-item"><span class="icon">🚲</span> Sport</a>
+                <a href="#" class="menu-item"><span class="icon">👗</span> Moda</a>
+                <a href="#" class="menu-item"><span class="icon">👶</span> Bambini</a>
+                <a href="#" class="menu-item"><span class="icon">📚</span> Libri</a>
+                <a href="#" class="menu-item"><span class="icon">🚗</span> Auto & Moto</a>
+            </div>
+            <div class="section">
+                <div class="section-title">Il mio mercatino</div>
+                <a href="#" class="menu-item"><span class="icon">📦</span> Le mie inserzioni</a>
+                <a href="#" class="menu-item"><span class="icon">❤️</span> Preferiti</a>
+                <a href="#" class="menu-item"><span class="icon">📨</span> Messaggi</a>
+            </div>
+        </aside>
+
+        <main class="center">
+            <div class="page-header">
+                <div>
+                    <h1>Mercatino del Quartiere</h1>
+                    <p>Cerca, compra e vendi tra vicini — senza intermediari</p>
+                </div>
+                <button class="btn-new">+ Vendi Subito</button>
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active">Tutti</button>
+                <button class="filter-btn">🆕 Nuovi</button>
+                <button class="filter-btn">🔥 Hot</button>
+                <button class="filter-btn">🎁 Gratis</button>
+                <button class="filter-btn">💰 Prezzo ↑</button>
+                <button class="filter-btn">🕐 Recenti</button>
+            </div>
+
+            <div class="products">
+                <div class="product-card">
+                    <div class="product-img wood">🪑<span class="product-badge new">NUOVO</span></div>
+                    <div class="product-body">
+                        <div class="product-price">€85</div>
+                        <div class="product-title">Tavolino rovere design anni '60 — ottimo stato</div>
+                        <div class="product-footer">
+                            <div class="product-seller"><img class="avatar" src="https://i.pravatar.cc/44?img=12" alt=""><span class="name">Lara M.</span></div>
+                            <span class="product-time">2h</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img elec">📱<span class="product-badge hot">🔥 HOT</span></div>
+                    <div class="product-body">
+                        <div class="product-price">€320</div>
+                        <div class="product-title">iPhone 13 128GB — Cyber Monday, pochissimo uso</div>
+                        <div class="product-footer">
+                            <div class="product-seller"><img class="avatar" src="https://i.pravatar.cc/44?img=53" alt=""><span class="name">Matteo G.</span></div>
+                            <span class="product-time">5h</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img furn">🛋️</div>
+                    <div class="product-body">
+                        <div class="product-price">€150</div>
+                        <div class="product-title">Divano 3 posti IKEA KIVIK — grigio, usato 1 anno</div>
+                        <div class="product-footer">
+                            <div class="product-seller"><img class="avatar" src="https://i.pravatar.cc/44?img=45" alt=""><span class="name">Anna P.</span></div>
+                            <span class="product-time">8h</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img sport">🚲</div>
+                    <div class="product-body">
+                        <div class="product-price">€450</div>
+                        <div class="product-title">Bici elettrica Diacqua — 2500km, batteria ok</div>
+                        <div class="product-footer">
+                            <div class="product-seller"><img class="avatar" src="https://i.pravatar.cc/44?img=26" alt=""><span class="name">Davide B.</span></div>
+                            <span class="product-time">1g</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img fash">👟<span class="product-badge free">GRATIS</span></div>
+                    <div class="product-body">
+                        <div class="product-price">Gratis</div>
+                        <div class="product-title">Scarpe running Nike Solo uso 2 mesi — ritiro mano a mano</div>
+                        <div class="product-footer">
+                            <div class="product-seller"><img class="avatar" src="https://i.pravatar.cc/44?img=44" alt=""><span class="name">Marco B.</span></div>
+                            <span class="product-time">1g</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img kids">🧸</div>
+                    <div class="product-body">
+                        <div class="product-price">€25</div>
+                        <div class="product-title">Culla BB + biancheria — natale 2024, ancora perfetta</div>
+                        <div class="product-footer">
+                            <div class="product-seller"><img class="avatar" src="https://i.pravatar.cc/44?img=15" alt=""><span class="name">Chiara V.</span></div>
+                            <span class="product-time">2g</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img book">📚</div>
+                    <div class="product-body">
+                        <div class="product-price">€15</div>
+                        <div class="product-title">Pack 8 libri fantascienza — Asimov, Dick, Clarke</div>
+                        <div class="product-footer">
+                            <div class="product-seller"><img class="avatar" src="https://i.pravatar.cc/44?img=60" alt=""><span class="name">Paolo S.</span></div>
+                            <span class="product-time">3g</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img auto">🛞</div>
+                    <div class="product-body">
+                        <div class="product-price">€200</div>
+                        <div class="product-title">Set 4 gomme invernali 195/65 R15 — 60% battistrada</div>
+                        <div class="product-footer">
+                            <div class="product-seller"><img class="avatar" src="https://i.pravatar.cc/44?img=68" alt=""><span class="name">Luca R.</span></div>
+                            <span class="product-time">4g</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="sidebar-right">
+            <div class="widget">
+                <h4>💡 Consigli del Mercatino</h4>
+                <div class="quick-tip"><span class="icon">📸</span> Foto chiare e multiple aumentano le vendite del 60%</div>
+                <div class="quick-tip"><span class="icon">💰</span> Specifica sempre "ritiro a mano" o spedizione</div>
+                <div class="quick-tip"><span class="icon">🤝</span> Rispondi in fretta: chi prima chiuda, prima vende</div>
+            </div>
+            <div class="widget">
+                <h4>📈 Vetrina</h4>
+                <div style="font-size:0.78rem;color:var(--gray-400);line-height:2;">
+                    <div>🏆 Più venduti: <b style="color:var(--white)">Elettronica</b></div>
+                    <div>📦 Ultime inserzioni: <b style="color:var(--white)">+23 oggi</b></div>
+                    <div>🤝 Transazioni riuscite: <b style="color:var(--green)">1,247</b></div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <div class="mobile-nav">
+        <div class="mobile-nav-items">
+            <a href="#" class="mobile-nav-item"><span class="icon">🏠</span>Forum</a>
+            <a href="#" class="mobile-nav-item active"><span class="icon">🛒</span>Mercatino</a>
+            <a href="#" class="mobile-nav-item"><span class="icon">+</span>Vendi</a>
+            <a href="#" class="mobile-nav-item"><span class="icon">🔔</span>Avvisi</a>
+            <a href="#" class="mobile-nav-item"><span class="icon">👤</span>Profilo</a>
+        </div>
+    </div>
+
+    <footer>© 2026 Bisiacaria.com · Il mercatino del tuo quartiere ✦</footer>
 </body>
 </html>

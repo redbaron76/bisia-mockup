@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bisia — Tech Landing</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+        <style>
+        @import "tailwindcss";
+        @layer base, components;
+        @layer base {
+            :root { --accent: #ffcc00; }
+            body { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; background: #0a0a0c; color: #fff; }
+        }
+        @layer components {
+:root {
+            --black: #050505;
+            --gray-950: #0a0a0a;
+            --gray-900: #111;
+            --gray-800: #1a1a1a;
+            --gray-700: #222;
+            --gray-600: #333;
+            --gray-500: #555;
+            --gray-400: #777;
+            --gray-300: #999;
+            --white: #fff;
+            --accent: #ffcc00;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            font-size: 16px;
+        }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            padding: 1rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            background: var(--gray-950);
+            border-bottom: 1px solid var(--gray-800);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+        .logo { color: var(--accent); font-weight: 700; }
+        .logo::before { content: '> '; color: var(--gray-400); }
+        .nav-right { display: flex; gap: 1.5rem; align-items: center; }
+        .nav-right a { color: var(--gray-400); text-decoration: none; transition: color 0.2s; }
+        .nav-right a:hover { color: var(--accent); }
+        .btn-terminal {
+            background: var(--gray-800); color: var(--accent);
+            padding: 0.5rem 1.2rem; border-radius: 4px;
+            text-decoration: none; font-size: 0.85rem;
+            border: 1px solid var(--gray-700); transition: all 0.2s;
+        }
+        .btn-terminal:hover { background: var(--accent); color: var(--black); }
+
+        /* HERO */
+        .hero {
+            padding: 10rem 2rem 4rem;
+            max-width: 1200px; margin: 0 auto;
+        }
+        .code-block {
+            background: var(--gray-900); border: 1px solid var(--gray-800);
+            border-radius: 8px; padding: 1.5rem 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem; margin-bottom: 3rem;
+            overflow-x: auto;
+        }
+        .code-block .keyword { color: #c678dd; }
+        .code-block .string { color: #98c379; }
+        .code-block .func { color: #61afef; }
+        .code-block .comment { color: var(--gray-500); }
+        .code-block .accent { color: var(--accent); }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800; line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-family: 'Inter', sans-serif;
+        }
+        h1 .accent { color: var(--accent); }
+        .subtitle {
+            color: var(--gray-400); font-size: 1.15rem;
+            max-width: 600px; margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        /* GRID LAYOUT */
+        .content-grid {
+            display: grid; grid-template-columns: 2fr 1fr;
+            gap: 3rem; padding: 0 2rem;
+            max-width: 1200px; margin: 0 auto;
+        }
+
+        /* FEATURES */
+        .features { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem; color: var(--accent);
+            text-transform: uppercase; letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+        }
+        .features h2 {
+            font-size: 2.5rem; font-weight: 800;
+            margin-bottom: 3rem;
+        }
+        .feature-list { display: flex; flex-direction: column; gap: 1px; }
+        .feature-item {
+            display: grid; grid-template-columns: 1fr 2fr;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--gray-800);
+            transition: all 0.3s;
+        }
+        .feature-item:hover { padding-left: 1rem; }
+        .feature-item .num {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--gray-500); font-size: 0.85rem;
+        }
+        .feature-item h3 {
+            font-size: 1.15rem; font-weight: 600; margin-bottom: 0.5rem;
+        }
+        .feature-item p { color: var(--gray-400); font-size: 0.95rem; }
+
+        /* SIDEBAR */
+        .sidebar {
+            background: var(--gray-900); border: 1px solid var(--gray-800);
+            border-radius: 8px; padding: 2rem;
+            position: sticky; top: 6rem;
+        }
+        .sidebar h4 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem; color: var(--accent);
+            margin-bottom: 1.5rem; text-transform: uppercase;
+        }
+        .sidebar-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem; line-height: 1.8;
+            color: var(--gray-400);
+        }
+        .sidebar-code .tag { color: #e06c75; }
+        .sidebar-code .attr { color: var(--accent); }
+
+        /* STATS */
+        .stats {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 1px; background: var(--gray-800);
+            border: 1px solid var(--gray-800);
+            margin: 4rem 2rem; max-width: 1200px; margin-left: auto; margin-right: auto;
+        }
+        .stat {
+            background: var(--gray-950); padding: 2.5rem;
+            text-align: center;
+        }
+        .stat .value {
+            font-size: 2.5rem; font-weight: 800; color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .stat .label {
+            font-size: 0.85rem; color: var(--gray-500);
+            margin-top: 0.5rem;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 6rem 2rem; text-align: center;
+            max-width: 700px; margin: 0 auto;
+        }
+        .cta h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1.5rem; }
+        .cta p { color: var(--gray-400); margin-bottom: 2.5rem; }
+        .cta-btn {
+            display: inline-flex; align-items: center; gap: 0.75rem;
+            background: var(--accent); color: var(--black);
+            padding: 1rem 2.5rem; border-radius: 6px;
+            font-weight: 700; font-size: 1rem;
+            text-decoration: none; transition: all 0.3s;
+        }
+        .cta-btn:hover { background: #fff; }
+
+        footer {
+            padding: 3rem 2rem; text-align: center;
+            border-top: 1px solid var(--gray-800);
+            color: var(--gray-600); font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sidebar { display: none; }
+            .stats { grid-template-columns: 1fr; }
+        }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">bisia</div>
+        <div class="nav-right">
+            <a href="#features">Features</a>
+            <a href="#docs">Docs</a>
+            <a href="#" class="btn-terminal">$ git clone bisia</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="code-block">
+            <span class="keyword">import</span> { <span class="func">Bisia</span> } <span class="keyword">from</span> <span class="string">'@bisia/core'</span>;<br>
+            <span class="comment">// Zero config. Zero friction. Just ship.</span><br><br>
+            <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="func">Bisia</span>({<br>
+            &nbsp;&nbsp;name: <span class="string">'my-app'</span>,<br>
+            &nbsp;&nbsp;theme: <span class="accent">'dark'</span>,<br>
+            &nbsp;&nbsp;deploy: <span class="string">'edge'</span><br>
+            });<br><br>
+            app.<span class="func">launch</span>(); <span class="comment">// → Running at http://localhost:3000</span>
+        </div>
+
+        <h1>Ship faster<br>with <span class="accent">zero config</span></h1>
+        <p class="subtitle">A developer-first platform that handles the heavy lifting. You focus on code, we handle the rest.</p>
+    </section>
+
+    <div class="content-grid">
+        <section class="features" id="features">
+            <div class="section-label">// Features</div>
+            <h2>Everything that matters</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <span class="num">01</span>
+                    <div>
+                        <h3>Edge Deployment</h3>
+                        <p>Deploy to 300+ edge locations worldwide. Your users get sub-50ms response times everywhere.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="num">02</span>
+                    <div>
+                        <h3>Auto-scaling Infrastructure</h3>
+                        <p>From zero to millions of requests. No capacity planning, no cold starts, no surprises.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="num">03</span>
+                    <div>
+                        <h3>Built-in Observability</h3>
+                        <p>Logs, metrics, traces — all automatically collected and correlated. Debug in seconds.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="num">04</span>
+                    <div>
+                        <h3>Preview Deployments</h3>
+                        <p>Every PR gets its own live URL. Review, share, and iterate before merging.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="sidebar">
+            <h4>Quick Start</h4>
+            <div class="sidebar-code">
+                <span class="comment">$ npm i @bisia/core</span><br><br>
+                <span class="tag">&lt;Bisia&gt;</span><br>
+                &nbsp;&nbsp;<span class="tag">&lt;Route</span> <span class="attr">path</span>=<span class="string">"/"</span> <span class="tag">/&gt;</span><br>
+                &nbsp;&nbsp;<span class="tag">&lt;Route</span> <span class="attr">path</span>=<span class="string">"/api"</span> <span class="tag">/&gt;</span><br>
+                <span class="tag">&lt;/Bisia&gt;</span><br><br>
+                <span class="comment">$ bisia deploy</span><br>
+                <span class="accent">→ Published!</span><br>
+                <span class="accent">→ https://my-app.bisia.dev</span>
+            </div>
+        </aside>
+    </div>
+
+    <section class="stats">
+        <div class="stat">
+            <div class="value">0.3s</div>
+            <div class="label">Deploy Time</div>
+        </div>
+        <div class="stat">
+            <div class="value">99.99%</div>
+            <div class="label">Uptime</div>
+        </div>
+        <div class="stat">
+            <div class="value">300+</div>
+            <div class="label">Edge Locations</div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Ready to build?</h2>
+        <p>Get started in under 60 seconds. No credit card required.</p>
+        <a href="#" class="cta-btn">$ npx create-bisia-app</a>
+    </section>
+
+    <footer>
+        <p>built with ⚡ by bisia • v2.0.0</p>
+    </footer>
+</body>
+</html>
