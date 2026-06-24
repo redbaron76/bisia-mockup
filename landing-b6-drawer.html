@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawer Layout — Bisiacaria.com</title>
+    <meta name="description" content="Bisiacaria.com layout a colonne con drawer.">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-zinc-950 text-zinc-200 font-sans antialiased">
+<div class="min-h-screen">
+        <header class="fixed top-0 left-0 right-0 z-[200] flex items-center justify-between px-4 py-3 md:px-6 lg:px-8 bg-zinc-950 border-b border-zinc-800">
+            <a href="index.html" class="flex items-center gap-1 text-[1.05rem] font-bold tracking-tight">
+                <span class="text-white">Bisiacaria</span><span class="text-yellow-400">.com</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-6 lg:gap-8">
+                <a href="landing-4-warm.html" data-page="home" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Home</a>
+                <a href="landing-b1-forum.html" data-page="forum" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Forum</a>
+                <a href="landing-b2-mercato.html" data-page="mercato" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Mercatino</a>
+                <a href="landing-b3-news.html" data-page="news" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">News</a>
+                <a href="landing-b4-groups.html" data-page="gruppi" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Gruppi</a>
+                <a href="landing-b5-directory.html" data-page="directory" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Directory</a>
+                <a href="landing-b6-drawer.html" data-page="layout" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Layout</a>
+                <a href="landing-c1-community.html" data-page="community" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Community</a>
+                <a href="landing-c3-events.html" data-page="events" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">Eventi</a>
+                <a href="signup.html" class="inline-flex items-center justify-center bg-yellow-400 text-black font-semibold text-sm px-6 py-2 rounded-full transition-all hover:bg-zinc-900 hover:text-yellow-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 min-h-[2.75rem]">Esci</a>
+            </nav>
+            <button class="md:hidden hamburger w-9 h-9 flex flex-col items-center justify-center gap-[5px] bg-transparent" id="hamburger" aria-label="Menu">
+                <span class="hamburger-line block w-5 h-[2px] bg-zinc-900 rounded-full transition-transform duration-200 ease-out"></span>
+                <span class="hamburger-line block w-5 h-[2px] bg-zinc-900 rounded-full transition-opacity duration-200 ease-out"></span>
+                <span class="hamburger-line block w-5 h-[2px] bg-zinc-900 rounded-full transition-transform duration-200 ease-out"></span>
+            </button>
+        </header>
+        <div class="hidden md:flex mobile-menu absolute top-16 left-0 right-0 bottom-0 overflow-y-auto bg-zinc-950/98 backdrop-blur-lg z-[199]" id="mobile-menu">
+            <div class="flex flex-col p-4 gap-2">
+                <a href="landing-4-warm.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="home">Home</a>
+                <a href="landing-b1-forum.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="forum">Forum</a>
+                <a href="landing-b2-mercato.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="mercato">Mercatino</a>
+                <a href="landing-b3-news.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="news">News</a>
+                <a href="landing-b4-groups.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="gruppi">Gruppi</a>
+                <a href="landing-b5-directory.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="directory">Directory</a>
+                <a href="landing-b6-drawer.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="layout">Layout</a>
+                <a href="landing-c1-community.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="community">Community</a>
+                <a href="landing-c3-events.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="events">Eventi</a>
+                <a href="settings.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="settings">Impostazioni</a>
+                <a href="signup.html" class="mobile-nav-link block text-lg font-medium text-zinc-300 py-3 border-b border-zinc-800 transition-colors hover:text-white" data-page="signup">Esci</a>
+            </div>
+        </div>
+        <div class="hidden md:hidden mobile-overlay absolute top-16 left-0 right-0 bottom-0 bg-black/40 z-[198]" id="mobile-overlay"></div>
+    <!-- Hero -->
+    <section class="pt-40 pb-16 lg:pt-48 lg:pb-20">
+        <div class="px-4 md:px-6 lg:px-8 max-w-[72rem] mx-auto">
+            <p class="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold tracking-wider text-yellow-400 uppercase bg-zinc-900 rounded-full mb-6">
+                <span class="w-1.5 h-1.5 bg-yellow-400 rounded-full"></span>Layout a colonne
+            </p>
+            <h1 class="text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] font-extrabold tracking-tight leading-[1.08] mb-6 max-w-[48ch]">
+                Layout a <span class="text-yellow-400">colonne</span> con drawer
+            </h1>
+            <p class="text-lg md:text-xl leading-relaxed text-zinc-300 mb-10 max-w-[52ch]">
+                La piattaforma con layout a colonne sx/dx. Toggle click per aprire/chiudere le sezioni.
+            </p>
+            <a href="#" class="inline-flex items-center justify-center bg-yellow-400 text-black font-semibold text-sm px-6 py-3 rounded-full transition-all hover:bg-zinc-900 hover:text-yellow-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 min-h-[2.75rem]">Prova il drawer</a>
+        </div>
+    </section>
+    <hr class="mx-4 md:mx-6 lg:mx-8 max-w-[72rem] border-t-2 border-zinc-900">
+
+    <!-- Drawer Layout -->
+    <section class="max-w-[72rem] mx-auto px-4 md:px-6 lg:px-8 py-16">
+        <div class="pt-4 pb-12">
+            <p class="text-xs font-semibold tracking-wider text-zinc-500 uppercase mb-2">Interattivo</p>
+            <h2 class="text-[1.75rem] md:text-[2rem] font-bold tracking-tight leading-tight mb-2 max-w-[40ch]">Colonne espandibili</h2>
+        </div>
+        <div class="drawer-layout grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10">
+            <div class="drawer-panel p-6 lg:p-8 border border-zinc-800 rounded-lg bg-zinc-900/50">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-10 h-10 rounded-lg bg-yellow-400/10 text-yellow-400 flex items-center justify-center text-lg">⚡</span>
+                    <h3 class="text-lg font-bold tracking-tight">Colonna SX</h3>
+                </div>
+                <p class="text-sm text-zinc-400 leading-relaxed">Contenuto della colonna sinistra. Click sulla freccia per espandere o comprimere questa sezione.</p>
+            </div>
+            <div class="drawer-panel p-6 lg:p-8 border border-zinc-800 rounded-lg bg-zinc-900/50">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-10 h-10 rounded-lg bg-yellow-400/10 text-yellow-400 flex items-center justify-center text-lg">⚡</span>
+                    <h3 class="text-lg font-bold tracking-tight">Colonna DX</h3>
+                </div>
+                <p class="text-sm text-zinc-400 leading-relaxed">Contenuto della colonna destra. Click sulla freccia per espandere o comprimere questa sezione.</p>
+            </div>
+        </div>
+    </section>
+        <footer class="flex flex-wrap items-center justify-between gap-3 px-6 lg:px-8 py-8 border-t border-zinc-800">
+            <span class="text-sm text-zinc-500">&copy; 2026 Bisiacaria.com &middot; La community del tuo quartiere</span>
+            <div class="flex gap-5">
+                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors">Privacy</a>
+                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors">Termini</a>
+                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors">Contatti</a>
+            </div>
+        </footer>
+</div>
+        <style>
+            .hamburger.open .hamburger-line:first-child { transform: rotate(45deg) translate(5px, 5px); }
+            .hamburger.open .hamburger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+            .hamburger.open .hamburger-line:last-child { transform: rotate(-45deg) translate(5px, -5px); }
+            .nav-link.active, .mobile-nav-link.active { color: #facc15; }
+            @media (max-width: 768px) { .mobile-menu { display: flex; } .mobile-menu.hidden { display: none; } }
+        </style>
+        <script>
+            (function() {
+                var hamburger = document.getElementById('hamburger');
+                var menu = document.getElementById('mobile-menu');
+                var overlay = document.getElementById('mobile-overlay');
+                function toggleMenu() {
+                    var open = menu.classList.contains('hidden');
+                    if (open) { hamburger.classList.add('open'); menu.classList.remove('hidden'); overlay.classList.remove('hidden'); }
+                    else { hamburger.classList.remove('open'); menu.classList.add('hidden'); overlay.classList.add('hidden'); }
+                }
+                hamburger.addEventListener('click', toggleMenu);
+                overlay.addEventListener('click', toggleMenu);
+            })();
+        </script>
+</body>
+</html>
