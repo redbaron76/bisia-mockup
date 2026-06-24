@@ -5,8 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bisia — Landing Page Mockups</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root { --bg: #050505; --card: #111; --border: #1e1e1e; --text: #fff; --muted: #666; --accent: #ffcc00; }
+        <style>
+        @import "tailwindcss";
+        @layer base, components;
+        @layer base {
+            :root { --accent: #ffcc00; }
+            body { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; background: #0a0a0c; color: #fff; }
+        }
+        @layer components {
+:root { --bg: #050505; --card: #111; --border: #1e1e1e; --text: #fff; --muted: #666; --accent: #ffcc00; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); padding: 4rem 2rem; }
         .container { max-width: 900px; margin: 0 auto; }
@@ -23,6 +30,7 @@
         .card-arrow { font-size: 1.5rem; color: var(--muted); transition: color 0.3s; }
         .card:hover .card-arrow { color: var(--accent); }
         .footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; text-align: center; }
+        }
     </style>
 </head>
 <body>
