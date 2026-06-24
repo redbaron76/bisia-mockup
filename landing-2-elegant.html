@@ -5,27 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bisia — Elegant Landing</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-                        display: ['Outfit', 'sans-serif'],
-                    },
-                    colors: {
-                        accent: '#ffcc00',
-                    },
-                },
-            },
+        <style>
+        @import "tailwindcss";
+        @layer base, components;
+        @layer base {
+            :root { --accent: #ffcc00; }
+            body { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; background: #0a0a0c; color: #fff; }
         }
-    </script>
-
-    <style>
         @layer components {
-
-        :root {
+:root {
             --black: #0a0a0a;
             --gray-950: #0d0d0d;
             --gray-900: #151515;
@@ -210,7 +198,6 @@
             .features, .testimonial, .cta { padding: 4rem 1.5rem; }
             .features-grid { grid-template-columns: 1fr; }
         }
-    
         }
     </style>
 </head>
